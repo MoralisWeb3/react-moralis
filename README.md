@@ -301,9 +301,9 @@ You can filer the query via a second argument. You can mutate the query in any w
 ```jsx
 const { data, error, isLoading } = useMoralisQuery("GameScore", query =>
   query
-    .greaterThanOrEqualTo(100)
+    .greaterThanOrEqualTo("score", 100)
+    .descending("score")
     .limit(limit)
-    .descend("score")
 );
 ```
 
@@ -317,9 +317,9 @@ const { data, error, isLoading } = useMoralisQuery(
   "GameScore",
   query =>
     query
-      .greaterThanOrEqualTo(100)
-      .limit(limit)
-      .descend("score"),
+      .greaterThanOrEqualTo("score", 100)
+      .descending("score")
+      .limit(limit),
   [limit]
 );
 ```
@@ -335,9 +335,9 @@ const { fetch, data, error, isLoading } = useMoralisQuery(
   "GameScore",
   query =>
     query
-      .greaterThanOrEqualTo(100)
-      .limit(limit)
-      .descend("score"),
+      .greaterThanOrEqualTo("score", 100)
+      .descending("score")
+      .limit(limit),
   [],
   { autoFetch: false }
 );
@@ -357,9 +357,9 @@ const { data, error, isLoading } = useMoralisQuery(
   "GameScore",
   query =>
     query
-      .greaterThanOrEqualTo(100)
-      .limit(limit)
-      .descend("score"),
+      .greaterThanOrEqualTo("score", 100)
+      .descending("score")
+      .limit(limit),
   [limit],
   {
     live: true
@@ -385,9 +385,9 @@ const { data, error, isLoading } = useMoralisQuery(
   "GameScore",
   query =>
     query
-      .greaterThanOrEqualTo(100)
-      .limit(limit)
-      .descend("score"),
+      .greaterThanOrEqualTo("score", 100)
+      .descending("score")
+      .limit(limit),
   [limit],
   {
     live: true,
