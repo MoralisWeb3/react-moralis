@@ -1,0 +1,13 @@
+.idea/*
+.nyc_output
+node_modules
+test
+src/**.js
+coverage
+*.log
+lib
+yarn-error.log
+.env
+
+/example/node_modules
+/example/build
