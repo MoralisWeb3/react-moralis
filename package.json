@@ -1,15 +1,19 @@
 {
   "name": "react-moralis",
-  "version": "0.0.0",
+  "version": "0.0.1-0",
   "description": "Hooks and components to use Moralis in a React app",
-  "keywords": ["moralis","web3","react"],
+  "keywords": [
+    "moralis",
+    "web3",
+    "react"
+  ],
   "homepage": "https://github.com/ErnoW/react-moralis",
   "repository": {
     "type": "git",
     "url": "https://github.com/ErnoW/react-moralis"
   },
   "bugs": {
-    "url" : "https://github.com/ErnoW/react-moralis/issues"
+    "url": "https://github.com/ErnoW/react-moralis/issues"
   },
   "license": "MIT",
   "authors": [
