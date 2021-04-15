@@ -1,6 +1,6 @@
 {
   "name": "react-moralis",
-  "version": "0.0.1-0",
+  "version": "0.0.1-alpha.0",
   "description": "Hooks and components to use Moralis in a React app",
   "keywords": [
     "moralis",
