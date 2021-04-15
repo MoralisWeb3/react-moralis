@@ -74,7 +74,7 @@
     "lint": "eslint .",
     "commit": "npm run git-cz",
     "release": "standard-version",
-    "release:alpha": "standard-version --prerelease --no-verify",
+    "release:alpha": "standard-version --prerelease alpha --no-verify",
     "release:minor": "standard-version --release-as minor --no-verify",
     "release:patch": "standard-version --release-as patch --no-verify",
     "release:major": "standard-version --release-as major --no-verify"
