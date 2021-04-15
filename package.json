@@ -70,7 +70,6 @@
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -cw",
-    "publish": "git push --tags && npm publish",
     "lint": "eslint .",
     "commit": "npm run git-cz",
     "release": "standard-version",
