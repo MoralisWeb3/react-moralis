@@ -107,6 +107,8 @@ function App() {
     - [Other options](#other-options)
   - [`useMoralisCloudFunction()`](#usemoraliscloudfunction)
     - [Trigger manually](#trigger-manually)
+  - [`useNewMoralisObject()`](#usenewmoralisobject)
+- [Handling responses](#handling-responses)
 - [😖 Error handling](#-error-handling)
 - [⌨️ Typescript](#️-typescript)
 - [🧑‍💻 Development](#-development)
@@ -571,6 +573,21 @@ const { fetch, data, error, isLoading } = useMoralisCloudFunction(
 );
 
 <button onClick={() => fetch()}>Fetch manually<button>
+```
+
+## `useNewMoralisObject()`
+This is a wrapper around the save method for a `Moralis.Object`. It creates a new object, and resolves the data, error and loading state, similar to the other hooks.
+
+```jsx
+const AddScoreButton = ({user, score}) => {
+  const { isSaving, error, save } = useNewMoralisObject('GameScore');
+
+  return (<div>
+    {error && <ErrorMessage error={error} />}
+    <button onClick={() => save({score, user})} disabled={isSaving}>Save score</button>
+  </div>)
+}
+
 ```
 
 #  Handling responses
