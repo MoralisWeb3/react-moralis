@@ -7,27 +7,30 @@ import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 
 export default {
-	input: "src/index.ts",
-	output: [
-		{
-			file: packageJson.main,
-			format: "cjs",
-			sourcemap: true,
-		},
-		{
-			file: packageJson.module,
-			format: "es",
-			sourcemap: true,
-		},
-	],
-	plugins: [
-		cleaner({
-			targets: ["./lib"],
-		}),
-		peerDepsExternal(),
-		json(),
-		resolve(),
-		commonjs(),
-		typescript({ useTsconfigDeclarationDir: true }),
-	],
+  input: "src/index.ts",
+  output: [
+    {
+      file: packageJson.main,
+      format: "cjs",
+      sourcemap: true
+    },
+    {
+      file: packageJson.module,
+      format: "es",
+      sourcemap: true
+    }
+  ],
+  "process.env": {
+    NODE_ENV: JSON.stringify("production")
+  },
+  plugins: [
+    cleaner({
+      targets: ["./lib"]
+    }),
+    peerDepsExternal(),
+    json(),
+    resolve(),
+    commonjs(),
+    typescript({ useTsconfigDeclarationDir: true })
+  ]
 };
