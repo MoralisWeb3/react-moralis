@@ -12,25 +12,25 @@ export default {
     {
       file: packageJson.main,
       format: "cjs",
-      sourcemap: true
+      sourcemap: true,
     },
     {
       file: packageJson.module,
       format: "es",
-      sourcemap: true
-    }
+      sourcemap: true,
+    },
   ],
   "process.env": {
-    NODE_ENV: JSON.stringify("production")
+    NODE_ENV: JSON.stringify("production"),
   },
   plugins: [
     cleaner({
-      targets: ["./lib"]
+      targets: ["./lib"],
     }),
     peerDepsExternal(),
     json(),
     resolve(),
     commonjs(),
-    typescript({ useTsconfigDeclarationDir: true })
-  ]
+    typescript({ useTsconfigDeclarationDir: true }),
+  ],
 };

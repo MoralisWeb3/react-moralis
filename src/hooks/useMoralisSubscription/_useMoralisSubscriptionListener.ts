@@ -3,14 +3,14 @@ import { useEffect } from "react";
 import { useMoralis } from "../useMoralis";
 
 export type MoralisListenerHandler = (
-  entity: Moralis.Object<Moralis.Attributes>
+  entity: Moralis.Object<Moralis.Attributes>,
 ) => void;
 
 export const _useSubscriptionListener = ({
   name,
   handler,
   enable,
-  subscription
+  subscription,
 }: {
   name: "open" | "create" | "update" | "enter" | "leave" | "delete" | "close";
   handler?: MoralisListenerHandler;

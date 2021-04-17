@@ -34,7 +34,7 @@ export const Authentication = () => {
               authError,
             },
             null,
-            2
+            2,
           )}
         </CodeBlock>
       </Stack>

@@ -27,7 +27,7 @@ export const useMoralisFile = () => {
     async (
       name: string,
       file: ValidFileInput,
-      options: MoralisFileSaveOptions = {}
+      options: MoralisFileSaveOptions = {},
     ) => {
       try {
         setIsUploading(true);
@@ -39,7 +39,7 @@ export const useMoralisFile = () => {
           options.type,
           //@ts-ignore type is different than documentation (it should accept metadata and tags)
           options.metadata,
-          options.tags
+          options.tags,
         );
 
         if (options.saveIPFS) {
@@ -62,7 +62,7 @@ export const useMoralisFile = () => {
         setIsUploading(false);
       }
     },
-    []
+    [],
   );
 
   return {
@@ -70,6 +70,6 @@ export const useMoralisFile = () => {
     saveFile,
     isUploading,
     isSuccess,
-    moralisFile
+    moralisFile,
   };
 };

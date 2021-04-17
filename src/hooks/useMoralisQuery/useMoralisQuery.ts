@@ -13,7 +13,7 @@ export interface MoralisQueryFetchOptions {
 
 export type OnLiveHandler<Entity = DefaultQueryAttribute> = (
   entity: Moralis.Object<Entity>,
-  all: Moralis.Object<Entity>[] | WritableDraft<Moralis.Object<Entity>>[]
+  all: Moralis.Object<Entity>[] | WritableDraft<Moralis.Object<Entity>>[],
 ) => Moralis.Object<Entity>[];
 
 export interface UseMoralisQueryOptions<Entity = DefaultQueryAttribute> {
@@ -31,18 +31,19 @@ const defaultUseMoralisQueryOptions: UseMoralisQueryOptions = {
   live: false,
   onLiveEnter: (entity, all) => [...all, entity],
   onLiveCreate: (entity, all) => [...all, entity],
-  onLiveDelete: (entity, all) => all.filter(e => e.id !== entity.id),
-  onLiveLeave: (entity, all) => all.filter(e => e.id !== entity.id),
-  onLiveUpdate: (entity, all) => all.map(e => (e.id === entity.id ? entity : e))
+  onLiveDelete: (entity, all) => all.filter((e) => e.id !== entity.id),
+  onLiveLeave: (entity, all) => all.filter((e) => e.id !== entity.id),
+  onLiveUpdate: (entity, all) =>
+    all.map((e) => (e.id === entity.id ? entity : e)),
 };
 
 export const useMoralisQuery = <
   Entity extends Moralis.Attributes = Moralis.Attributes
 >(
   nameOrObject: string | Moralis.Object,
-  queryMap: (q: Query<Entity>) => Query<Entity> = q => q,
+  queryMap: (q: Query<Entity>) => Query<Entity> = (q) => q,
   dependencies: any[] = [],
-  options: UseMoralisQueryOptions<Entity> = {}
+  options: UseMoralisQueryOptions<Entity> = {},
 ) => {
   const { isInitialized } = useMoralis();
   const {
@@ -52,10 +53,10 @@ export const useMoralisQuery = <
     onLiveDelete,
     onLiveEnter,
     onLiveLeave,
-    onLiveUpdate
+    onLiveUpdate,
   } = {
     ...defaultUseMoralisQueryOptions,
-    ...options
+    ...options,
   };
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -66,48 +67,48 @@ export const useMoralisQuery = <
   const query = _useSafeUpdatedQuery(nameOrObject, queryMap, dependencies);
 
   const handleOnCreate = useCallback(
-    entity => {
+    (entity) => {
       if (onLiveCreate) {
-        setData(data => onLiveCreate(entity, data));
+        setData((data) => onLiveCreate(entity, data));
       }
     },
-    [onLiveCreate]
+    [onLiveCreate],
   );
 
   const handleOnEnter = useCallback(
-    entity => {
+    (entity) => {
       if (onLiveEnter) {
-        setData(data => onLiveEnter(entity, data));
+        setData((data) => onLiveEnter(entity, data));
       }
     },
-    [onLiveEnter]
+    [onLiveEnter],
   );
 
   const handleOnUpdate = useCallback(
-    entity => {
+    (entity) => {
       if (onLiveUpdate) {
-        setData(data => onLiveUpdate(entity, data));
+        setData((data) => onLiveUpdate(entity, data));
       }
     },
-    [onLiveUpdate]
+    [onLiveUpdate],
   );
 
   const handleOnDelete = useCallback(
-    entity => {
+    (entity) => {
       if (onLiveDelete) {
-        setData(data => onLiveDelete(entity, data));
+        setData((data) => onLiveDelete(entity, data));
       }
     },
-    [onLiveDelete]
+    [onLiveDelete],
   );
 
   const handleOnLeave = useCallback(
-    entity => {
+    (entity) => {
       if (onLiveLeave) {
-        setData(data => onLiveLeave(entity, data));
+        setData((data) => onLiveLeave(entity, data));
       }
     },
-    [onLiveLeave]
+    [onLiveLeave],
   );
 
   // Update the data upon updated
@@ -117,7 +118,7 @@ export const useMoralisQuery = <
     onEnter: handleOnEnter,
     onUpdate: handleOnUpdate,
     onDelete: handleOnDelete,
-    onLeave: handleOnLeave
+    onLeave: handleOnLeave,
   });
 
   /**
@@ -140,7 +141,7 @@ export const useMoralisQuery = <
         setIsFetching(false);
       }
     },
-    [query]
+    [query],
   );
 
   /**

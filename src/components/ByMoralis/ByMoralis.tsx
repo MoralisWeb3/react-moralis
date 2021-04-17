@@ -70,7 +70,7 @@ interface ByMoralisProps {
 export const ByMoralis = ({
   variant = "colour",
   width = 250,
-  style
+  style,
 }: ByMoralisProps) => {
   if (variant === "light") {
     return <PoweredByLight style={{ width, ...style }} />;

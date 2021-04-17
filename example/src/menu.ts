@@ -15,61 +15,61 @@ export const menu = [
   {
     path: "/authentication",
     label: "Authentication",
-    component: Authentication
+    component: Authentication,
   },
   {
     path: "/login",
     label: "Login",
-    component: Login
+    component: Login,
   },
   {
     path: "/user",
     label: "User",
-    component: User
+    component: User,
   },
   {
     path: "/query-simple",
     label: "Query (simple)",
-    component: QuerySimple
+    component: QuerySimple,
   },
   {
     path: "/query-manual",
     label: "Query (manual",
-    component: QueryManual
+    component: QueryManual,
   },
   {
     path: "/query-object",
     label: "Query (object)",
-    component: QueryObject
+    component: QueryObject,
   },
   {
     path: "/query-live",
     label: "Query (live)",
-    component: QueryLive
+    component: QueryLive,
   },
   {
     path: "/subscription",
     label: "Subscription",
-    component: Subscription
+    component: Subscription,
   },
   {
     path: "/file",
     label: "File",
-    component: File
+    component: File,
   },
   {
     path: "/file-ipfs",
     label: "File (IPFS)",
-    component: FileIpfs
+    component: FileIpfs,
   },
   {
     path: "/cloud",
     label: "CloudFunction",
-    component: CloudFunction
+    component: CloudFunction,
   },
   {
     path: "/assets",
     label: "Assets",
-    component: Assets
-  }
+    component: Assets,
+  },
 ];

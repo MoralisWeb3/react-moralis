@@ -7,7 +7,7 @@ export const useMoralis = () => {
 
   if (!moralisContext) {
     throw new NoMoralisContextProviderError(
-      "Make sure to only call useMoralis within a  <MoralisProvider>"
+      "Make sure to only call useMoralis within a  <MoralisProvider>",
     );
   }
 

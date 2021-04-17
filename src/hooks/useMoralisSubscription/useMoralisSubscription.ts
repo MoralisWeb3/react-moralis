@@ -5,7 +5,7 @@ import { Query } from "src/utils/genericQuery";
 import { _useSafeUpdatedQuery } from "../useMoralisQuery/_useSafeUpdatedQuery";
 import {
   MoralisListenerHandler,
-  _useSubscriptionListener
+  _useSubscriptionListener,
 } from "./_useMoralisSubscriptionListener";
 
 export interface UseSubscriptionQueryOptions {
@@ -18,20 +18,20 @@ export interface UseSubscriptionQueryOptions {
 }
 
 const defaultUseSubscriptionQueryOptions: UseSubscriptionQueryOptions = {
-  enabled: true
+  enabled: true,
 };
 
 export const useMoralisSubscription = <
   Entity extends Moralis.Attributes = Moralis.Attributes
 >(
   nameOrObject: string | Moralis.Object,
-  queryMap: (q: Query<Entity>) => Query<Entity> = q => q,
+  queryMap: (q: Query<Entity>) => Query<Entity> = (q) => q,
   dependencies: any[] = [],
-  options: UseSubscriptionQueryOptions = {}
+  options: UseSubscriptionQueryOptions = {},
 ) => {
   const { enabled, onCreate, onDelete, onEnter, onLeave, onUpdate } = {
     ...defaultUseSubscriptionQueryOptions,
-    ...options
+    ...options,
   };
   const { isInitialized } = useMoralis();
   const subscriptionRef = useRef<Moralis.LiveQuerySubscription>();
@@ -48,7 +48,7 @@ export const useMoralisSubscription = <
       return;
     }
 
-    query.subscribe().then(sub => {
+    query.subscribe().then((sub) => {
       subscriptionRef.current = sub;
       setIsReady(true);
     });
@@ -64,34 +64,34 @@ export const useMoralisSubscription = <
     name: "create",
     handler: onCreate,
     subscription: subscriptionRef.current,
-    enable: (enabled && isReady) ?? false
+    enable: (enabled && isReady) ?? false,
   });
 
   _useSubscriptionListener({
     name: "update",
     handler: onUpdate,
     subscription: subscriptionRef.current,
-    enable: (enabled && isReady) ?? false
+    enable: (enabled && isReady) ?? false,
   });
 
   _useSubscriptionListener({
     name: "enter",
     handler: onEnter,
     subscription: subscriptionRef.current,
-    enable: (enabled && isReady) ?? false
+    enable: (enabled && isReady) ?? false,
   });
 
   _useSubscriptionListener({
     name: "leave",
     handler: onLeave,
     subscription: subscriptionRef.current,
-    enable: (enabled && isReady) ?? false
+    enable: (enabled && isReady) ?? false,
   });
 
   _useSubscriptionListener({
     name: "delete",
     handler: onDelete,
     subscription: subscriptionRef.current,
-    enable: (enabled && isReady) ?? false
+    enable: (enabled && isReady) ?? false,
   });
 };

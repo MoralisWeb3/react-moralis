@@ -11,7 +11,7 @@ export const File = () => {
     isSuccess,
     isUploading,
     moralisFile,
-    saveFile
+    saveFile,
   } = useMoralisFile();
 
   const handleUpload = () => {
@@ -40,10 +40,10 @@ export const File = () => {
               error,
               isSuccess,
               isUploading,
-              moralisFile
+              moralisFile,
             },
             null,
-            2
+            2,
           )}
         </CodeBlock>
       </Stack>

@@ -14,8 +14,8 @@ export const _useSafeUpdatedQuery = <
   Entity extends Moralis.Attributes = Moralis.Attributes
 >(
   nameOrObject: string | Moralis.Object,
-  queryMap: (q: Query<Entity>) => Query<Entity> = q => q,
-  dependencies: any[] = []
+  queryMap: (q: Query<Entity>) => Query<Entity> = (q) => q,
+  dependencies: any[] = [],
 ) => {
   const { isInitialized } = useMoralis();
 
@@ -30,7 +30,7 @@ export const _useSafeUpdatedQuery = <
   const query = useMemo(() => {
     const q = new Moralis.Query<Moralis.Object<Entity>>(
       // Explicit cast to any to prevent ts-error, because Moralis.Query should accept a Moralis.object
-      currentNameOrObject as any
+      currentNameOrObject as any,
     );
     return currentQueryMap(q);
   }, [isInitialized, currentNameOrObject, currentQueryMap]);

@@ -15,7 +15,7 @@ export type SetUserData = Record<string, UserDataValue>;
 
 export const setMultipleDataToUser = (
   data: SetUserData,
-  user: Moralis.User
+  user: Moralis.User,
 ) => {
   // We use the specified functions to set password, email, and username
   const { password, email, username, ...restData } = data;

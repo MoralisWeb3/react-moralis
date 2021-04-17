@@ -5,7 +5,7 @@ import {
   Button,
   Input,
   InputGroup,
-  InputLeftAddon
+  InputLeftAddon,
 } from "@chakra-ui/react";
 import { useMoralisQuery } from "react-moralis";
 import { CodeBlock } from "../components/CodeBlock";
@@ -20,12 +20,16 @@ export const QueryObject = () => {
   const [maxScore, setMaxScore] = useState(100);
   const [limit, setLimit] = useState(3);
 
-  const { fetch, data, error, isFetching, isLoading } = useMoralisQuery<
-    GameScore
-  >(
+  const {
+    fetch,
+    data,
+    error,
+    isFetching,
+    isLoading,
+  } = useMoralisQuery<GameScore>(
     Moralis.Object.extend("GameScore"),
-    q => q.greaterThanOrEqualTo("score", maxScore).limit(limit),
-    [maxScore, limit]
+    (q) => q.greaterThanOrEqualTo("score", maxScore).limit(limit),
+    [maxScore, limit],
   );
 
   return (
@@ -39,7 +43,7 @@ export const QueryObject = () => {
             <Input
               type="number"
               value={maxScore}
-              onChange={e => setMaxScore(+e.target.value)}
+              onChange={(e) => setMaxScore(+e.target.value)}
             />
           </InputGroup>
 
@@ -48,7 +52,7 @@ export const QueryObject = () => {
             <Input
               type="number"
               value={limit}
-              onChange={e => setLimit(+e.target.value)}
+              onChange={(e) => setLimit(+e.target.value)}
             />
           </InputGroup>
         </Stack>
@@ -63,10 +67,10 @@ export const QueryObject = () => {
               data,
               error: error && { name: error.name, message: error.message },
               isFetching,
-              isLoading
+              isLoading,
             },
             null,
-            2
+            2,
           )}
         </CodeBlock>
       </Stack>

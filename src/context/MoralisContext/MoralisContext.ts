@@ -4,7 +4,7 @@ import {
   AuthenticateOptions,
   Authentication,
   Login,
-  Signup
+  Signup,
 } from "../../hooks/useMoralis/_useMoralisAuth";
 import { SetUserData } from "src/hooks/useMoralis/utils/setUserData";
 

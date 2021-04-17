@@ -92,7 +92,7 @@ export const Login = () => {
               authError,
             },
             null,
-            2
+            2,
           )}
         </CodeBlock>
       </Stack>

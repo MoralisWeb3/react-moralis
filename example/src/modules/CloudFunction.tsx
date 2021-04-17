@@ -5,7 +5,7 @@ import {
   Button,
   Input,
   InputGroup,
-  InputLeftAddon
+  InputLeftAddon,
 } from "@chakra-ui/react";
 import { useMoralisCloudFunction } from "react-moralis";
 import { CodeBlock } from "../components/CodeBlock";
@@ -17,7 +17,7 @@ export const CloudFunction = () => {
     error,
     fetch,
     isFetching,
-    isLoading
+    isLoading,
   } = useMoralisCloudFunction("topScores", { limit });
 
   return (
@@ -33,7 +33,7 @@ export const CloudFunction = () => {
             <Input
               type="number"
               value={limit}
-              onChange={e => setLimit(+e.target.value)}
+              onChange={(e) => setLimit(+e.target.value)}
             />
           </InputGroup>
         </Stack>
@@ -44,10 +44,10 @@ export const CloudFunction = () => {
               error,
               fetch,
               isFetching,
-              isLoading
+              isLoading,
             },
             null,
-            2
+            2,
           )}
         </CodeBlock>
       </Stack>

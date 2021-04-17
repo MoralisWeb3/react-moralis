@@ -38,7 +38,7 @@ const Inner = () => {
                 <FormLabel>Email</FormLabel>
                 <Input
                   value={email}
-                  onChange={e => setEmail(e.currentTarget.value)}
+                  onChange={(e) => setEmail(e.currentTarget.value)}
                   placeholder="email"
                 />
               </Box>
@@ -46,7 +46,7 @@ const Inner = () => {
                 <FormLabel>Username</FormLabel>
                 <Input
                   value={username}
-                  onChange={e => setUsername(e.currentTarget.value)}
+                  onChange={(e) => setUsername(e.currentTarget.value)}
                   placeholder="username"
                 />
               </Box>
@@ -55,7 +55,7 @@ const Inner = () => {
                 <Input
                   type="phone"
                   value={phone}
-                  onChange={e => setPhone(e.currentTarget.value)}
+                  onChange={(e) => setPhone(e.currentTarget.value)}
                   placeholder="phone"
                 />
               </Box>
@@ -76,12 +76,12 @@ const Inner = () => {
               user,
               userError: {
                 name: userError && userError.name,
-                message: userError && userError.message
+                message: userError && userError.message,
               },
-              isUserUpdating
+              isUserUpdating,
             },
             null,
-            2
+            2,
           )}
         </CodeBlock>
       </Stack>

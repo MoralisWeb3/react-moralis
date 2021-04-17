@@ -9,7 +9,7 @@ export const _useMoralisInit = ({
   appId,
   serverUrl,
   jsKey,
-  dangerouslyUseOfMasterKey
+  dangerouslyUseOfMasterKey,
 }: {
   appId: string;
   serverUrl: string;

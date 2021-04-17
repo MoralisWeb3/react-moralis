@@ -8,8 +8,8 @@ interface GameScore {
 }
 
 export const Subscription = () => {
-  useMoralisSubscription<GameScore>("GameScore", q => q, [], {
-    onCreate: data => alert(`${data.attributes.playerName} was just created`)
+  useMoralisSubscription<GameScore>("GameScore", (q) => q, [], {
+    onCreate: (data) => alert(`${data.attributes.playerName} was just created`),
   });
 
   return (

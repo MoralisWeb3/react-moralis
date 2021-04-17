@@ -5,7 +5,7 @@ import {
   Heading,
   Stack,
   Wrap,
-  WrapItem
+  WrapItem,
 } from "@chakra-ui/react";
 import { Link, Redirect, Route, Switch, useLocation } from "react-router-dom";
 import React from "react";

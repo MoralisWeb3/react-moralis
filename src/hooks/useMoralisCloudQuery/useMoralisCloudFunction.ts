@@ -14,18 +14,18 @@ export interface MoralisCloudFetchOptions {
 export type MoralisCloudFunctionParameters = Record<string, any>;
 
 const defaultUseMoralisCloudFunctionOptions: UseMoralisCloudFunctionOptions = {
-  autoFetch: true
+  autoFetch: true,
 };
 
 export const useMoralisCloudFunction = (
   name: string,
   params?: MoralisCloudFunctionParameters,
-  options?: UseMoralisCloudFunctionOptions
+  options?: UseMoralisCloudFunctionOptions,
 ) => {
   const { isInitialized } = useMoralis();
   const { autoFetch } = {
     ...defaultUseMoralisCloudFunctionOptions,
-    ...(options ?? {})
+    ...(options ?? {}),
   };
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState(null);
@@ -55,7 +55,7 @@ export const useMoralisCloudFunction = (
         setIsFetching(false);
       }
     },
-    [name, paramsRef.current]
+    [name, paramsRef.current],
   );
 
   const isLoading = isFetching && data == null;
@@ -76,6 +76,6 @@ export const useMoralisCloudFunction = (
     isFetching,
     isLoading,
     error,
-    data: data ?? []
+    data: data ?? [],
   };
 };

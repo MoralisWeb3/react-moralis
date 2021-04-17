@@ -11,7 +11,7 @@ export const FileIpfs = () => {
     isSuccess,
     isUploading,
     moralisFile,
-    saveFile
+    saveFile,
   } = useMoralisFile();
 
   const handleUpload = () => {
@@ -41,11 +41,11 @@ export const FileIpfs = () => {
               isSuccess,
               isUploading,
               moralisFile,
-              hash: moralisFile ?(moralisFile as any).hash() : null,
-              ipfs: moralisFile ? (moralisFile as any).ipfs() : null
+              hash: moralisFile ? (moralisFile as any).hash() : null,
+              ipfs: moralisFile ? (moralisFile as any).ipfs() : null,
             },
             null,
-            2
+            2,
           )}
         </CodeBlock>
       </Stack>
