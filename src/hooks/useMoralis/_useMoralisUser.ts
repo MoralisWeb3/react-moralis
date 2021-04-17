@@ -2,9 +2,9 @@ import { Moralis } from "moralis";
 import { useCallback, useEffect, useState } from "react";
 import { NotAuthenticatedError } from "../../Errors";
 import { setMultipleDataToUser, SetUserData } from "./utils/setUserData";
-import { Authentication, AuthenticationState } from "./_useMoralisAuth";
 
-export const _useMoralisUser = (auth: Authentication) => {
+
+export const _useMoralisUser = () => {
   const [user, setUser] = useState<Moralis.User | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -28,8 +28,8 @@ export const _useMoralisUser = (auth: Authentication) => {
       if (!user) {
         setError(
           new NotAuthenticatedError(
-            "User needs to be authenticated before setting new data"
-          )
+            "User needs to be authenticated before setting new data",
+          ),
         );
         return;
       }
@@ -39,9 +39,11 @@ export const _useMoralisUser = (auth: Authentication) => {
       try {
         setMultipleDataToUser(data, user);
 
+        await user.save();
+
         const currentUser = Moralis.User.current();
 
-        if (currentUser && auth.state === AuthenticationState.AUTHENTICATED) {
+        if (currentUser) {
           setUser(currentUser);
         }
       } catch (error) {
@@ -53,5 +55,11 @@ export const _useMoralisUser = (auth: Authentication) => {
     [user]
   );
 
-  return { setUserData, user, isUserUpdating: isUpdating, userError: error };
+  return {
+    setUserData,
+    setUser,
+    user,
+    isUserUpdating: isUpdating,
+    userError: error
+  };
 };

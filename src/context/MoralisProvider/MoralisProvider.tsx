@@ -36,9 +36,9 @@ export const MoralisProvider = ({
     jsKey,
     dangerouslyUseOfMasterKey,
   });
-  const moralisAuth = _useMoralisAuth({ onAccountChanged });
+  const { setUser, ...moralisUser } = _useMoralisUser();
+  const moralisAuth = _useMoralisAuth({ onAccountChanged, setUser });
   const moralisWeb3 = _useMoralisWeb3(moralisAuth.isAuthenticated);
-  const moralisUser = _useMoralisUser(moralisAuth.auth);
 
   return (
     <MoralisContext.Provider

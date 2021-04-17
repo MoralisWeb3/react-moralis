@@ -3,6 +3,7 @@ import { Moralis } from "moralis";
 import { setMultipleDataToUser, SetUserData } from "./utils/setUserData";
 
 export enum AuthenticationState {
+  UNDEFINED = "undefined",
   UNAUTHENTICATED = "unauthenticated",
   AUTHENTICATED = "authenticated",
   AUTHENTICATING = "authenticating",
@@ -11,6 +12,10 @@ export enum AuthenticationState {
 }
 
 export type Authentication =
+  | {
+      state: AuthenticationState.UNDEFINED;
+      error: null;
+    }
   | {
       state: AuthenticationState.UNAUTHENTICATED;
       error: null;
@@ -33,7 +38,7 @@ export type Authentication =
     };
 
 const initialAuth: Authentication = {
-  state: AuthenticationState.UNAUTHENTICATED,
+  state: AuthenticationState.UNDEFINED,
   error: null,
 };
 
@@ -41,19 +46,33 @@ export interface AuthenticateOptions {
   onError?: (error: Error) => void;
   onSuccess?: () => void;
   onComplete?: () => void;
+  throwOnError?: boolean;
+}
+
+export interface SignupOptions {
+  throwOnError?: boolean;
+}
+export interface LoginOptions {
+  throwOnError?: boolean;
+  usePost?: boolean;
+}
+
+export interface LogoutOptions {
+  throwOnError?: boolean;
 }
 
 export type Login = (
   username: string,
   password: string,
-  options?: { usePost?: boolean }
+  options?: LoginOptions,
 ) => Promise<void>;
 
 export type Signup = (
   username: string,
   password: string,
   email?: string,
-  otherFields?: SetUserData
+  otherFields?: SetUserData,
+  options?: SignupOptions,
 ) => Promise<void>;
 
 export type OnAccountChanged = (account: string) => void;
@@ -62,9 +81,13 @@ export type AuthType = "dot" | "polkadot" | "kusama" | "erd" | "elrond";
 export interface UseMoralisAuthOptions {
   onAccountChanged?: OnAccountChanged;
   authType?: AuthType;
+  setUser?: (user: Moralis.User | null) => void;
 }
 
-const defaultUseMoralisAuthOptions: UseMoralisAuthOptions = {};
+const defaultUseMoralisAuthOptions: UseMoralisAuthOptions = {
+  // We will override this right away, we just want to
+  setUser: () => {},
+};
 
 /**
  * Hook that handles all authentication logic and returns the correct auth state
@@ -75,9 +98,10 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
     ...defaultUseMoralisAuthOptions,
     ...options,
   };
+  const setUser = options.setUser!;
   const [auth, setAuth] = useState<Authentication>(initialAuth);
   const [hasOnAccountChangeListener, setHasOnAccountChangeListener] = useState(
-    false
+    false,
   );
 
   /**
@@ -86,21 +110,29 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
    * For direct feedback, a callback can be provided
    */
   const authenticate = useCallback(
-    async ({ onComplete, onError, onSuccess }: AuthenticateOptions = {}) => {
+    async ({
+      onComplete,
+      onError,
+      onSuccess,
+      throwOnError,
+    }: AuthenticateOptions = {}) => {
       setAuth({
         state: AuthenticationState.AUTHENTICATING,
         error: null,
       });
 
       try {
-        await Moralis.Web3.authenticate(
-          authType ? { type: authType } : undefined
+        const user = await Moralis.Web3.authenticate(
+          authType ? { type: authType } : undefined,
         );
 
         setAuth({
           state: AuthenticationState.AUTHENTICATED,
           error: null,
         });
+
+        setUser(user);
+
         if (onSuccess) {
           onSuccess();
         }
@@ -109,13 +141,16 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         if (onError) {
           onError(error);
         }
+        if (throwOnError) {
+          throw error;
+        }
       } finally {
         if (onComplete) {
           onComplete();
         }
       }
     },
-    [authType]
+    [authType],
   );
 
   /**
@@ -126,7 +161,8 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       username: string,
       password: string,
       email?: string,
-      otherFields = {}
+      otherFields = {},
+      options = {},
     ) => {
       setAuth({
         state: AuthenticationState.AUTHENTICATING,
@@ -142,32 +178,36 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
           email,
           ...otherFields,
         },
-        newUser
+        newUser,
       );
 
       try {
-        await newUser.signUp();
+        const user = await newUser.signUp();
         setAuth({
           state: AuthenticationState.AUTHENTICATED,
           error: null,
         });
+        setUser(user);
       } catch (error) {
         setAuth({ state: AuthenticationState.ERROR, error });
+        if (options.throwOnError) {
+          throw error;
+        }
       }
     },
-    []
+    [],
   );
   /**
    * Logs the user in with provided credentials
    */
-  const login = useCallback<Login>(async (username, password, options) => {
+  const login = useCallback<Login>(async (username, password, options = {}) => {
     setAuth({
       state: AuthenticationState.AUTHENTICATING,
       error: null,
     });
 
     try {
-      await Moralis.User.logIn(username, password, {
+      const user = await Moralis.User.logIn(username, password, {
         // @ts-ignore: missing types
         usePost: options?.usePost,
       });
@@ -175,15 +215,19 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         state: AuthenticationState.AUTHENTICATED,
         error: null,
       });
+      setUser(user);
     } catch (error) {
       setAuth({ state: AuthenticationState.ERROR, error });
+      if (options.throwOnError) {
+        throw error;
+      }
     }
   }, []);
 
   /**
    * Logs the user out via Moralis.User.logOut and handles the internal state
    */
-  const logout = useCallback(async () => {
+  const logout = useCallback(async (options: LogoutOptions = {}) => {
     setAuth({
       state: AuthenticationState.AUTHENTICATING,
       error: null,
@@ -191,9 +235,12 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
 
     try {
       await Moralis.User.logOut();
-      setAuth(initialAuth);
+      setAuth({ state: AuthenticationState.UNAUTHENTICATED, error: null });
     } catch (error) {
       setAuth({ state: AuthenticationState.ERROR, error });
+      if (options.throwOnError) {
+        throw error;
+      }
     }
   }, []);
 
@@ -208,9 +255,16 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
           state: AuthenticationState.AUTHENTICATED,
           error: null,
         });
+        setUser(currentUser);
+      } else {
+        throw new Error("Let it catch");
       }
     } catch (error) {
-      // Do nothing
+      setAuth({
+        state: AuthenticationState.UNAUTHENTICATED,
+        error: null,
+      });
+      setUser(null);
     }
   }, []);
 
@@ -225,7 +279,6 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
    */
   useEffect(() => {
     if (hasOnAccountChangeListener) {
-      console.warn("cannot change onAccountChange once its set");
       return;
     }
 
@@ -237,7 +290,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         if (onAccountChanged) {
           onAccountChanged(account);
         }
-      }
+      },
     );
 
     setHasOnAccountChangeListener(true);
@@ -248,6 +301,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
   const isAuthenticating = auth.state === AuthenticationState.AUTHENTICATING;
   const hasAuthError = auth.state === AuthenticationState.ERROR;
   const isLoggingOut = auth.state === AuthenticationState.LOGGING_OUT;
+  const isAuthUndefined = auth.state === AuthenticationState.UNDEFINED;
 
   return {
     auth,
@@ -261,5 +315,6 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
     isAuthenticating,
     hasAuthError,
     isLoggingOut,
+    isAuthUndefined,
   };
 };

@@ -4,7 +4,7 @@ import {
   AuthenticateOptions,
   Authentication,
   Login,
-  Signup,
+  Signup
 } from "../../hooks/useMoralis/_useMoralisAuth";
 import { SetUserData } from "src/hooks/useMoralis/utils/setUserData";
 
@@ -25,6 +25,7 @@ export interface MoralisContextValue {
   isAuthenticating: boolean;
   hasAuthError: boolean;
   isLoggingOut: boolean;
+  isAuthUndefined: boolean;
 
   setUserData: (data: SetUserData) => Promise<void>;
   user: Moralis.User | null;
