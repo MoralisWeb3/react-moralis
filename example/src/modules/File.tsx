@@ -6,13 +6,7 @@ import { CodeBlock } from "../components/CodeBlock";
 
 export const File = () => {
   const [localFile, setLocalFile] = useState<File | null>(null);
-  const {
-    error,
-    isSuccess,
-    isUploading,
-    moralisFile,
-    saveFile,
-  } = useMoralisFile();
+  const { error, isUploading, moralisFile, saveFile } = useMoralisFile();
 
   const handleUpload = () => {
     if (localFile) {
@@ -38,7 +32,6 @@ export const File = () => {
           {JSON.stringify(
             {
               error,
-              isSuccess,
               isUploading,
               moralisFile,
             },

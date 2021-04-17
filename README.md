@@ -499,7 +499,6 @@ Get the data, and saveFunction with the `useMoralisFile` hook
 ```jsx
 const {
   error,
-  isSuccess,
   isUploading,
   moralisFile,
   saveFile,
@@ -515,7 +514,6 @@ saveFile("batman.jpeg", file);
 ```
 
 Then you can read the state from the provided variables `error`,
-`isSuccess`,
 `isUploading` and
 `moralisFile`,
 

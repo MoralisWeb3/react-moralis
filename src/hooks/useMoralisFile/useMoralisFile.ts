@@ -21,7 +21,6 @@ export interface MoralisFileSaveOptions {
 export const useMoralisFile = () => {
   const [error, setError] = useState<Error | null>(null);
   const [isUploading, setIsUploading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [moralisFile, setMoralisFile] = useState<Moralis.File | null>(null);
   /**
    * Save the provided file
@@ -44,7 +43,6 @@ export const useMoralisFile = () => {
       try {
         setIsUploading(true);
         setError(null);
-        setIsSuccess(false);
         const moralisFile = new Moralis.File(
           name,
           file,
@@ -61,7 +59,6 @@ export const useMoralisFile = () => {
         }
 
         setMoralisFile(moralisFile);
-        setIsSuccess(true);
 
         if (onSuccess) {
           onSuccess(moralisFile);
@@ -70,7 +67,6 @@ export const useMoralisFile = () => {
         return moralisFile;
       } catch (error) {
         setError(error);
-        setIsSuccess(false);
         if (throwOnError) {
           throw error;
         }
@@ -91,7 +87,6 @@ export const useMoralisFile = () => {
     error,
     saveFile,
     isUploading,
-    isSuccess,
     moralisFile,
   };
 };
