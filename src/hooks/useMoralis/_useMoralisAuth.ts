@@ -44,20 +44,29 @@ const initialAuth: Authentication = {
 
 export interface AuthenticateOptions {
   onError?: (error: Error) => void;
-  onSuccess?: () => void;
+  onSuccess?: (user: Moralis.User) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
 }
 
 export interface SignupOptions {
+  onError?: (error: Error) => void;
+  onSuccess?: (user: Moralis.User) => void;
+  onComplete?: () => void;
   throwOnError?: boolean;
 }
 export interface LoginOptions {
+  onError?: (error: Error) => void;
+  onSuccess?: (user: Moralis.User) => void;
+  onComplete?: () => void;
   throwOnError?: boolean;
   usePost?: boolean;
 }
 
 export interface LogoutOptions {
+  onError?: (error: Error) => void;
+  onSuccess?: () => void;
+  onComplete?: () => void;
   throwOnError?: boolean;
 }
 
@@ -134,7 +143,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         setUser(user);
 
         if (onSuccess) {
-          onSuccess();
+          onSuccess(user);
         }
       } catch (error) {
         setAuth({ state: AuthenticationState.ERROR, error });
@@ -162,7 +171,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       password: string,
       email?: string,
       otherFields = {},
-      options = {},
+      { throwOnError, onSuccess, onError, onComplete } = {},
     ) => {
       setAuth({
         state: AuthenticationState.AUTHENTICATING,
@@ -188,10 +197,20 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
           error: null,
         });
         setUser(user);
+        if (onSuccess) {
+          onSuccess(user);
+        }
       } catch (error) {
         setAuth({ state: AuthenticationState.ERROR, error });
-        if (options.throwOnError) {
+        if (throwOnError) {
           throw error;
+        }
+        if (onError) {
+          onError(error);
+        }
+      } finally {
+        if (onComplete) {
+          onComplete();
         }
       }
     },
@@ -200,49 +219,84 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
   /**
    * Logs the user in with provided credentials
    */
-  const login = useCallback<Login>(async (username, password, options = {}) => {
-    setAuth({
-      state: AuthenticationState.AUTHENTICATING,
-      error: null,
-    });
-
-    try {
-      const user = await Moralis.User.logIn(username, password, {
-        // @ts-ignore: missing types
-        usePost: options?.usePost,
-      });
+  const login = useCallback<Login>(
+    async (
+      username,
+      password,
+      { usePost, throwOnError, onError, onSuccess, onComplete } = {},
+    ) => {
       setAuth({
-        state: AuthenticationState.AUTHENTICATED,
+        state: AuthenticationState.AUTHENTICATING,
         error: null,
       });
-      setUser(user);
-    } catch (error) {
-      setAuth({ state: AuthenticationState.ERROR, error });
-      if (options.throwOnError) {
-        throw error;
+
+      try {
+        const user = await Moralis.User.logIn(username, password, {
+          // @ts-ignore: missing types
+          usePost,
+        });
+        setAuth({
+          state: AuthenticationState.AUTHENTICATED,
+          error: null,
+        });
+        setUser(user);
+        if (onSuccess) {
+          onSuccess(user);
+        }
+      } catch (error) {
+        setAuth({ state: AuthenticationState.ERROR, error });
+        if (throwOnError) {
+          throw error;
+        }
+        if (onError) {
+          onError(error);
+        }
+      } finally {
+        if (onComplete) {
+          onComplete();
+        }
       }
-    }
-  }, []);
+    },
+    [],
+  );
 
   /**
    * Logs the user out via Moralis.User.logOut and handles the internal state
    */
-  const logout = useCallback(async (options: LogoutOptions = {}) => {
-    setAuth({
-      state: AuthenticationState.AUTHENTICATING,
-      error: null,
-    });
+  const logout = useCallback(
+    async ({
+      throwOnError,
+      onError,
+      onSuccess,
+      onComplete,
+    }: LogoutOptions = {}) => {
+      setAuth({
+        state: AuthenticationState.AUTHENTICATING,
+        error: null,
+      });
 
-    try {
-      await Moralis.User.logOut();
-      setAuth({ state: AuthenticationState.UNAUTHENTICATED, error: null });
-    } catch (error) {
-      setAuth({ state: AuthenticationState.ERROR, error });
-      if (options.throwOnError) {
-        throw error;
+      try {
+        await Moralis.User.logOut();
+        setAuth({ state: AuthenticationState.UNAUTHENTICATED, error: null });
+        if (onSuccess) {
+          onSuccess();
+        }
+      } catch (error) {
+        setAuth({ state: AuthenticationState.ERROR, error });
+        if (throwOnError) {
+          throw error;
+        }
+        if (onError) {
+          onError(error);
+        }
+      } finally {
+        if (onComplete) {
+          onComplete();
+        }
       }
-    }
-  }, []);
+    },
+    [],
+  );
 
   /**
    * Update the auth state if the user already ahs authenticated before

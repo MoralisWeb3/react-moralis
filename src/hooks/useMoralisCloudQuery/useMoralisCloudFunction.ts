@@ -3,11 +3,16 @@ import isDeepEqual from "fast-deep-equal/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useMoralis } from "src/hooks/useMoralis";
 
+export type MoralisCloudResult = any;
+
 export interface UseMoralisCloudFunctionOptions {
   autoFetch?: boolean;
 }
 
 export interface MoralisCloudFetchOptions {
+  onError?: (error: Error) => void;
+  onSuccess?: (results: MoralisCloudResult) => void;
+  onComplete?: () => void;
   throwOnError?: boolean;
 }
 
@@ -28,8 +33,8 @@ export const useMoralisCloudFunction = (
     ...(options ?? {}),
   };
   const [isFetching, setIsFetching] = useState(false);
-  const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
+  const [error, setError] = useState<null | Error>(null);
+  const [data, setData] = useState<null | MoralisCloudResult>(null);
   const paramsRef = useRef<MoralisCloudFunctionParameters | undefined>(params);
 
   if (!isDeepEqual(paramsRef.current, params)) {
@@ -40,19 +45,33 @@ export const useMoralisCloudFunction = (
    * Run the cloud function
    */
   const fetch = useCallback(
-    async (options: MoralisCloudFetchOptions = {}) => {
+    async ({
+      throwOnError,
+      onComplete,
+      onError,
+      onSuccess,
+    }: MoralisCloudFetchOptions = {}) => {
       setIsFetching(true);
       try {
         const results = await Moralis.Cloud.run("topScores", params);
 
         setData(results);
+        if (onSuccess) {
+          onSuccess(results);
+        }
       } catch (error) {
         setError(error);
-        if (options.throwOnError) {
+        if (throwOnError) {
           throw error;
+        }
+        if (onError) {
+          onError(error);
         }
       } finally {
         setIsFetching(false);
+        if (onComplete) {
+          onComplete();
+        }
       }
     },
     [name, paramsRef.current],

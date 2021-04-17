@@ -1,9 +1,12 @@
 import { Moralis } from "moralis";
 import { useCallback, useEffect, useState } from "react";
-import { NotAuthenticatedError } from "../../Errors";
+import { NotAuthenticatedError, ReactMoralisError } from "../../Errors";
 import { setMultipleDataToUser, SetUserData } from "./utils/setUserData";
 
 export interface MoralisSetUserDataOptions {
+  onError?: (error: Error) => void;
+  onSuccess?: (user: Moralis.User) => void;
+  onComplete?: () => void;
   throwOnError?: boolean;
 }
 
@@ -16,15 +19,21 @@ export const _useMoralisUser = () => {
    * Function to change the userData, any changes made via this function will sync to Moralis AND the local state
    */
   const setUserData = useCallback(
-    async (data: SetUserData, options: MoralisSetUserDataOptions = {}) => {
+    async (
+      data: SetUserData,
+      {
+        throwOnError,
+        onComplete,
+        onError,
+        onSuccess,
+      }: MoralisSetUserDataOptions = {},
+    ) => {
       if (!user) {
-        setError(
-          new NotAuthenticatedError(
-            "User needs to be authenticated before setting new data",
-          ),
+        throw new NotAuthenticatedError(
+          "User needs to be authenticated before setting new data",
         );
-        return;
       }
+
       setIsUpdating(true);
       setError(null);
 
@@ -35,16 +44,28 @@ export const _useMoralisUser = () => {
 
         const currentUser = Moralis.User.current();
 
-        if (currentUser) {
-          setUser(currentUser);
+        if (!currentUser) {
+          throw new ReactMoralisError("No user data found after save");
+        }
+
+        setUser(currentUser);
+
+        if (onSuccess) {
+          onSuccess(user);
         }
       } catch (error) {
         setError(error);
-        if (options.throwOnError) {
+        if (throwOnError) {
           throw error;
+        }
+        if (onError) {
+          onError(error);
         }
       } finally {
         setIsUpdating(false);
+        if (onComplete) {
+          onComplete();
+        }
       }
     },
     [user],

@@ -575,13 +575,37 @@ const { fetch, data, error, isLoading } = useMoralisCloudFunction(
 <button onClick={() => fetch()}>Fetch manually<button>
 ```
 
+#  Handling responses
+The easiest way to handle the responses of the different async methods (fetch, save etc.), is to read the data directly from the hook. The data will return `error`, `data` and `isLoading`/`isFetching`. These values can easily be used to (conditionally) render different parts of your app.
+
+For other logic, you might want to listen directly for success/error responses. This is facilitated by passing one or more callback (`onComplete`, `onError` and/or `onSuccess`) to the fetch/save etc. functions:
+
+
+| Callback    | Description |
+| ----------- | ----------- |
+| `onSuccess` | Fires when the request resolves successfully. If possible it is returned with the resolved data.        |
+| `onError` | Fires when the request returns an error. It will return the corresponding error.        |
+| `onComplete` | Fires when a request finishes (regardless of a success/error response)        |
+
+Example: 
+```jsx
+const { fetch } = useMoralisQuery("GameScore");
+
+const fetchAndNotify = () => {
+  fetch({ 
+    onSuccess: () => notifyUser(user.id),
+    onError: (error) => showErrorToast(error)
+  });
+};
+```
+
+
+
+
+
 # 😖 Error handling
 
 For most hooks, we will resolve the error for you in an error variable. For example, the following function will not throw an error (initially or when you call `fetch` manually).
-
-```jsx
-const { data, error, isLoading, fetch } = useMoralisQuery("GameScore");
-```
 
 If you have a useCase where you do want to respond to an error directly you can provide `throwOnError` as an options parameter. For example:
 

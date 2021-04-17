@@ -12,6 +12,9 @@ export interface MoralisFileSaveOptions {
   metadata?: Record<string, string>;
   tags?: Record<string, string>;
   saveIPFS?: boolean;
+  onError?: (error: Error) => void;
+  onSuccess?: (result: Moralis.File) => void;
+  onComplete?: () => void;
   throwOnError?: boolean;
 }
 
@@ -27,7 +30,16 @@ export const useMoralisFile = () => {
     async (
       name: string,
       file: ValidFileInput,
-      options: MoralisFileSaveOptions = {},
+      {
+        type,
+        metadata,
+        tags,
+        saveIPFS,
+        throwOnError,
+        onComplete,
+        onError,
+        onSuccess,
+      }: MoralisFileSaveOptions = {},
     ) => {
       try {
         setIsUploading(true);
@@ -36,13 +48,13 @@ export const useMoralisFile = () => {
         const moralisFile = new Moralis.File(
           name,
           file,
-          options.type,
+          type,
           //@ts-ignore type is different than documentation (it should accept metadata and tags)
-          options.metadata,
-          options.tags,
+          metadata,
+          tags,
         );
 
-        if (options.saveIPFS) {
+        if (saveIPFS) {
           await moralisFile.saveIPFS();
         } else {
           await moralisFile.save();
@@ -51,15 +63,25 @@ export const useMoralisFile = () => {
         setMoralisFile(moralisFile);
         setIsSuccess(true);
 
+        if (onSuccess) {
+          onSuccess(moralisFile);
+        }
+
         return moralisFile;
       } catch (error) {
         setError(error);
         setIsSuccess(false);
-        if (options.throwOnError) {
+        if (throwOnError) {
           throw error;
+        }
+        if (onError) {
+          onError(error);
         }
       } finally {
         setIsUploading(false);
+        if (onComplete) {
+          onComplete();
+        }
       }
     },
     [],
