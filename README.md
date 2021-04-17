@@ -1,28 +1,81 @@
-# react-moralis
+<div align="center">
+    <p align="center">
+      <img src="./docs/head.png" alt="React Hook Form Logo - React hook custom hook for form validation" />
+    </p>
+</div>
 
-Utility library to bootstrap your Moralis project in React
+<div align="center">
+
+![npm](https://img.shields.io/npm/v/react-moralis)
+![node-current](https://img.shields.io/node/v/react-moralis)
+![GitHub last commit](https://img.shields.io/github/last-commit/ErnoW/react-moralis)
+![David](https://img.shields.io/david/ErnoW/react-moralis)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-moralis)
+![npm type definitions](https://img.shields.io/npm/types/react-moralis)
+
+</div>
+
+# `react-moralis`
+
+> React components and hooks for your Moralis project
+
+This project is a thin React wrapper around [Moralis](https://moralis.io/), to easily call functionalities and display data.
 
 Please check the [official documentation of Moralis](https://docs.moralis.io/#user) for all the functionalities of Moralis.
 
-This library provides components and hooks to use these functionalities inside React components.
-
-# ⚙️ Setup
-
-Install via `npm install react-moralis` or `add react-moralis`
+# ⚙️ Quick start
 
 Make sure to have `react`, `react-dom` and `moralis`
-installed.
+installed as dependencies. Then install react-moralis:
 
-To install everything at once:
-
-```sh
-npm install react-moralis react react-dom moralis
+```
+npm install react-moralis
 ```
 
-or:
+or
 
-```sh
-add react-moralis react react-dom moralis
+```
+yarn add react-moralis
+```
+
+Then wrap your app in a `<MoralisProvider>`:
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
+import { MoralisProvider } from "react-moralis";
+
+ReactDOM.render(
+  <MoralisProvider appId="xxxxxxxx" serverUrl="xxxxxxxx">
+    <App />
+  </MoralisProvider>,
+  document.getElementById("root")
+);
+```
+
+And call the hooks inside your app:
+
+```jsx
+import React from "react";
+import { useMoralis } from "react-moralis";
+
+function App() {
+  const { authenticate, isAuthenticated, user } = useMoralis();
+
+  if (!isAuthenticated) {
+    return (
+      <div>
+        <button onClick={() => authenticate()}>Authenticate</button>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <h1>Welcome {user.username}</h1>
+    </div>
+  );
+}
 ```
 
 # 🧭 Table of contents
