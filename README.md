@@ -106,10 +106,10 @@ function App() {
     - [Save to IPFS](#save-to-ipfs)
     - [Other options](#other-options)
   - [`useMoralisCloudFunction()`](#usemoraliscloudfunction)
-  - [Trigger manually](#trigger-manually)
-- [Error handling](#error-handling)
+    - [Trigger manually](#trigger-manually)
+- [😖 Error handling](#-error-handling)
 - [⌨️ Typescript](#️-typescript)
-  - [Development](#development)
+- [🧑‍💻 Development](#-development)
 
 # 🚀 Usage
 
@@ -559,7 +559,7 @@ const { data, error, isLoading } = useMoralisCloudFunction("topScores", {
 });
 ```
 
-## Trigger manually
+### Trigger manually
 
 If you rather want to trigger the fetching manually, you can provide `autoFetch: false` as option. And call the `fetch` function manually.
 
@@ -575,7 +575,7 @@ const { fetch, data, error, isLoading } = useMoralisCloudFunction(
 <button onClick={() => fetch()}>Fetch manually<button>
 ```
 
-# Error handling
+# 😖 Error handling
 
 For most hooks, we will resolve the error for you in an error variable. For example, the following function will not throw an error (initially or when you call `fetch` manually).
 
@@ -603,7 +603,7 @@ This library offers first-class Typescript support.
 However `moralis` is not fully typed just yet.
 Also, not all queries are fully generic just yet.
 
-## Development
+# 🧑‍💻 Development
 
 Make sure to have `node` and `yarn` installed.
 
