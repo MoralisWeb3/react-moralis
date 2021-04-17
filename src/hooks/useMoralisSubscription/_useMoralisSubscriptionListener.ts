@@ -31,7 +31,7 @@ export const _useSubscriptionListener = ({
 
     return () => {
       if (subscription) {
-        subscription.on(name, handler);
+        subscription.off(name, handler);
       }
     };
   }, [isInitialized, handler, enable, name]);
