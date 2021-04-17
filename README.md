@@ -49,7 +49,7 @@ ReactDOM.render(
   <MoralisProvider appId="xxxxxxxx" serverUrl="xxxxxxxx">
     <App />
   </MoralisProvider>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );
 ```
 
@@ -80,8 +80,8 @@ function App() {
 
 # 🧭 Table of contents
 
-- [react-moralis](#react-moralis)
-- [⚙️ Setup](#️-setup)
+- [`react-moralis`](#react-moralis)
+- [⚙️ Quick start](#️-quick-start)
 - [🧭 Table of contents](#-table-of-contents)
 - [🚀 Usage](#-usage)
   - [Wrap your app in a `MoralisProvider`](#wrap-your-app-in-a-moralisprovider)
@@ -107,8 +107,8 @@ function App() {
     - [Other options](#other-options)
   - [`useMoralisCloudFunction()`](#usemoraliscloudfunction)
   - [Trigger manually](#trigger-manually)
+- [Error handling](#error-handling)
 - [⌨️ Typescript](#️-typescript)
-- [🤟 Contribute](#-contribute)
   - [Development](#development)
 
 # 🚀 Usage
@@ -314,7 +314,7 @@ example:
 setUserData({
   username: "Batman",
   email: "batman@marvel.com",
-  numberOfCats: 12
+  numberOfCats: 12,
 });
 ```
 
@@ -357,7 +357,7 @@ const { data, error, isLoading } = useMoralisQuery("GameScore", query =>
   query
     .greaterThanOrEqualTo("score", 100)
     .descending("score")
-    .limit(limit)
+    .limit(limit),
 );
 ```
 
@@ -374,7 +374,7 @@ const { data, error, isLoading } = useMoralisQuery(
       .greaterThanOrEqualTo("score", 100)
       .descending("score")
       .limit(limit),
-  [limit]
+  [limit],
 );
 ```
 
@@ -393,7 +393,7 @@ const { fetch, data, error, isLoading } = useMoralisQuery(
       .descending("score")
       .limit(limit),
   [],
-  { autoFetch: false }
+  { autoFetch: false },
 );
 
 return <button onClick={() => fetch}>Fetch manually</button>;
@@ -416,8 +416,8 @@ const { data, error, isLoading } = useMoralisQuery(
       .limit(limit),
   [limit],
   {
-    live: true
-  }
+    live: true,
+  },
 );
 ```
 
@@ -450,8 +450,8 @@ const { data, error, isLoading } = useMoralisQuery(
     onLiveDelete: (entity, all) => all.filter(e => e.id !== entity.id),
     onLiveLeave: (entity, all) => all.filter(e => e.id !== entity.id),
     onLiveUpdate: (entity, all) =>
-      all.map(e => (e.id === entity.id ? entity : e))
-  }
+      all.map(e => (e.id === entity.id ? entity : e)),
+  },
 );
 ```
 
@@ -477,7 +477,7 @@ For example if you want to notify when a new player was added:
 
 ```jsx
 useMoralisSubscription("GameScore", q => q, [], {
-  onCreate: data => alert(`${data.attributes.playerName} was just created`)
+  onCreate: data => alert(`${data.attributes.playerName} was just created`),
 });
 ```
 
@@ -488,7 +488,7 @@ You can disable the subscription by providing: `enabled: false`
 ```jsx
 useMoralisSubscription("GameScore", q => q, [], {
   onCreate: data => alert(`${data.attributes.playerName} was just created`),
-  enabled: false
+  enabled: false,
 });
 ```
 
@@ -502,7 +502,7 @@ const {
   isSuccess,
   isUploading,
   moralisFile,
-  saveFile
+  saveFile,
 } = useMoralisFile();
 ```
 
@@ -539,7 +539,7 @@ saveFile("batman.jpeg", file, {
   type: "image/jpeg",
   metadata,
   tags,
-  saveIPFS: true
+  saveIPFS: true,
 });
 ```
 
@@ -555,7 +555,7 @@ If you have a function that requires parameters, then you can provide it as seco
 
 ```jsx
 const { data, error, isLoading } = useMoralisCloudFunction("topScores", {
-  limit
+  limit,
 });
 ```
 
