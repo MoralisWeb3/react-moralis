@@ -590,7 +590,7 @@ const { data, error, isLoading, fetch } = useMoralisQuery("GameScore");
 
 const fetchAndUseError = async () => {
   try {
-    await fetch();
+    await fetch({ throwOnError: true });
   } catch (error) {
     alert("You got an error");
   }
