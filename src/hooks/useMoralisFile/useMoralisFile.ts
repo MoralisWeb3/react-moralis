@@ -7,6 +7,14 @@ export type ValidFileInput =
   | { size: number; type: string }
   | { uri: string };
 
+export interface MoralisFileSaveOptions {
+  type?: string;
+  metadata?: Record<string, string>;
+  tags?: Record<string, string>;
+  saveIPFS?: boolean;
+  throwOnError?: boolean;
+}
+
 export const useMoralisFile = () => {
   const [error, setError] = useState<Error | null>(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -19,12 +27,7 @@ export const useMoralisFile = () => {
     async (
       name: string,
       file: ValidFileInput,
-      options: {
-        type?: string;
-        metadata?: Record<string, string>;
-        tags?: Record<string, string>;
-        saveIPFS?: boolean;
-      } = {}
+      options: MoralisFileSaveOptions = {}
     ) => {
       try {
         setIsUploading(true);
@@ -51,6 +54,10 @@ export const useMoralisFile = () => {
         return moralisFile;
       } catch (error) {
         setError(error);
+        setIsSuccess(false);
+        if (options.throwOnError) {
+          throw error;
+        }
       } finally {
         setIsUploading(false);
       }

@@ -1,11 +1,15 @@
 import { WritableDraft } from "immer/dist/internal";
 import { Moralis } from "moralis";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useImmer } from "use-immer";
 import { DefaultQueryAttribute, Query } from "../../utils/genericQuery";
 import { useMoralis } from "../useMoralis";
 import { useMoralisSubscription } from "../useMoralisSubscription";
 import { _useSafeUpdatedQuery } from "./_useSafeUpdatedQuery";
+
+export interface MoralisQueryFetchOptions {
+  throwOnError?: boolean;
+}
 
 export type OnLiveHandler<Entity = DefaultQueryAttribute> = (
   entity: Moralis.Object<Entity>,
@@ -40,13 +44,6 @@ export const useMoralisQuery = <
   dependencies: any[] = [],
   options: UseMoralisQueryOptions<Entity> = {}
 ) => {
-  // const currentQueryMap = useMemo(() => {
-  //   return queryMap;
-  // }, dependencies);
-  // const currentNameOrObject = useMemo(() => {
-  //   return nameOrObject;
-  // }, dependencies);
-
   const { isInitialized } = useMoralis();
   const {
     live,
@@ -67,13 +64,6 @@ export const useMoralisQuery = <
   const [data, setData] = useImmer<Moralis.Object<Entity>[]>([]);
 
   const query = _useSafeUpdatedQuery(nameOrObject, queryMap, dependencies);
-  // const query = useMemo(() => {
-  //   const q = new Moralis.Query<Moralis.Object<Entity>>(
-  //     // Explicit cast to any to prevent ts-error, because Moralis.Query should accept a Moralis.object
-  //     currentNameOrObject as any
-  //   );
-  //   return currentQueryMap(q);
-  // }, [isInitialized, currentNameOrObject, currentQueryMap]);
 
   const handleOnCreate = useCallback(
     entity => {
@@ -133,19 +123,25 @@ export const useMoralisQuery = <
   /**
    * Fetch request to execute the Moralis.Query.find() function
    */
-  const fetch = useCallback(async () => {
-    setIsFetching(true);
+  const fetch = useCallback(
+    async (options: MoralisQueryFetchOptions = {}) => {
+      setIsFetching(true);
 
-    try {
-      const results = await query.find();
+      try {
+        const results = await query.find();
 
-      setData(results);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsFetching(false);
-    }
-  }, [query]);
+        setData(results);
+      } catch (error) {
+        setError(error);
+        if (options.throwOnError) {
+          throw error;
+        }
+      } finally {
+        setIsFetching(false);
+      }
+    },
+    [query]
+  );
 
   /**
    * Automatically fetch the query on mount

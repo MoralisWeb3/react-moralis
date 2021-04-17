@@ -3,28 +3,20 @@ import { useCallback, useEffect, useState } from "react";
 import { NotAuthenticatedError } from "../../Errors";
 import { setMultipleDataToUser, SetUserData } from "./utils/setUserData";
 
+export interface MoralisSetUserDataOptions {
+  throwOnError?: boolean;
+}
 
 export const _useMoralisUser = () => {
   const [user, setUser] = useState<Moralis.User | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-  /**s
-   * Update the user when the auth state changes to reflect the correct user
-   */
-  useEffect(() => {
-    if (auth.state === AuthenticationState.AUTHENTICATED) {
-      const currentUser = Moralis.User.current();
-      setUser(currentUser ?? null);
-    } else {
-      setUser(null);
-    }
-  }, [auth]);
 
   /**
    * Function to change the userData, any changes made via this function will sync to Moralis AND the local state
    */
   const setUserData = useCallback(
-    async (data: SetUserData) => {
+    async (data: SetUserData, options: MoralisSetUserDataOptions = {}) => {
       if (!user) {
         setError(
           new NotAuthenticatedError(
@@ -48,11 +40,14 @@ export const _useMoralisUser = () => {
         }
       } catch (error) {
         setError(error);
+        if (options.throwOnError) {
+          throw error;
+        }
       } finally {
         setIsUpdating(false);
       }
     },
-    [user]
+    [user],
   );
 
   return {
@@ -60,6 +55,6 @@ export const _useMoralisUser = () => {
     setUser,
     user,
     isUserUpdating: isUpdating,
-    userError: error
+    userError: error,
   };
 };

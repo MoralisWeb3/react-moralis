@@ -154,19 +154,20 @@ You will have access to the following values by using this hook:
 | `Moralis`       | The global Moralis instance (same as the global Moralis object) |
 | `isInitialized` | A boolean, indicating if Moralis has been initialized           |
 
-| Option              | Description                                                                   |
-| ------------------- | ----------------------------------------------------------------------------- |
-| `authenticate()`    | The authentication function, to authenticate via web3                         |
-| `logout()`          | The logout function that will end the users session                           |
-| `signup()`          | The signup function that will signup a new user with an username and password |
-| `signin()`          | The signin function that will sign in a user with a username and password     |
-| `auth`              | Auth state object (see below)                                                 |
-| `authError`         | Error object when authentication failed (auth.state will be "error");         |
-| `isAuthenticated`   | A boolean, indication if authenticated                                        |
-| `isUnauthenticated` | A boolean, indication if user is authenticated                                |
-| `isAuthenticating`  | A boolean, indication if user is authenticating (started but not finished)    |
-| `hasAuthError`      | A boolean, indication if authentication has an error                          |
-| `isLoggingOut`      | A boolean, indication if the uer is logging out (started but not finished)    |
+| Option              | Description                                                                                                                                                                                                         |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authenticate()`    | The authentication function, to authenticate via web3                                                                                                                                                               |
+| `logout()`          | The logout function that will end the users session                                                                                                                                                                 |
+| `signup()`          | The signup function that will signup a new user with an username and password                                                                                                                                       |
+| `signin()`          | The signin function that will sign in a user with a username and password                                                                                                                                           |
+| `auth`              | Auth state object (see below)                                                                                                                                                                                       |
+| `authError`         | Error object when authentication failed (auth.state will be "error");                                                                                                                                               |
+| `isAuthenticated`   | A boolean, indication if authenticated                                                                                                                                                                              |
+| `isUnauthenticated` | A boolean, indication if user is authenticated                                                                                                                                                                      |
+| `isAuthenticating`  | A boolean, indication if user is authenticating (started but not finished)                                                                                                                                          |
+| `hasAuthError`      | A boolean, indication if authentication has an error                                                                                                                                                                |
+| `isLoggingOut`      | A boolean, indication if the user is logging out (started but not finished)                                                                                                                                         |
+| `isAuthUndefined`   | A boolean, indication if the authentication is unknown, this is the initial state, before checking if the user is already logged in. It will resolve withing a few ms into `isAuthenticated` or `isUnauthenticated` |
 
 | Option          | Description                                                                                                                                                                       |
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -574,15 +575,33 @@ const { fetch, data, error, isLoading } = useMoralisCloudFunction(
 <button onClick={() => fetch()}>Fetch manually<button>
 ```
 
+# Error handling
+
+For most hooks, we will resolve the error for you in an error variable. For example, the following function will not throw an error (initially or when you call `fetch` manually).
+
+```jsx
+const { data, error, isLoading, fetch } = useMoralisQuery("GameScore");
+```
+
+If you have a useCase where you do want to respond to an error directly you can provide `throwOnError` as an options parameter. For example:
+
+```jsx
+const { data, error, isLoading, fetch } = useMoralisQuery("GameScore");
+
+const fetchAndUseError = async () => {
+  try {
+    await fetch();
+  } catch (error) {
+    alert("You got an error");
+  }
+};
+```
+
 # ⌨️ Typescript
 
 This library offers first-class Typescript support.
 However `moralis` is not fully typed just yet.
 Also, not all queries are fully generic just yet.
-
-# 🤟 Contribute
-
-t.b.d.
 
 ## Development
 

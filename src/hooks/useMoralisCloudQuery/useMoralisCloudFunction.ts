@@ -7,6 +7,10 @@ export interface UseMoralisCloudFunctionOptions {
   autoFetch?: boolean;
 }
 
+export interface MoralisCloudFetchOptions {
+  throwOnError?: boolean;
+}
+
 export type MoralisCloudFunctionParameters = Record<string, any>;
 
 const defaultUseMoralisCloudFunctionOptions: UseMoralisCloudFunctionOptions = {
@@ -35,18 +39,24 @@ export const useMoralisCloudFunction = (
   /**
    * Run the cloud function
    */
-  const fetch = useCallback(async () => {
-    setIsFetching(true);
-    try {
-      const results = await Moralis.Cloud.run("topScores", params);
+  const fetch = useCallback(
+    async (options: MoralisCloudFetchOptions = {}) => {
+      setIsFetching(true);
+      try {
+        const results = await Moralis.Cloud.run("topScores", params);
 
-      setData(results);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsFetching(false);
-    }
-  }, [name, paramsRef.current]);
+        setData(results);
+      } catch (error) {
+        setError(error);
+        if (options.throwOnError) {
+          throw error;
+        }
+      } finally {
+        setIsFetching(false);
+      }
+    },
+    [name, paramsRef.current]
+  );
 
   const isLoading = isFetching && data == null;
 
