@@ -61,8 +61,7 @@
     "standard-version": "^9.2.0",
     "ts-loader": "^8.1.0",
     "tslib": "^2.2.0",
-    "typescript": "^4.2.4",
-    "typings": "^2.1.1"
+    "typescript": "^4.2.4"
   },
   "peerDependencies": {
     "moralis": "^0.0.15",
