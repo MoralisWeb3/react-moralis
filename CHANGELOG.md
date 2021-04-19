@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/MoralisWeb3/react-moralis/compare/v0.0.4...v0.1.0) (2021-04-19)
+
+
+### Features
+
+* add optional params to cloud function directly ([b2092bd](https://github.com/MoralisWeb3/react-moralis/commits/b2092bdcf3e3673cd3ebcef3d8e7ddf68ff0e715))
+
+
+### Bug Fixes
+
+* reset errors consistently ([49e90d3](https://github.com/MoralisWeb3/react-moralis/commits/49e90d3806d96d64eb34702ec1e02e7122e8bc92))
+
 ### [0.0.4](https://github.com/MoralisWeb3/react-moralis/compare/v0.0.4-alpha.0...v0.0.4) (2021-04-17)
 
 ### [0.0.4-alpha.0](https://github.com/MoralisWeb3/react-moralis/compare/v0.0.3...v0.0.4-alpha.0) (2021-04-17)
