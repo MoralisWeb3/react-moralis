@@ -135,6 +135,7 @@ export const useMoralisQuery = <
       throwOnError,
     }: MoralisQueryFetchOptions = {}) => {
       setIsFetching(true);
+      setError(null);
 
       try {
         const results = await query.find();

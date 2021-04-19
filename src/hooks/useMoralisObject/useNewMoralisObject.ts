@@ -36,6 +36,7 @@ export const useNewMoralisObject = (objectClassName: string) => {
       }: MoralisObjectSaveOptions = {},
     ) => {
       setIsSaving(true);
+      setError(null);
 
       try {
         const Object = Moralis.Object.extend(objectClassName);

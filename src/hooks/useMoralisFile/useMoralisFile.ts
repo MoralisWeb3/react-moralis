@@ -43,6 +43,7 @@ export const useMoralisFile = () => {
       try {
         setIsUploading(true);
         setError(null);
+
         const moralisFile = new Moralis.File(
           name,
           file,
