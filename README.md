@@ -195,6 +195,7 @@ where state can be one of the following enums
 
 ```js
 enum AuthenticationState {
+  UNDEFINED = "undefined",
   UNAUTHENTICATED = "unauthenticated",
   AUTHENTICATED = "authenticated",
   AUTHENTICATING = "authenticating",
@@ -401,9 +402,7 @@ const { fetch, data, error, isLoading } = useMoralisQuery(
 return <button onClick={() => fetch}>Fetch manually</button>;
 ```
 
-## `useMoralisQuery()`
-
-### Realtime queries
+### Realtime / live queries
 
 The `useMoralisQuery` hook can also be used to update upon realtime events. All you need to do is provide `live: true`. If any events update the query, then the `data` is automatically updated.
 
