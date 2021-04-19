@@ -4,25 +4,26 @@
   "description": "Hooks and components to use Moralis in a React app",
   "keywords": [
     "moralis",
+    "react",
+    "react-hooks",
     "web3",
-    "react"
+    "ethereum",
+    "dapp",
+    "frontend",
+    "javascript",
+    "typescript",
+    "metamask"
   ],
-  "homepage": "https://github.com/ErnoW/react-moralis",
+  "homepage": "https://github.com/MoralisWeb3/react-moralis",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ErnoW/react-moralis"
+    "url": "https://github.com/MoralisWeb3/react-moralis"
   },
   "bugs": {
-    "url": "https://github.com/ErnoW/react-moralis/issues"
+    "url": "https://github.com/MoralisWeb3/react-moralis/issues"
   },
   "license": "MIT",
-  "authors": [
-    {
-      "name": "Erno Wever",
-      "email": "erno@ernowever.com",
-      "url": "http://ernowever.com"
-    }
-  ],
+  "author": "Erno Wever <erno@ernowever.com>",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
