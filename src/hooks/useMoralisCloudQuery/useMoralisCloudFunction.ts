@@ -9,14 +9,15 @@ export interface UseMoralisCloudFunctionOptions {
   autoFetch?: boolean;
 }
 
+export type MoralisCloudFunctionParameters = Record<string, any>;
+
 export interface MoralisCloudFetchOptions {
   onError?: (error: Error) => void;
   onSuccess?: (results: MoralisCloudResult) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
+  params?: MoralisCloudFunctionParameters;
 }
-
-export type MoralisCloudFunctionParameters = Record<string, any>;
 
 const defaultUseMoralisCloudFunctionOptions: UseMoralisCloudFunctionOptions = {
   autoFetch: true,
@@ -50,10 +51,16 @@ export const useMoralisCloudFunction = (
       onComplete,
       onError,
       onSuccess,
+      params: fetchParams,
     }: MoralisCloudFetchOptions = {}) => {
       setIsFetching(true);
+      setError(null);
+
       try {
-        const results = await Moralis.Cloud.run("topScores", params);
+        const results = await Moralis.Cloud.run(name, {
+          ...params,
+          ...fetchParams,
+        });
 
         setData(results);
         if (onSuccess) {
