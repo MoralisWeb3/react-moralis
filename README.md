@@ -460,9 +460,9 @@ const { data, error, isLoading } = useMoralisQuery(
 
 ### Listen for query events
 
-This hook is used when you use `useMoralisQuery` with `live: true`. But if you want fine-grained control over subscriptions, and want to do actions upon the events, then you can ue this hook.
+This hook is used when you use `useMoralisQuery` with `live: true`. But if you want fine-grained control over subscriptions, and want to do actions upon the events, then you can use this hook.
 
-It's as simple as calling this hook with the callbacks that you want. The first 3 aruguments are the same as `useMoralisQuery` (queryName, filter, dependencies). In the last argument, you can specify the callbacks:
+It's as simple as calling this hook with the callbacks that you want. The first 3 arguments are the same as `useMoralisQuery` (queryName, filter, dependencies). In the last argument, you can specify the callbacks:
 
 | Eventname  | callback |
 | ---------- | -------- |
