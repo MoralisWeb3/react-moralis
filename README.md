@@ -23,8 +23,6 @@ This project is a thin React wrapper around [Moralis](https://moralis.io/), to e
 
 Please check the [official documentation of Moralis](https://docs.moralis.io/#user) for all the functionalities of Moralis.
 
-> ❗️**Important**: At this moment this library is only confirmed to work with create-react-app. Any other framework like NextJs or Gatsby might not work out-of-the box yet.
-
 # ⚙️ Quick start
 
 Make sure to have `react`, `react-dom` and `moralis`
