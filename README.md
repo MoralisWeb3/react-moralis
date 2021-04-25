@@ -658,9 +658,9 @@ Please follow the code guidelines before submitting a PR.
 
 ## Examples
 
-To preview and work and see the examples;
+To preview and work and see the example;
 
-1. Make an `.env` file in `/examples` with the keys:
+1. Make an `.env` file in `/example` with the keys:
 
    ```sh
    # Your appId
@@ -673,8 +673,8 @@ To preview and work and see the examples;
 2. Install and start the example app
 
    ```sh
-   cd examples
-   yarn install
+   cd example
+   yarn
    yarn start
    ```
 

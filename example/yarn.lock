@@ -10791,9 +10791,14 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-"react-moralis@link:..":
-  version "0.0.0"
-  uid ""
+react-moralis@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-moralis/-/react-moralis-0.1.1.tgz#ed61fad54b0d416c199f3b9fb1fe275f835cf007"
+  integrity sha512-upl5QU/Zu4cWTXCf5t+b4kmetjen/3ReeFUUhrYHXz5LoXye7tKG+Ht3DxGpiWJW0fz8ZWKZz67sDG1eN1fduw==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+    immer "^9.0.1"
+    use-immer "^0.5.1"
 
 react-native-crypto-js@1.0.0:
   version "1.0.0"
