@@ -135,12 +135,12 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
           authType ? { type: authType } : undefined,
         );
 
+        setUser(user);
+
         setAuth({
           state: AuthenticationState.AUTHENTICATED,
           error: null,
         });
-
-        setUser(user);
 
         if (onSuccess) {
           onSuccess(user);
