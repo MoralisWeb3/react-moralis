@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.1...v0.1.2) (2021-04-27)
+
+
+### Bug Fixes
+
+* account for non-window environment ([169e5a1](https://github.com/MoralisWeb3/react-moralis/commits/169e5a178d2e3bc36119600fe0f3e44f70b39039))
+* prevent authenticated without an user state ([96b4fcb](https://github.com/MoralisWeb3/react-moralis/commits/96b4fcb6a0f96a75c85d1535b09a1096984e800c))
+
 ### [0.1.1](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.0...v0.1.1) (2021-04-19)
 
 ## [0.1.0](https://github.com/MoralisWeb3/react-moralis/compare/v0.0.4...v0.1.0) (2021-04-19)
