@@ -336,16 +336,26 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       return;
     }
 
-    (window as any).ethereum.on(
-      "accountsChanged",
-      async (accounts: string[]) => {
-        const account = accounts[0];
+    if (!window) {
+      console.warn("No window object found");
+      return;
+    }
 
-        if (onAccountChanged) {
-          onAccountChanged(account);
-        }
-      },
-    );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const ethereum = (window as any).ethereum;
+
+    if (!ethereum) {
+      console.warn("No window.ethereum found");
+      return;
+    }
+
+    ethereum.on("accountsChanged", async (accounts: string[]) => {
+      const account = accounts[0];
+
+      if (onAccountChanged) {
+        onAccountChanged(account);
+      }
+    });
 
     setHasOnAccountChangeListener(true);
   }, [hasOnAccountChangeListener]);
