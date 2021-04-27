@@ -589,6 +589,25 @@ const AddScoreButton = ({user, score}) => {
 
 ```
 
+## Components
+If you want to support Moralis, you can use the `ByMoralis` component, to render our logo 🙏:
+```jsx
+
+const App = () => {
+import { ByMoralis } from "react-moralis";
+
+  return (
+    <div>
+      <ByMoralis width={300} />
+      <ByMoralis width={300} variant="dark" />
+      <ByMoralis width={300} variant="light" />
+    </div>
+  )
+}
+```
+
+You can specify the color scheme; `dark`, `light` or `colour`(default), the width (defaults to 250px) and a custom styling via the `style` prop.
+
 #  Handling responses
 The easiest way to handle the responses of the different async methods (fetch, save etc.), is to read the data directly from the hook. The data will return `error`, `data` and `isLoading`/`isFetching`. These values can easily be used to (conditionally) render different parts of your app.
 
