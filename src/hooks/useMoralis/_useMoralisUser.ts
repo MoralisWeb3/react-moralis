@@ -37,10 +37,13 @@ export const _useMoralisUser = () => {
       setIsUpdating(true);
       setError(null);
 
-      try {
-        await user.save();
+      let userHasLocallyUpdated = false;
 
+      try {
         setMultipleDataToUser(data, user);
+        userHasLocallyUpdated = true;
+
+        await user.save();
 
         const currentUser = Moralis.User.current();
 
@@ -54,6 +57,10 @@ export const _useMoralisUser = () => {
           onSuccess(user);
         }
       } catch (error) {
+        if (userHasLocallyUpdated) {
+          user.revert();
+        }
+
         setError(error);
         if (throwOnError) {
           throw error;
