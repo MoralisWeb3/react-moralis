@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.4...v0.1.5) (2021-04-28)
+
+
+### Bug Fixes
+
+* revert user changes on failed save ([f45d4df](https://github.com/MoralisWeb3/react-moralis/commits/f45d4dfe23b51fc064701bb3bd44f95c2276c5d5))
+
 ### [0.1.4](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.3...v0.1.4) (2021-04-28)
 
 ### [0.1.3](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.2...v0.1.3) (2021-04-28)
