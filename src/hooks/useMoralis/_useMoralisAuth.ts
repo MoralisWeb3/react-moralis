@@ -278,11 +278,14 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       try {
         await Moralis.User.logOut();
         setAuth({ state: AuthenticationState.UNAUTHENTICATED, error: null });
+        setUser(null);
         if (onSuccess) {
           onSuccess();
         }
       } catch (error) {
         setAuth({ state: AuthenticationState.ERROR, error });
+        // Set user to the currentUser (we don't know if the logout was successfull)
+        setUser(Moralis.User.current() ?? null);
         if (throwOnError) {
           throw error;
         }
