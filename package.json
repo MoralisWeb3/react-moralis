@@ -1,6 +1,6 @@
 {
   "name": "react-moralis",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Hooks and components to use Moralis in a React app",
   "keywords": [
     "moralis",
@@ -71,6 +71,7 @@
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -cw",
+    "prepublishOnly": "yarn run build",
     "lint": "eslint .",
     "commit": "npm run git-cz",
     "format": "yarn prettier --write .",
