@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.2...v0.1.3) (2021-04-28)
+
+
+### Bug Fixes
+
+* save local user state only after successfull Moralis save ([f788947](https://github.com/MoralisWeb3/react-moralis/commits/f7889473880c38a880f1834173a322db4387f064))
+
 ### [0.1.2](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.1...v0.1.2) (2021-04-27)
 
 
