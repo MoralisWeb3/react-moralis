@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6-alpha.0](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.5...v0.1.6-alpha.0) (2021-04-28)
+
+
+### Bug Fixes
+
+* reset local user on logout ([fce4730](https://github.com/MoralisWeb3/react-moralis/commits/fce4730f0a3d2655470ebc3e6789901c03ba0945))
+
 ### [0.1.5](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.4...v0.1.5) (2021-04-28)
 
 
