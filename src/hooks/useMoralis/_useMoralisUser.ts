@@ -38,9 +38,9 @@ export const _useMoralisUser = () => {
       setError(null);
 
       try {
-        setMultipleDataToUser(data, user);
-
         await user.save();
+
+        setMultipleDataToUser(data, user);
 
         const currentUser = Moralis.User.current();
 
