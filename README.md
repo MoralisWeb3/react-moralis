@@ -72,7 +72,7 @@ function App() {
 
   return (
     <div>
-      <h1>Welcome {user.username}</h1>
+      <h1>Welcome {user.get("username")}</h1>
     </div>
   );
 }
@@ -141,7 +141,7 @@ Now you can use the hooks below in all App.tsx and all of its children:
 
 ### Authenticate
 
-the `useMoralis` hook provides all the basics functionalities that you need for authentication and user data.
+The `useMoralis` hook provides all the basics functionalities that you need for authentication and user data.
 
 You can use it inside a component and have access to various data and functions:
 
@@ -224,13 +224,13 @@ const User = () => {
 
   return (
     <div>
-      <h1>Hi {user.username}</h1>
+      <h1>Hi {user.get("username")}</h1>
     </div>
   );
 };
 ```
 
-If you need direct feedback after authentication, you can provide an `option` object as argument to the a`authenticate` call with `onComplete`, `onError` and/or `onSuccess`
+If you need direct feedback after authentication, you can provide an `option` object as argument to the `authenticate` call with `onComplete`, `onError` and/or `onSuccess`
 
 ### `signup()` (non-crypto)
 
@@ -626,7 +626,7 @@ const { fetch } = useMoralisQuery("GameScore");
 
 const fetchAndNotify = () => {
   fetch({ 
-    onSuccess: () => notifyUser(user.id),
+    onSuccess: () => notifyUser(user.get("objectId")),
     onError: (error) => showErrorToast(error)
   });
 };
