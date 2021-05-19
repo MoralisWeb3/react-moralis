@@ -230,7 +230,18 @@ const User = () => {
 };
 ```
 
-If you need direct feedback after authentication, you can provide an `option` object as argument to the `authenticate` call with `onComplete`, `onError` and/or `onSuccess`
+If you need direct feedback after authentication, you can provide an `option` object as argument to the `authenticate` call with `onComplete`, `onError` and/or `onSuccess`:
+
+```js
+authenticate({ onComplete: () => alert("🎉") })
+```
+
+####
+
+If you want to authenticate via Elrond, you can provide the `"erd"` authentication type in the options type:
+```js
+authenticate({ type: "erd" })
+```
 
 ### `signup()` (non-crypto)
 

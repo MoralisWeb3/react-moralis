@@ -42,11 +42,13 @@ const initialAuth: Authentication = {
   error: null,
 };
 
+export type AuthType = "dot" | "polkadot" | "kusama" | "erd" | "elrond";
 export interface AuthenticateOptions {
   onError?: (error: Error) => void;
   onSuccess?: (user: Moralis.User) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
+  authType?: AuthType;
 }
 
 export interface SignupOptions {
@@ -86,10 +88,8 @@ export type Signup = (
 
 export type OnAccountChanged = (account: string) => void;
 
-export type AuthType = "dot" | "polkadot" | "kusama" | "erd" | "elrond";
 export interface UseMoralisAuthOptions {
   onAccountChanged?: OnAccountChanged;
-  authType?: AuthType;
   setUser?: (user: Moralis.User | null) => void;
 }
 
@@ -103,7 +103,7 @@ const defaultUseMoralisAuthOptions: UseMoralisAuthOptions = {
  * and its functions
  */
 export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
-  const { onAccountChanged, authType } = {
+  const { onAccountChanged } = {
     ...defaultUseMoralisAuthOptions,
     ...options,
   };
@@ -124,6 +124,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       onError,
       onSuccess,
       throwOnError,
+      authType,
     }: AuthenticateOptions = {}) => {
       setAuth({
         state: AuthenticationState.AUTHENTICATING,
@@ -159,7 +160,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         }
       }
     },
-    [authType],
+    [],
   );
 
   /**
