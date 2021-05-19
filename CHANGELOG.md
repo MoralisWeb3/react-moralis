@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.6...v0.1.7) (2021-05-19)
+
+
+### Features
+
+* enable elrond authentication ([23811b8](https://github.com/MoralisWeb3/react-moralis/commits/23811b8465a66ecb04f8b0ac5754aec5292e34a8))
+
 ### [0.1.6](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.6-alpha.0...v0.1.6) (2021-04-28)
 
 ### [0.1.6-alpha.0](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.5...v0.1.6-alpha.0) (2021-04-28)
