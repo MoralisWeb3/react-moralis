@@ -24,7 +24,7 @@ const Inner = () => {
   const updateUser = (event: React.FormEvent) => {
     event.preventDefault();
 
-    setUserData({ email, phone, username });
+    setUserData({ email: email === "" ? undefined : email, phone, username });
   };
 
   return (
