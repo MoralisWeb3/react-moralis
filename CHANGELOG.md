@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.7...v0.1.8) (2021-05-20)
+
+
+### Features
+
+* remove automatic enable of web3 ([af7bdac](https://github.com/MoralisWeb3/react-moralis/commits/af7bdac094dc9bb0adf6f6c5abe1f7b9f595897e))
+* update dependency moralis 0.021 ([3db629f](https://github.com/MoralisWeb3/react-moralis/commits/3db629fc29f6b2a37ba5b9ef9cf283487e3ca70f))
+
 ### [0.1.7](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.6...v0.1.7) (2021-05-19)
 
 
