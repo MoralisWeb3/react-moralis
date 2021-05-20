@@ -10,6 +10,7 @@ import { File } from "./modules/File";
 import { User } from "./modules/User";
 import { FileIpfs } from "./modules/FileIpfs";
 import { CloudFunction } from "./modules/CloudFunction";
+import { Web3 } from "./modules/Web3";
 
 export const menu = [
   {
@@ -66,6 +67,11 @@ export const menu = [
     path: "/cloud",
     label: "CloudFunction",
     component: CloudFunction,
+  },
+  {
+    path: "/web3",
+    label: "Web3",
+    component: Web3,
   },
   {
     path: "/assets",

@@ -34,6 +34,9 @@ export interface MoralisContextValue {
 
   enableWeb3: () => void;
   web3: Moralis.Web3 | null;
+  isWeb3Enabled: boolean;
+  web3EnableError: Error | null;
+  isWeb3EnableLoading: boolean;
 }
 
 export const MoralisContext = createContext<null | MoralisContextValue>(null);

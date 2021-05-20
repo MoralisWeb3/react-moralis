@@ -192,7 +192,7 @@ declare module "moralis" {
     }
 
     class Web3 extends NativeWeb3 {
-      enable: () => any;
+      static enable: () => any;
       static isDotAuth: (options: unknown) => any;
       static isElrondAuth: (options: unknown) => any;
       static authenticate: (options?: {

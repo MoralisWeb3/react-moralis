@@ -97,8 +97,7 @@ function App() {
     - [Fetch Queries](#fetch-queries)
     - [Filter queries](#filter-queries)
     - [Automatic updates with dependencies](#automatic-updates-with-dependencies)
-  - [`useMoralisQuery()`](#usemoralisquery-1)
-    - [Realtime queries](#realtime-queries)
+    - [Realtime / live queries](#realtime--live-queries)
   - [`useMoralisSubscription()`](#usemoralissubscription)
     - [Listen for query events](#listen-for-query-events)
   - [`useMoralisFile()`](#usemoralisfile)
@@ -108,6 +107,8 @@ function App() {
   - [`useMoralisCloudFunction()`](#usemoraliscloudfunction)
     - [Trigger manually](#trigger-manually)
   - [`useNewMoralisObject()`](#usenewmoralisobject)
+  - [`Web3`](#web3)
+  - [Components](#components)
 - [Handling responses](#handling-responses)
 - [😖 Error handling](#-error-handling)
 - [⌨️ Typescript](#️-typescript)
@@ -177,6 +178,7 @@ You will have access to the following values by using this hook:
 | `user`          | user object from `Moralis.User.current`, containing the state of the logged in user. It automatically will be (un)set automatically when logging in and out, or setting user data |
 | `enableWeb3`    | function to enable web3 manually (will automatically be done when user logs in)                                                                                                   |
 | `web3`          | The web3 instance of `Moralis.Web3`;                                                                                                                                              |
+| `isWeb3Enabled` | Boolean to indicate if web3 has been enabled via the `enableWeb3` function
 
 ### Authentication state
 
@@ -598,6 +600,27 @@ const AddScoreButton = ({user, score}) => {
   </div>)
 }
 
+```
+
+## `Web3`
+In order to use (non enabled) web3 functionalities, you can just use:
+```jsx
+const { web3 } = useMoralis()
+```
+If you need features from an enabled web3 instance, then you need to enable web3 first. Note that the browser needs a privder (like a logged in Metamask):
+```jsx
+const EnableWeb3 = ({user, score}) => {
+  const { web3, enableWeb3, isWeb3Enabled, isWeb3EnableLoading, web3EnableError } = useMoralis()
+
+  if(isWeb3Enabled){
+    return null
+  }
+
+  return <div>
+    {web3EnableError && <ErrorMessage error={web3EnableError} />}
+    <button onClick={() => enableWeb3()} disabled={isWeb3EnableLoading}>Enable web3</button>
+  </div>
+}
 ```
 
 ## Components
