@@ -1,6 +1,6 @@
 import { Moralis } from "moralis";
-import { useEffect, useRef, useState } from "react";
-import { useMoralis } from "src";
+import { useContext, useEffect, useRef, useState } from "react";
+import { MoralisContext } from "src/context";
 import { Query } from "src/utils/genericQuery";
 import { _useSafeUpdatedQuery } from "../useMoralisQuery/_useSafeUpdatedQuery";
 import {
@@ -33,11 +33,17 @@ export const useMoralisSubscription = <
     ...defaultUseSubscriptionQueryOptions,
     ...options,
   };
-  const { isInitialized } = useMoralis();
+  const moralisContext = useContext(MoralisContext);
+  const isInitialized = moralisContext?.isInitialized ?? false;
   const subscriptionRef = useRef<Moralis.LiveQuerySubscription>();
   const [isReady, setIsReady] = useState(false);
 
-  const query = _useSafeUpdatedQuery(nameOrObject, queryMap, dependencies);
+  const query = _useSafeUpdatedQuery(
+    nameOrObject,
+    queryMap,
+    dependencies,
+    isInitialized,
+  );
 
   /**
    * Subscribe (and cleanup) to this query

@@ -1,6 +1,5 @@
 import { Moralis } from "moralis";
 import { useMemo } from "react";
-import { useMoralis } from "src";
 import { Query } from "../../utils/genericQuery";
 
 /**
@@ -16,9 +15,8 @@ export const _useSafeUpdatedQuery = <
   nameOrObject: string | Moralis.Object,
   queryMap: (q: Query<Entity>) => Query<Entity> = (q) => q,
   dependencies: any[] = [],
+  isInitialized: boolean,
 ) => {
-  const { isInitialized } = useMoralis();
-
   // Cached version of the queruMap to prevent unwantedUpdates
   const currentQueryMap = useMemo(() => {
     return queryMap;
