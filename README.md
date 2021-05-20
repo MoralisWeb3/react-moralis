@@ -212,6 +212,8 @@ You can call the `authenticate()` function to authenticate the user via web3, as
 
 This function calls the `MoralisWeb3.authenticate()` internally and will update the `auth` state and `user` state of your app automatically.
 
+*Example:*
+
 ```jsx
 const User = () => {
   const { authenticate, isAuthenticated, user } = useMoralis();
@@ -234,6 +236,8 @@ const User = () => {
 
 If you need direct feedback after authentication, you can provide an `option` object as argument to the `authenticate` call with `onComplete`, `onError` and/or `onSuccess`:
 
+*Example:*
+
 ```js
 authenticate({ onComplete: () => alert("🎉") })
 ```
@@ -248,6 +252,8 @@ authenticate({ type: "erd" })
 ### `signup()` (non-crypto)
 
 To signup users without web3, and use a password/username, you can use the signup function.
+
+*Example:*
 
 ```jsx
 const Signup = () => {
@@ -268,6 +274,8 @@ const Signup = () => {
 
 If you need to provide more data, than just the username, password and email, then you can provide an extra argument with an object, containing the data:
 
+*Example:*
+
 ```jsx
 signup(username, password, email, { phone: "01234567" });
 ```
@@ -277,6 +285,8 @@ After calling this function the `auth` and `user` will automatically be updated 
 ### `login()` (non-crypto)
 
 Similar to signup, you can also login via a hook function:
+
+*Example:*
 
 ```jsx
 const Login = () => {
@@ -299,6 +309,8 @@ After calling this function the `auth` and `user` will automatically be updated 
 ### `logout()`
 
 Following the same principle as authentication/login, you can call `logout` and let the MoralisProvider handle the internal authentication state.
+
+*Example:*
 
 ```jsx
 const LogoutButton = () => {
@@ -324,7 +336,7 @@ Upon calling this function:
 
 So places where you use `const {user} = useMoralis()` will automatically be updated.
 
-example:
+*Example:*
 
 ```jsx
 setUserData({
@@ -340,7 +352,7 @@ setUserData({
 
 The `useMoralisQuery` is heavily inspired by react-query. It handles all the async logic and manages the loading/error/data state internally and will automatically execute the query upon mounting in your component.
 
-Example:
+*Example:*
 
 ```jsx
 const { data, error, isLoading } = useMoralisQuery("GameScore");
@@ -350,7 +362,9 @@ This query will fetch "GameScore" for you when the component mounts.
 
 The hook will return `data`, `error` and `isLoading`, which you can use to render the component.
 
-```js
+*Example:*
+
+```jsx
 const { data, error, isLoading } = useMoralisQuery("GameScore");
 
 if (error) {
@@ -368,6 +382,8 @@ return <pre>{JSON.stringify(data, null, 2)}</pre>;
 
 You can filer the query via a second argument. You can mutate the query in any way that Moralis.Quey can.
 
+*Example:*
+
 ```jsx
 const { data, error, isLoading } = useMoralisQuery("GameScore", query =>
   query
@@ -380,6 +396,8 @@ const { data, error, isLoading } = useMoralisQuery("GameScore", query =>
 This example will fetch the top 3 scores that are at least 100, in descending order.
 
 You can also filter dynamically, but you need to provide a dependency array as third argument (similar to other hooks), to specify when this hook needs to update.
+
+*Example:*
 
 ```jsx
 const [limit, setLimit] = useState(3);
@@ -400,6 +418,8 @@ This query will automatically refetch when the limit is changed.
 
 If you want to disable the automatic fetching, you can also manually fetch. You need to provide `autoFetch: false` as option in the 4th argument. In that case it will ignore the dependencies and will only fetch if you manually call `fetch()`
 
+*Example:*
+
 ```jsx
 const { fetch, data, error, isLoading } = useMoralisQuery(
   "GameScore",
@@ -418,6 +438,8 @@ return <button onClick={() => fetch}>Fetch manually</button>;
 ### Realtime / live queries
 
 The `useMoralisQuery` hook can also be used to update upon realtime events. All you need to do is provide `live: true`. If any events update the query, then the `data` is automatically updated.
+
+*Example:*
 
 ```jsx
 const [limit, setLimit] = useState(3);
@@ -489,6 +511,8 @@ They will all return the object as data.
 
 For example if you want to notify when a new player was added:
 
+*Example:*
+
 ```jsx
 useMoralisSubscription("GameScore", q => q, [], {
   onCreate: data => alert(`${data.attributes.playerName} was just created`),
@@ -498,6 +522,8 @@ useMoralisSubscription("GameScore", q => q, [], {
 This hook will handle the subscribing and unsubscribing automatically. It will automatically subscribe/unsubscribe when the component mounts/unmounts. All you have to do is use this hook.
 
 You can disable the subscription by providing: `enabled: false`
+
+*Example:*
 
 ```jsx
 useMoralisSubscription("GameScore", q => q, [], {
@@ -543,6 +569,8 @@ Then you can get the ipfs data via `moralisFile.ipfs` and `moralisFile.hash`
 
 Additionally you can also provide metadata, dags or specify the fileType in the options like:
 
+*Example:*
+
 ```jsx
 const metadata = { createdById: "some-user-id" };
 const tags = { groupId: "some-group-id" };
@@ -559,11 +587,15 @@ saveFile("batman.jpeg", file, {
 
 You can use the `useMoralisCloudFunction` hook to run cloud functions easily. All you need to do is provide a name for the function, and it will automatically fetch the data for you.
 
+*Example:*
+
 ```jsx
 const { data, error, isLoading } = useMoralisCloudFunction("topScores");
 ```
 
 If you have a function that requires parameters, then you can provide it as second argument:
+
+*Example:*
 
 ```jsx
 const { data, error, isLoading } = useMoralisCloudFunction("topScores", {
@@ -574,6 +606,8 @@ const { data, error, isLoading } = useMoralisCloudFunction("topScores", {
 ### Trigger manually
 
 If you rather want to trigger the fetching manually, you can provide `autoFetch: false` as option. And call the `fetch` function manually.
+
+*Example:*
 
 ```jsx
 const { fetch, data, error, isLoading } = useMoralisCloudFunction(
@@ -589,6 +623,8 @@ const { fetch, data, error, isLoading } = useMoralisCloudFunction(
 
 ## `useNewMoralisObject()`
 This is a wrapper around the save method for a `Moralis.Object`. It creates a new object, and resolves the data, error and loading state, similar to the other hooks.
+
+*Example:*
 
 ```jsx
 const AddScoreButton = ({user, score}) => {
@@ -607,7 +643,10 @@ In order to use (non enabled) web3 functionalities, you can just use:
 ```jsx
 const { web3 } = useMoralis()
 ```
-If you need features from an enabled web3 instance, then you need to enable web3 first. Note that the browser needs a privder (like a logged in Metamask):
+If you need features from an enabled web3 instance, then you need to enable web3 first. Note that the browser needs a privder (like a logged in Metamask).
+
+*Example:*
+
 ```jsx
 const EnableWeb3 = ({user, score}) => {
   const { web3, enableWeb3, isWeb3Enabled, isWeb3EnableLoading, web3EnableError } = useMoralis()
@@ -625,8 +664,10 @@ const EnableWeb3 = ({user, score}) => {
 
 ## Components
 If you want to support Moralis, you can use the `ByMoralis` component, to render our logo 🙏:
-```jsx
 
+*Example:*
+
+```jsx
 const App = () => {
 import { ByMoralis } from "react-moralis";
 
@@ -654,7 +695,8 @@ For other logic, you might want to listen directly for success/error responses. 
 | `onError` | Fires when the request returns an error. It will return the corresponding error.        |
 | `onComplete` | Fires when a request finishes (regardless of a success/error response)        |
 
-Example: 
+*Example:*
+
 ```jsx
 const { fetch } = useMoralisQuery("GameScore");
 
@@ -665,10 +707,6 @@ const fetchAndNotify = () => {
   });
 };
 ```
-
-
-
-
 
 # 😖 Error handling
 
