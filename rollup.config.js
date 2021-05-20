@@ -20,9 +20,6 @@ export default {
       sourcemap: true,
     },
   ],
-  "process.env": {
-    NODE_ENV: JSON.stringify("production"),
-  },
   plugins: [
     cleaner({
       targets: ["./lib"],
