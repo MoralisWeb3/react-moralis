@@ -1,4 +1,4 @@
-import { Stack, Heading, Box, Button, Input, HStack } from "@chakra-ui/react";
+import { Stack, Heading, Box, Button, Input } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { CodeBlock } from "../components/CodeBlock";
 import { useMoralis } from "react-moralis";

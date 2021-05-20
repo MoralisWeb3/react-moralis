@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Code, Heading, Stack, Text } from "@chakra-ui/layout";
+import { Heading, Stack } from "@chakra-ui/layout";
 import { Box, Button, Input } from "@chakra-ui/react";
-import { useMoralis, useMoralisFile } from "react-moralis";
+import { useMoralisFile } from "react-moralis";
 import { CodeBlock } from "../components/CodeBlock";
 
 export const File = () => {

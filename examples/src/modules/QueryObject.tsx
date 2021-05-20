@@ -28,7 +28,8 @@ export const QueryObject = () => {
     isLoading,
   } = useMoralisQuery<GameScore>(
     Moralis.Object.extend("GameScore"),
-    (q) => q.greaterThanOrEqualTo("score", maxScore).limit(limit),
+    (q) =>
+      q.lessThanOrEqualTo("score", maxScore).descending("score").limit(limit),
     [maxScore, limit],
   );
 

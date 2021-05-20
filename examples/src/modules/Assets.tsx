@@ -1,6 +1,5 @@
 import React from "react";
-import { Code, Heading, Stack, Text } from "@chakra-ui/layout";
-import { Box } from "@chakra-ui/react";
+import { Heading, Stack } from "@chakra-ui/layout";
 import { ByMoralis } from "react-moralis";
 
 export const Assets = () => {

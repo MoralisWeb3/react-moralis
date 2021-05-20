@@ -1,5 +1,5 @@
 import React from "react";
-import { Code, Heading, Stack, Text } from "@chakra-ui/layout";
+import { Heading, Stack } from "@chakra-ui/layout";
 import { Box, Button } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis";
 import { CodeBlock } from "../components/CodeBlock";

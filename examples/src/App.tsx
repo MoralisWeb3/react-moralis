@@ -3,7 +3,6 @@ import {
   Box,
   Container,
   Heading,
-  Stack,
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";

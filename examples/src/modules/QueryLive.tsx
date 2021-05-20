@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/react";
 import { useMoralisQuery } from "react-moralis";
 import { CodeBlock } from "../components/CodeBlock";
-import { Moralis } from "moralis";
 
 interface GameScore {
   playerName: string;
@@ -29,10 +28,7 @@ export const QueryLive = () => {
   } = useMoralisQuery<GameScore>(
     "GameScore",
     (q) =>
-      q
-        .greaterThanOrEqualTo("score", maxScore)
-        .descending("score")
-        .limit(limit),
+      q.lessThanOrEqualTo("score", maxScore).descending("score").limit(limit),
     [maxScore, limit],
     { live: true, onLiveCreate: (entity, all) => all },
   );
