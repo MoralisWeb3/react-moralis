@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.9](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.8...v0.1.9) (2021-05-21)
+
+
+### Bug Fixes
+
+* typo authtype ([574e45c](https://github.com/MoralisWeb3/react-moralis/commits/574e45c3fcc69cbf848d6d3385899a34df7b68c3))
+
 ### [0.1.8](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.7...v0.1.8) (2021-05-20)
 
 
