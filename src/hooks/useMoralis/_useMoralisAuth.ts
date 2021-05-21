@@ -48,7 +48,7 @@ export interface AuthenticateOptions {
   onSuccess?: (user: Moralis.User) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
-  authType?: AuthType;
+  type?: AuthType;
 }
 
 export interface SignupOptions {
@@ -124,7 +124,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       onError,
       onSuccess,
       throwOnError,
-      authType,
+      type,
     }: AuthenticateOptions = {}) => {
       setAuth({
         state: AuthenticationState.AUTHENTICATING,
@@ -133,7 +133,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
 
       try {
         const user = await Moralis.Web3.authenticate(
-          authType ? { type: authType } : undefined,
+          type ? { type } : undefined,
         );
 
         setUser(user);
