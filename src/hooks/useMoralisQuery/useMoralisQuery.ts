@@ -179,7 +179,7 @@ export const useMoralisQuery = <
     fetch();
   }, [fetch, autoFetch, isInitialized]);
 
-  const isLoading = isFetching && data == null;
+  const isLoading = isFetching && data.length === 0;
 
   return { fetch, isFetching, isLoading, error, data: data ?? [] };
 };
