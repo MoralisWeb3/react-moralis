@@ -176,9 +176,9 @@ You will have access to the following values by using this hook:
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `setUserData()` | function to set userData and directly sync it in the app AND Moralis (see below)                                                                                                  |
 | `user`          | user object from `Moralis.User.current`, containing the state of the logged in user. It automatically will be (un)set automatically when logging in and out, or setting user data |
-| `enableWeb3`    | function to enable web3 manually (will automatically be done when user logs in)                                                                                                   |
+| `enableWeb3`    | function to enable web3                                                                                                                                                           |
 | `web3`          | The web3 instance of `Moralis.Web3`;                                                                                                                                              |
-| `isWeb3Enabled` | Boolean to indicate if web3 has been enabled via the `enableWeb3` function
+| `isWeb3Enabled` | Boolean to indicate if web3 has been enabled via the `enableWeb3` function                                                                                                        |
 
 ### Authentication state
 
@@ -689,11 +689,11 @@ The easiest way to handle the responses of the different async methods (fetch, s
 For other logic, you might want to listen directly for success/error responses. This is facilitated by passing one or more callback (`onComplete`, `onError` and/or `onSuccess`) to the fetch/save etc. functions:
 
 
-| Callback    | Description |
-| ----------- | ----------- |
-| `onSuccess` | Fires when the request resolves successfully. If possible it is returned with the resolved data.        |
-| `onError` | Fires when the request returns an error. It will return the corresponding error.        |
-| `onComplete` | Fires when a request finishes (regardless of a success/error response)        |
+| Callback     | Description                                                                                      |
+| ------------ | ------------------------------------------------------------------------------------------------ |
+| `onSuccess`  | Fires when the request resolves successfully. If possible it is returned with the resolved data. |
+| `onError`    | Fires when the request returns an error. It will return the corresponding error.                 |
+| `onComplete` | Fires when a request finishes (regardless of a success/error response)                           |
 
 *Example:*
 
