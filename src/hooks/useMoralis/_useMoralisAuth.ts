@@ -43,12 +43,15 @@ const initialAuth: Authentication = {
 };
 
 export type AuthType = "dot" | "polkadot" | "kusama" | "erd" | "elrond";
+export type AuthProvider = "wc" | "walletconnect" ;
+
 export interface AuthenticateOptions {
   onError?: (error: Error) => void;
   onSuccess?: (user: Moralis.User) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
   type?: AuthType;
+  provider?: AuthProvider;
 }
 
 export interface SignupOptions {
@@ -125,6 +128,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       onSuccess,
       throwOnError,
       type,
+      provider
     }: AuthenticateOptions = {}) => {
       setAuth({
         state: AuthenticationState.AUTHENTICATING,
@@ -133,7 +137,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
 
       try {
         const user = await Moralis.Web3.authenticate(
-          type ? { type } : undefined,
+          type ? { type } : provider? {provider} : undefined,
         );
 
         setUser(user);
