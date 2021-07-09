@@ -10,5 +10,5 @@ lib
 yarn-error.log
 .env
 
-/example/node_modules
-/example/build
+/examples/node_modules
+/examples/build
