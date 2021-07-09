@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.10](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.9...v0.1.10) (2021-07-09)
+
+
+### Features
+
+* add walletconnect as provider ([4364d7c](https://github.com/MoralisWeb3/react-moralis/commits/4364d7c9ce6b5b4d1a466cfbc0469e817f2fc447))
+
+
+### Bug Fixes
+
+* isLoading state when no data ([97b549b](https://github.com/MoralisWeb3/react-moralis/commits/97b549b01538adf89383973e81c99c6df6744eba))
+
 ### [0.1.9](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.8...v0.1.9) (2021-05-21)
 
 
