@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { Moralis } from "moralis";
 import { setMultipleDataToUser, SetUserData } from "./utils/setUserData";
+import { Web3Provider } from "./_useMoralisWeb3";
 
 export enum AuthenticationState {
   UNDEFINED = "undefined",
@@ -43,12 +44,14 @@ const initialAuth: Authentication = {
 };
 
 export type AuthType = "dot" | "polkadot" | "kusama" | "erd" | "elrond";
+
 export interface AuthenticateOptions {
   onError?: (error: Error) => void;
   onSuccess?: (user: Moralis.User) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
   type?: AuthType;
+  provider?: Web3Provider;
 }
 
 export interface SignupOptions {
@@ -125,6 +128,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       onSuccess,
       throwOnError,
       type,
+      provider,
     }: AuthenticateOptions = {}) => {
       setAuth({
         state: AuthenticationState.AUTHENTICATING,
@@ -132,9 +136,10 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       });
 
       try {
-        const user = await Moralis.Web3.authenticate(
-          type ? { type } : undefined,
-        );
+        const user = await Moralis.Web3.authenticate({
+          ...(!!type && { type }),
+          ...(!!provider && { provider }),
+        });
 
         setUser(user);
 

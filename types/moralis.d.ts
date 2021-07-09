@@ -192,11 +192,12 @@ declare module "moralis" {
     }
 
     class Web3 extends NativeWeb3 {
-      static enable: () => any;
+      static enable: (options?: {provider?:  "walletconnect" | "wc"}) => any;
       static isDotAuth: (options: unknown) => any;
       static isElrondAuth: (options: unknown) => any;
       static authenticate: (options?: {
-        type: "dot" | "polkadot" | "kusama" | "erd" | "elrond";
+        type?: "dot" | "polkadot" | "kusama" | "erd" | "elrond";
+        provider?: "walletconnect" | "wc";
       }) => any;
       static link: (account: string) => any;
       static unlink: (account: string) => any;

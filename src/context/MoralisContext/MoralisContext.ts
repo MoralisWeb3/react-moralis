@@ -7,6 +7,7 @@ import {
   Signup,
 } from "../../hooks/useMoralis/_useMoralisAuth";
 import { SetUserData } from "src/hooks/useMoralis/utils/setUserData";
+import { Web3EnableOptions } from "src/hooks/useMoralis/_useMoralisWeb3";
 
 export interface MoralisContextValue {
   Moralis: Moralis;
@@ -32,7 +33,7 @@ export interface MoralisContextValue {
   userError: null | Error;
   isUserUpdating: boolean;
 
-  enableWeb3: () => void;
+  enableWeb3: (options?: Web3EnableOptions) => void;
   web3: Moralis.Web3 | null;
   isWeb3Enabled: boolean;
   web3EnableError: Error | null;

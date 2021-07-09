@@ -1,6 +1,6 @@
 import React from "react";
 import { Heading, Stack } from "@chakra-ui/layout";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, HStack } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis";
 import { CodeBlock } from "../components/CodeBlock";
 
@@ -22,7 +22,14 @@ export const Authentication = () => {
           {isAuthenticated ? (
             <Button onClick={() => logout()}>Logout</Button>
           ) : (
-            <Button onClick={() => authenticate()}>Authenticate</Button>
+            <HStack>
+              <Button onClick={() => authenticate()}>Authenticate</Button>
+              <Button
+                onClick={() => authenticate({ provider: "walletconnect" })}
+              >
+                Authenticate Walletconnect
+              </Button>
+            </HStack>
           )}
         </Box>
         <CodeBlock>

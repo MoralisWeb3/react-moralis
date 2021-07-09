@@ -1,11 +1,13 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { Moralis } from "moralis";
 
+export type Web3Provider = "wc" | "walletconnect";
 export interface Web3EnableOptions {
   onError?: (error: Error) => void;
   onSuccess?: (web3: Moralis.Web3) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
+  provider?: Web3Provider;
 }
 
 /**
@@ -26,15 +28,15 @@ export const _useMoralisWeb3 = (isAuthenticated: boolean) => {
       onComplete,
       onError,
       onSuccess,
+      provider,
     }: Web3EnableOptions = {}) => {
       setIsWeb3EnableLoading(true);
       setEnableWeb3Error(null);
 
       try {
-        console.log("1");
-        const currentWeb3 = await Moralis.Web3.enable();
-
-        console.log("2 currentWeb3", currentWeb3);
+        const currentWeb3 = await Moralis.Web3.enable(
+          provider ? { provider } : undefined,
+        );
 
         setWeb3(currentWeb3);
         setIsWeb3Enabled(true);
@@ -43,7 +45,6 @@ export const _useMoralisWeb3 = (isAuthenticated: boolean) => {
           onSuccess(currentWeb3);
         }
       } catch (error) {
-        console.log("ERR", error);
         setEnableWeb3Error(error);
         if (throwOnError) {
           throw error;

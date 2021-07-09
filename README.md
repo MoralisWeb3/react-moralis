@@ -89,6 +89,8 @@ function App() {
     - [Authenticate](#authenticate)
     - [Authentication state](#authentication-state)
     - [`authenticate()` (web3)](#authenticate-web3)
+      - [Elrond](#elrond)
+      - [Walletconnect](#walletconnect)
     - [`signup()` (non-crypto)](#signup-non-crypto)
     - [`login()` (non-crypto)](#login-non-crypto)
     - [`logout()`](#logout)
@@ -108,6 +110,8 @@ function App() {
     - [Trigger manually](#trigger-manually)
   - [`useNewMoralisObject()`](#usenewmoralisobject)
   - [`Web3`](#web3)
+    - [Enable web3 via metamask](#enable-web3-via-metamask)
+    - [Enable web3 via Walletconnect](#enable-web3-via-walletconnect)
   - [Components](#components)
 - [Handling responses](#handling-responses)
 - [😖 Error handling](#-error-handling)
@@ -242,11 +246,18 @@ If you need direct feedback after authentication, you can provide an `option` ob
 authenticate({ onComplete: () => alert("🎉") })
 ```
 
-####
+#### Elrond
 
 If you want to authenticate via Elrond, you can provide the `"erd"` authentication type in the options type:
 ```js
 authenticate({ type: "erd" })
+```
+
+#### Walletconnect
+
+If you want to use walletconnect, instead of metamask, you can add the `provider` option:
+```js
+authenticate({ provider: "walletconnect" })
 ```
 
 ### `signup()` (non-crypto)
@@ -643,7 +654,10 @@ In order to use (non enabled) web3 functionalities, you can just use:
 ```jsx
 const { web3 } = useMoralis()
 ```
-If you need features from an enabled web3 instance, then you need to enable web3 first. Note that the browser needs a privder (like a logged in Metamask).
+
+### Enable web3 via metamask
+
+If you need features from an enabled web3 instance, then you need to enable web3 first. By default, metamask will be used to get a provider:
 
 *Example:*
 
@@ -658,6 +672,27 @@ const EnableWeb3 = ({user, score}) => {
   return <div>
     {web3EnableError && <ErrorMessage error={web3EnableError} />}
     <button onClick={() => enableWeb3()} disabled={isWeb3EnableLoading}>Enable web3</button>
+  </div>
+}
+```
+
+### Enable web3 via Walletconnect
+
+Optionally, you  can specify to use walletconnect as a provider, to enable web3 via walletconnect:
+
+*Example:*
+
+```jsx
+const EnableWeb3 = ({user, score}) => {
+  const { web3, enableWeb3, isWeb3Enabled, isWeb3EnableLoading, web3EnableError } = useMoralis()
+
+  if(isWeb3Enabled){
+    return null
+  }
+
+  return <div>
+    {web3EnableError && <ErrorMessage error={web3EnableError} />}
+    <button onClick={() => enableWeb3({provider: 'walletconnect'})} disabled={isWeb3EnableLoading}>Enable web3</button>
   </div>
 }
 ```

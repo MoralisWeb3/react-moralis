@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, Button } from "@chakra-ui/react";
+import { Stack, Button, HStack } from "@chakra-ui/react";
 import { CodeBlock } from "../components/CodeBlock";
 import { useMoralis } from "react-moralis";
 
@@ -12,12 +12,15 @@ export const Web3 = () => {
     web3EnableError,
   } = useMoralis();
 
-  console.log("web3", web3);
-
   return (
     <div>
       <Stack spacing={6}>
-        <Button onClick={() => enableWeb3()}>Enable web3</Button>
+        <HStack>
+          <Button onClick={() => enableWeb3()}>Enable web3</Button>
+          <Button onClick={() => enableWeb3({ provider: "walletconnect" })}>
+            Enable web3 (Walletconnect)
+          </Button>
+        </HStack>
       </Stack>
       <CodeBlock>
         {JSON.stringify(
@@ -25,7 +28,6 @@ export const Web3 = () => {
             isWeb3Enabled,
             isWeb3EnableLoading,
             web3EnableError,
-            provider: web3?.currentProvider,
           },
           null,
           2,
