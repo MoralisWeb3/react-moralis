@@ -337,7 +337,7 @@ After calling this function the `auth` and `user` will automatically be updated 
 
 ### Update the user with `setUserData()`
 
-When you want to set userData, you can use the `setUserData()` function.
+When you want to set userData, you can use the `setUserData()` function from `useMoralis`.
 This accepts an object with key-value pairs of data that you want to set.
 
 Upon calling this function:
@@ -345,11 +345,12 @@ Upon calling this function:
 - The user is updated on Moralis
 - The user is updated in the React app
 
-So places where you use `const {user} = useMoralis()` will automatically be updated.
+So this means that at the places where you use `const {user} = useMoralis()`, the user data will automatically be updated.
 
 *Example:*
 
 ```jsx
+const { setUserData } = useMoralis();
 setUserData({
   username: "Batman",
   email: "batman@marvel.com",
