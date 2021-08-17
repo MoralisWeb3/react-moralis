@@ -5357,10 +5357,10 @@ modify-values@^1.0.0:
   resolved "https://registry.yarnpkg.com/modify-values/-/modify-values-1.0.1.tgz#b3939fa605546474e3e3e3c63d64bd43b4ee6022"
   integrity sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==
 
-moralis@^0.0.28:
-  version "0.0.28"
-  resolved "https://registry.yarnpkg.com/moralis/-/moralis-0.0.28.tgz#e530575e59b262c756221c83e816c4c344c3b288"
-  integrity sha512-8YPUA/RrZN5MG/yiw1OIjVosMp9RKEHgpd1flbDILnJplIL+vQald1cDvDtmAbTu+7soAMnkv1qTprutoHdLEw==
+moralis@0.0.33:
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/moralis/-/moralis-0.0.33.tgz#73fea119e4a7fa66352557df54f493469c503bc4"
+  integrity sha512-SeT+5pyi7nqQWEFRlXAm9a9H11p4kFCQXiL7Ajqg4qxCucuRMNavVsYAwbB406DL46G8ToiFsr3gfl/DqYgyvA==
   dependencies:
     "@babel/runtime" "7.12.5"
     "@babel/runtime-corejs3" "7.12.5"
