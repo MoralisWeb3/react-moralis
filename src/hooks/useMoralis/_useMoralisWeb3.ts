@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Moralis } from "moralis";
+import Moralis from "moralis";
 
 export type Web3Provider = "wc" | "walletconnect";
 export interface Web3EnableOptions {

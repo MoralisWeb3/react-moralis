@@ -1,4 +1,4 @@
-import { Moralis } from "moralis";
+import Moralis from "moralis";
 import { useMemo } from "react";
 import { Query } from "../../utils/genericQuery";
 

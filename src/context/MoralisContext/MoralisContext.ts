@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Moralis } from "moralis";
+import Moralis from "moralis";
 import {
   AuthenticateOptions,
   Authentication,

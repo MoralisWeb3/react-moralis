@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Moralis } from "moralis";
+import Moralis from "moralis";
 import { ReactMoralisError } from "../../Errors";
 
 /**

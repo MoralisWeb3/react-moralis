@@ -1,5 +1,5 @@
 import React from "react";
-import { Moralis } from "moralis";
+import Moralis from "moralis";
 import { MoralisContext } from "../MoralisContext";
 import {
   OnAccountChanged,

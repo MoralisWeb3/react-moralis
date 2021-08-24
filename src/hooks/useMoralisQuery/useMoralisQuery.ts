@@ -1,5 +1,5 @@
 import { WritableDraft } from "immer/dist/internal";
-import { Moralis } from "moralis";
+import Moralis from "moralis";
 import { useCallback, useEffect, useState } from "react";
 import { useImmer } from "use-immer";
 import { DefaultQueryAttribute, Query } from "../../utils/genericQuery";

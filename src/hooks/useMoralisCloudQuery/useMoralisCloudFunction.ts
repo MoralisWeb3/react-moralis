@@ -1,4 +1,4 @@
-import { Moralis } from "moralis";
+import Moralis from "moralis";
 import isDeepEqual from "fast-deep-equal/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useMoralis } from "src/hooks/useMoralis";

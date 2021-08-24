@@ -1,4 +1,4 @@
-import { Moralis } from "moralis";
+import Moralis from "moralis";
 
 export type DefaultQueryAttribute = Moralis.Attributes;
 

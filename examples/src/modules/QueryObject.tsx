@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { useMoralisQuery } from "react-moralis";
 import { CodeBlock } from "../components/CodeBlock";
-import { Moralis } from "moralis";
+import Moralis from "moralis";
 
 interface GameScore {
   playerName: string;

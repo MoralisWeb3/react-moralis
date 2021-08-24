@@ -1,4 +1,4 @@
-import { Moralis } from "moralis";
+import Moralis from "moralis";
 import { ValidationError } from "src/Errors";
 
 // UserData can accept all these types

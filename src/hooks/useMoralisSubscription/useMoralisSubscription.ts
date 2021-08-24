@@ -1,4 +1,4 @@
-import { Moralis } from "moralis";
+import Moralis from "moralis";
 import { useContext, useEffect, useRef, useState } from "react";
 import { MoralisContext } from "src/context";
 import { Query } from "src/utils/genericQuery";
