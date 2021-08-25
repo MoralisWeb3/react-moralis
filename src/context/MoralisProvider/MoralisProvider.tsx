@@ -1,5 +1,5 @@
 import React from "react";
-import Moralis from "moralis";
+import { Moralis } from "moralis";
 import { MoralisContext } from "../MoralisContext";
 import {
   OnAccountChanged,
@@ -39,6 +39,8 @@ export const MoralisProvider = ({
   const { setUser, ...moralisUser } = _useMoralisUser();
   const moralisAuth = _useMoralisAuth({ onAccountChanged, setUser });
   const moralisWeb3 = _useMoralisWeb3(moralisAuth.isAuthenticated);
+
+  console.log("Moralis", Moralis);
 
   return (
     <MoralisContext.Provider

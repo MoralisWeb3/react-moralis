@@ -1,4 +1,4 @@
-import Moralis from "moralis";
+import { Moralis } from "moralis";
 import { useCallback, useState } from "react";
 
 export type ValidFileInput =

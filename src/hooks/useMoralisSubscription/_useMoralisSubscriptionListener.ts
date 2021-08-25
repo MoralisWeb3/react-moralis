@@ -1,4 +1,4 @@
-import Moralis from "moralis";
+import { Moralis } from "moralis";
 import { useEffect } from "react";
 import { useMoralis } from "../useMoralis";
 

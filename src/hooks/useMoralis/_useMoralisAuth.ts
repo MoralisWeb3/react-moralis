@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import Moralis from "moralis";
+import { Moralis } from "moralis";
 import { setMultipleDataToUser, SetUserData } from "./utils/setUserData";
 import { Web3Provider } from "./_useMoralisWeb3";
 

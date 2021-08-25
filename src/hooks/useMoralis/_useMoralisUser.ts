@@ -1,4 +1,4 @@
-import Moralis from "moralis";
+import { Moralis } from "moralis";
 import { useCallback, useEffect, useState } from "react";
 import { NotAuthenticatedError, ReactMoralisError } from "../../Errors";
 import { setMultipleDataToUser, SetUserData } from "./utils/setUserData";
