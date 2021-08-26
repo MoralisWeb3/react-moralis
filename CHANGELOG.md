@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.0...v0.2.1) (2021-08-26)
+
+
+### Features
+
+* add moralisWeb3 api calls ([da9ec38](https://github.com/MoralisWeb3/react-moralis/commits/da9ec389f27c1e9fcb86493e847c32c5c5ae7bf4))
+* update dependencies and use native TS ([c4b3146](https://github.com/MoralisWeb3/react-moralis/commits/c4b3146672cca45ea6e3e4aa970957e17d36114b))
+
+
+### Bug Fixes
+
+* use native typescript from moralis ([36c1e3b](https://github.com/MoralisWeb3/react-moralis/commits/36c1e3b671442144a79855370b2d2e9bfc302967))
+
 ## [0.2.0](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.10...v0.2.0) (2021-07-09)
 
 ### [0.1.10](https://github.com/MoralisWeb3/react-moralis/compare/v0.1.9...v0.1.10) (2021-07-09)
