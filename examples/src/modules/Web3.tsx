@@ -5,7 +5,6 @@ import { useMoralis } from "react-moralis";
 
 export const Web3 = () => {
   const {
-    web3,
     enableWeb3,
     isWeb3Enabled,
     isWeb3EnableLoading,

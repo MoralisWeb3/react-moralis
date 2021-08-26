@@ -30,7 +30,7 @@ export const QueryLive = () => {
     (q) =>
       q.lessThanOrEqualTo("score", maxScore).descending("score").limit(limit),
     [maxScore, limit],
-    { live: true, onLiveCreate: (entity, all) => all },
+    { live: true },
   );
 
   return (

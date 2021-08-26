@@ -1,15 +1,15 @@
 import { Moralis } from "moralis";
-import isDeepEqual from "fast-deep-equal/react";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useMoralis } from "src/hooks/useMoralis";
+import { useCallback } from "react";
+import {
+  UseResolveCallOptions,
+  _useResolveCall,
+} from "../_useResolveAsyncCall";
 
-export type MoralisCloudResult = any;
+export type MoralisCloudResult = unknown;
 
-export interface UseMoralisCloudFunctionOptions {
-  autoFetch?: boolean;
-}
+export interface UseMoralisCloudFunctionOptions extends UseResolveCallOptions {}
 
-export type MoralisCloudFunctionParameters = Record<string, any>;
+export type MoralisCloudFunctionParameters = Record<string, unknown>;
 
 export interface MoralisCloudFetchOptions {
   onError?: (error: Error) => void;
@@ -19,89 +19,16 @@ export interface MoralisCloudFetchOptions {
   params?: MoralisCloudFunctionParameters;
 }
 
-const defaultUseMoralisCloudFunctionOptions: UseMoralisCloudFunctionOptions = {
-  autoFetch: true,
-};
-
 export const useMoralisCloudFunction = (
   name: string,
   params?: MoralisCloudFunctionParameters,
   options?: UseMoralisCloudFunctionOptions,
 ) => {
-  const { isInitialized } = useMoralis();
-  const { autoFetch } = {
-    ...defaultUseMoralisCloudFunctionOptions,
-    ...(options ?? {}),
-  };
-  const [isFetching, setIsFetching] = useState(false);
-  const [error, setError] = useState<null | Error>(null);
-  const [data, setData] = useState<null | MoralisCloudResult>(null);
-  const paramsRef = useRef<MoralisCloudFunctionParameters | undefined>(params);
-
-  if (!isDeepEqual(paramsRef.current, params)) {
-    paramsRef.current = params;
-  }
-
-  /**
-   * Run the cloud function
-   */
-  const fetch = useCallback(
-    async ({
-      throwOnError,
-      onComplete,
-      onError,
-      onSuccess,
-      params: fetchParams,
-    }: MoralisCloudFetchOptions = {}) => {
-      setIsFetching(true);
-      setError(null);
-
-      try {
-        const results = await Moralis.Cloud.run(name, {
-          ...params,
-          ...fetchParams,
-        });
-
-        setData(results);
-        if (onSuccess) {
-          onSuccess(results);
-        }
-      } catch (error) {
-        setError(error);
-        if (throwOnError) {
-          throw error;
-        }
-        if (onError) {
-          onError(error);
-        }
-      } finally {
-        setIsFetching(false);
-        if (onComplete) {
-          onComplete();
-        }
-      }
-    },
-    [name, paramsRef.current],
+  const call = useCallback(
+    (callParams?: MoralisCloudFunctionParameters) =>
+      Moralis.Cloud.run(name, callParams),
+    [name],
   );
 
-  const isLoading = isFetching && data == null;
-
-  /**
-   * Automatically fetch the cloud function
-   */
-  useEffect(() => {
-    if (!isInitialized || !autoFetch) {
-      return;
-    }
-
-    fetch();
-  }, [fetch, isInitialized]);
-
-  return {
-    fetch,
-    isFetching,
-    isLoading,
-    error,
-    data: data ?? [],
-  };
+  return _useResolveCall<MoralisCloudResult>(call, null, params, options);
 };

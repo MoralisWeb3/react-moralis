@@ -25,20 +25,23 @@ Please check the [official documentation of Moralis](https://docs.moralis.io/#us
 
 # ⚙️ Quick start
 
-Make sure to have `react`, `react-dom` and `moralis`
-installed as dependencies. Then install react-moralis:
+Make sure to have `react`, `react-dom` and `moralis` installed as dependencies, then install `react-moralis`
 
-```
-npm install react-moralis
+In short:
+
+```sh
+npm install react react-dom moralis react-moralis
 ```
 
 or
 
-```
-yarn add react-moralis
+```sh
+yarn add react react-dom moralis react-moralis
 ```
 
-Then wrap your app in a `<MoralisProvider>`:
+> Make sure to also  `moralis` to the latest version, when you update `react-moralis`.
+
+Then wrap your app in a `<MoralisProvider>`, and provide your appId and serverUrl:
 
 ```jsx
 import React from "react";
@@ -633,6 +636,43 @@ const { fetch, data, error, isLoading } = useMoralisCloudFunction(
 <button onClick={() => fetch()}>Fetch manually<button>
 ```
 
+## `useMoralisWeb3Api()`
+This hook will expose all the convenience functions of the `Moralis.Web3API` in the sdk (ex. `Web3Api.native.getBlock` or `Web3Api.account.getNativeBalance`). You can use this function in any way you want, for example:
+
+```jsx
+const Web3Api = useMoralisWeb3Api()
+
+const fetchBlock = async() => {
+  const result = await Web3Api.native.getBlock({
+    block_number_or_hash: '100000'
+  })
+  console.log(result)
+}
+```
+
+### Resolve data with `useMoralisWeb3ApiCall()`
+
+You can also use a resolver, to resolve the asynchronous function. This works similar to useMoralisQuery or useMoralisCloudFunction. It will resolve the data/error for you and will re-trigger if dependencies change. 
+
+For this you can use `useMoralisWeb3ApiCall()`:
+
+```jsx
+  const [block, setBlock] = useState('100000');
+  const Web3Api = useMoralisWeb3Api()
+
+  const { fetch, data, error, isLoading } = useMoralisWeb3ApiCall(Web3Api.native.getBlock, {
+    block_number_or_hash: block,
+  });
+
+  return (
+    <div>
+      <button onClick={() => fetch()}>Refetch</button>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  )
+
+```
+
 ## `useNewMoralisObject()`
 This is a wrapper around the save method for a `Moralis.Object`. It creates a new object, and resolves the data, error and loading state, similar to the other hooks.
 
@@ -765,8 +805,6 @@ const fetchAndUseError = async () => {
 # ⌨️ Typescript
 
 This library offers first-class Typescript support.
-However `moralis` is not fully typed just yet.
-Also, not all queries are fully generic just yet.
 
 # 🧑‍💻 Development
 
