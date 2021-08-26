@@ -111,6 +111,8 @@ function App() {
     - [Other options](#other-options)
   - [`useMoralisCloudFunction()`](#usemoraliscloudfunction)
     - [Trigger manually](#trigger-manually)
+  - [`useMoralisWeb3Api()`](#usemoralisweb3api)
+    - [Resolve data with `useMoralisWeb3ApiCall()`](#resolve-data-with-usemoralisweb3apicall)
   - [`useNewMoralisObject()`](#usenewmoralisobject)
   - [`Web3`](#web3)
     - [Enable web3 via metamask](#enable-web3-via-metamask)
