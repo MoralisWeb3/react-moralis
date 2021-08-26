@@ -25,20 +25,23 @@ Please check the [official documentation of Moralis](https://docs.moralis.io/#us
 
 # ⚙️ Quick start
 
-Make sure to have `react`, `react-dom` and `moralis`
-installed as dependencies. Then install react-moralis:
+Make sure to have `react`, `react-dom` and `moralis` installed as dependencies, then install `react-moralis`
 
-```
-npm install react-moralis
+In short:
+
+```sh
+npm install react react-dom moralis react-moralis
 ```
 
 or
 
-```
-yarn add react-moralis
+```sh
+yarn add react react-dom moralis react-moralis
 ```
 
-Then wrap your app in a `<MoralisProvider>`:
+> Make sure to also  `moralis` to the latest version, when you update `react-moralis`.
+
+Then wrap your app in a `<MoralisProvider>`, and provide your appId and serverUrl:
 
 ```jsx
 import React from "react";
