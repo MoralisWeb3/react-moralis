@@ -40,8 +40,6 @@ export const MoralisProvider = ({
   const moralisAuth = _useMoralisAuth({ onAccountChanged, setUser });
   const moralisWeb3 = _useMoralisWeb3(moralisAuth.isAuthenticated);
 
-  console.log("Moralis", Moralis);
-
   return (
     <MoralisContext.Provider
       value={{

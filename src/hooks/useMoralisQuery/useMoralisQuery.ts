@@ -1,10 +1,13 @@
 import { WritableDraft } from "immer/dist/internal";
 import { Moralis } from "moralis";
-import { useCallback, useEffect, useState } from "react";
-import { useImmer } from "use-immer";
+import { useCallback } from "react";
 import { DefaultQueryAttribute, Query } from "../../utils/genericQuery";
 import { useMoralis } from "../useMoralis";
 import { useMoralisSubscription } from "../useMoralisSubscription";
+import {
+  UseResolveCallOptions,
+  _useResolveCall,
+} from "../_useResolveAsyncCall";
 import { _useSafeUpdatedQuery } from "./_useSafeUpdatedQuery";
 
 export interface MoralisQueryFetchOptions<Entity = DefaultQueryAttribute> {
@@ -19,8 +22,8 @@ export type OnLiveHandler<Entity = DefaultQueryAttribute> = (
   all: Moralis.Object<Entity>[] | WritableDraft<Moralis.Object<Entity>>[],
 ) => Moralis.Object<Entity>[];
 
-export interface UseMoralisQueryOptions<Entity = DefaultQueryAttribute> {
-  autoFetch?: boolean;
+export interface UseMoralisQueryOptions<Entity = DefaultQueryAttribute>
+  extends UseResolveCallOptions {
   live?: boolean;
   onLiveCreate?: OnLiveHandler<Entity>;
   onLiveEnter?: OnLiveHandler<Entity>;
@@ -51,7 +54,6 @@ export const useMoralisQuery = <
   const { isInitialized } = useMoralis();
   const {
     live,
-    autoFetch,
     onLiveCreate,
     onLiveDelete,
     onLiveEnter,
@@ -61,18 +63,23 @@ export const useMoralisQuery = <
     ...defaultUseMoralisQueryOptions,
     ...options,
   };
-  const [isFetching, setIsFetching] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
-
-  // TODO: change to useReducer or useImmerReducer to avoid misbehaviour on multiple calls
-  const [data, setData] = useImmer<Moralis.Object<Entity>[]>([]);
-
   const query = _useSafeUpdatedQuery(
     nameOrObject,
     queryMap,
     dependencies,
     isInitialized,
   );
+
+  const call = useCallback(() => query.find(), [query]);
+
+  const {
+    data,
+    error,
+    fetch,
+    isFetching,
+    isLoading,
+    setData,
+  } = _useResolveCall<Moralis.Object<Entity>[]>(call, [], undefined, options);
 
   const handleOnCreate = useCallback(
     (entity) => {
@@ -129,57 +136,5 @@ export const useMoralisQuery = <
     onLeave: handleOnLeave,
   });
 
-  /**
-   * Fetch request to execute the Moralis.Query.find() function
-   */
-  const fetch = useCallback(
-    async ({
-      onError,
-      onComplete,
-      onSuccess,
-      throwOnError,
-    }: MoralisQueryFetchOptions = {}) => {
-      setIsFetching(true);
-      setError(null);
-
-      try {
-        const results = await query.find();
-
-        if (onSuccess) {
-          onSuccess(results);
-        }
-
-        setData(results);
-      } catch (error) {
-        setError(error);
-        if (throwOnError) {
-          throw error;
-        }
-        if (onError) {
-          onError(error);
-        }
-      } finally {
-        setIsFetching(false);
-        if (onComplete) {
-          onComplete();
-        }
-      }
-    },
-    [query],
-  );
-
-  /**
-   * Automatically fetch the query on mount
-   */
-  useEffect(() => {
-    if (!isInitialized || !autoFetch) {
-      return;
-    }
-
-    fetch();
-  }, [fetch, autoFetch, isInitialized]);
-
-  const isLoading = isFetching && data.length === 0;
-
-  return { fetch, isFetching, isLoading, error, data: data ?? [] };
+  return { fetch, isFetching, isLoading, error, data };
 };

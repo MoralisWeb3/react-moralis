@@ -19,8 +19,16 @@ export const _useMoralisInit = ({
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    if (!appId || !serverUrl) {
-      throw new ReactMoralisError("Provide a valid key  <MoralisProvider>. ");
+    if (!appId) {
+      throw new ReactMoralisError(
+        `Provide a "appId" provided to <MoralisProvider>`,
+      );
+    }
+
+    if (!serverUrl) {
+      throw new ReactMoralisError(
+        `Provide a "serverUrl" provided to <MoralisProvider>`,
+      );
     }
 
     if (isInitialized) {
