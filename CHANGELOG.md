@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.1...v0.2.2) (2021-09-08)
+
+
+### Features
+
+* add chainId option for auth and enable ([01694cf](https://github.com/MoralisWeb3/react-moralis/commits/01694cfed0454b5d1449326a1270a609faab7aab))
+* add refetchUserData ([a94198a](https://github.com/MoralisWeb3/react-moralis/commits/a94198a65c5f611f219b8bc0a53c7e03c94c51d7))
+
 ### [0.2.1](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.0...v0.2.1) (2021-08-26)
 
 
