@@ -15,7 +15,13 @@ export const User = () => {
 };
 
 const Inner = () => {
-  const { user, userError, isUserUpdating, setUserData } = useMoralis();
+  const {
+    user,
+    userError,
+    isUserUpdating,
+    setUserData,
+    refetchUserData,
+  } = useMoralis();
 
   const [email, setEmail] = useState(user?.getEmail() ?? "");
   const [phone, setPhone] = useState(user?.get("phone") ?? "");
@@ -66,6 +72,10 @@ const Inner = () => {
                 disabled={isUserUpdating}
               >
                 Update user
+              </Button>
+
+              <Button ml={3} onClick={refetchUserData}>
+                Refetch user data
               </Button>
             </Stack>
           </form>

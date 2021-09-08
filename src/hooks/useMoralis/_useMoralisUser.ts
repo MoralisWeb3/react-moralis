@@ -10,6 +10,13 @@ export interface MoralisSetUserDataOptions {
   throwOnError?: boolean;
 }
 
+export interface RefetchUserOptions {
+  onError?: (error: Error) => void;
+  onSuccess?: (user: Moralis.User) => void;
+  onComplete?: () => void;
+  throwOnError?: boolean;
+}
+
 export const _useMoralisUser = () => {
   const [user, setUser] = useState<Moralis.User | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -78,10 +85,61 @@ export const _useMoralisUser = () => {
     [user],
   );
 
+  /**
+   * Function to refetch the user and update the user object
+   */
+  const refetchUserData = useCallback(
+    async ({
+      throwOnError,
+      onComplete,
+      onError,
+      onSuccess,
+    }: RefetchUserOptions = {}) => {
+      if (!user) {
+        throw new NotAuthenticatedError(
+          "User needs to be authenticated before refetching",
+        );
+      }
+
+      setIsUpdating(true);
+      setError(null);
+
+      try {
+        const newUserData = await user.fetch();
+
+        if (!newUserData) {
+          throw new ReactMoralisError("No user data found after refetch");
+        }
+
+        setUser(newUserData);
+
+        if (onSuccess) {
+          onSuccess(newUserData);
+        }
+      } catch (error) {
+        setError(error);
+        if (throwOnError) {
+          throw error;
+        }
+        if (onError) {
+          onError(error);
+        }
+      } finally {
+        setIsUpdating(false);
+        if (onComplete) {
+          onComplete();
+        }
+      }
+    },
+    [user],
+  );
+
   return {
     setUserData,
     setUser,
+    refetchUserData,
     user,
+    _setUser: setUser,
     isUserUpdating: isUpdating,
     userError: error,
   };

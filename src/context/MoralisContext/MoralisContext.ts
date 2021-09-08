@@ -30,8 +30,10 @@ export interface MoralisContextValue {
 
   setUserData: (data: SetUserData) => Promise<void>;
   user: Moralis.User | null;
+  _setUser: (user: Moralis.User) => void;
   userError: null | Error;
   isUserUpdating: boolean;
+  refetchUserData: () => Promise<void>;
 
   enableWeb3: (options?: Web3EnableOptions) => void;
   web3: Moralis.Web3 | null;
