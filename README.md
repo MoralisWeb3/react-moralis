@@ -265,6 +265,11 @@ If you want to use walletconnect, instead of metamask, you can add the `provider
 authenticate({ provider: "walletconnect" })
 ```
 
+For some wallets you might want to specify the default chainId, to do so you can provide a `chainId` option:
+```js
+authenticate({ provider: "walletconnect", chainId: 56 })
+```
+
 ### `signup()` (non-crypto)
 
 To signup users without web3, and use a password/username, you can use the signup function.
@@ -332,9 +337,11 @@ Following the same principle as authentication/login, you can call `logout` and 
 const LogoutButton = () => {
   const { logout, isAuthenticating } = useMoralis();
 
-  <button onClick={() => logout()} disabled={isAuthenticating}>
-    Authenticate
-  </button>;
+  return (
+    <button onClick={() => logout()} disabled={isAuthenticating}>
+      Authenticate
+    </button>
+  )
 };
 ```
 
@@ -355,12 +362,53 @@ So this means that at the places where you use `const {user} = useMoralis()`, th
 *Example:*
 
 ```jsx
-const { setUserData } = useMoralis();
-setUserData({
-  username: "Batman",
-  email: "batman@marvel.com",
-  numberOfCats: 12,
-});
+const { setUserData, userError, isUserUpdating, user } = useMoralis();
+
+return (
+  <div>
+    {userError && <p>{userError.message}</p>}
+    
+    <pre>
+      {JSON.stringify(user)}
+    </pre>
+
+    <button
+      onClick={() => setUserData({
+        username: "Batman",
+        email: "batman@marvel.com",
+        numberOfCats: 12,
+      })}
+      disabled={isUserUpdating}
+    >
+      Set user data
+    </button>
+  </div>
+)
+
+```
+
+### Refetch user data `refetchUserData()`
+
+When your user data gets updated outside the app (via cloudfunctions or in another session for example), you might want to force a refetch of the user data. You can use `refetchUserData` for this.
+
+*Example:*
+
+```jsx
+const { refetchUserData, isUserUpdating, userError, user } = useMoralis();
+
+return (
+  <div>
+    {userError && <p>{userError.message}</p>}
+    
+    <pre>
+      {JSON.stringify(user)}
+    </pre>
+
+    <button onClick={() => refetchUserData()} disabled={isUserUpdating}>
+      Refetch user data
+    </button>
+  </div>
+)
 ```
 
 ## `useMoralisQuery()`
