@@ -52,6 +52,7 @@ export interface AuthenticateOptions {
   throwOnError?: boolean;
   type?: AuthType;
   provider?: Web3Provider;
+  chainId?: number;
 }
 
 export interface SignupOptions {
@@ -129,6 +130,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       throwOnError,
       type,
       provider,
+      chainId,
     }: AuthenticateOptions = {}) => {
       setAuth({
         state: AuthenticationState.AUTHENTICATING,
@@ -139,6 +141,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         const user = await Moralis.Web3.authenticate({
           ...(!!type && { type }),
           ...(!!provider && { provider }),
+          ...(!!chainId && { chainId }),
         });
 
         setUser(user);

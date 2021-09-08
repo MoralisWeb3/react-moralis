@@ -8,6 +8,7 @@ export interface Web3EnableOptions {
   onComplete?: () => void;
   throwOnError?: boolean;
   provider?: Web3Provider;
+  chainId?: number;
 }
 
 /**
@@ -29,14 +30,16 @@ export const _useMoralisWeb3 = (isAuthenticated: boolean) => {
       onError,
       onSuccess,
       provider,
+      chainId,
     }: Web3EnableOptions = {}) => {
       setIsWeb3EnableLoading(true);
       setEnableWeb3Error(null);
 
       try {
-        const currentWeb3 = await Moralis.Web3.enable(
-          provider ? { provider } : undefined,
-        );
+        const currentWeb3 = await Moralis.Web3.enable({
+          ...(!!provider && { provider }),
+          ...(!!chainId && { chainId }),
+        });
 
         setWeb3(currentWeb3);
         setIsWeb3Enabled(true);
