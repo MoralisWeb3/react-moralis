@@ -53,6 +53,7 @@ export interface AuthenticateOptions {
   type?: AuthType;
   provider?: Web3Provider;
   chainId?: number;
+  signingMessage?: string;
 }
 
 export interface SignupOptions {
@@ -131,6 +132,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       type,
       provider,
       chainId,
+      signingMessage,
     }: AuthenticateOptions = {}) => {
       setAuth({
         state: AuthenticationState.AUTHENTICATING,
@@ -142,6 +144,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
           ...(!!type && { type }),
           ...(!!provider && { provider }),
           ...(!!chainId && { chainId }),
+          ...(!!signingMessage && { signingMessage }),
         });
 
         setUser(user);

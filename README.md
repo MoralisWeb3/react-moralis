@@ -94,10 +94,12 @@ function App() {
     - [`authenticate()` (web3)](#authenticate-web3)
       - [Elrond](#elrond)
       - [Walletconnect](#walletconnect)
+      - [Custom signing message](#custom-signing-message)
     - [`signup()` (non-crypto)](#signup-non-crypto)
     - [`login()` (non-crypto)](#login-non-crypto)
     - [`logout()`](#logout)
     - [Update the user with `setUserData()`](#update-the-user-with-setuserdata)
+    - [Refetch user data `refetchUserData()`](#refetch-user-data-refetchuserdata)
   - [`useMoralisQuery()`](#usemoralisquery)
     - [Fetch Queries](#fetch-queries)
     - [Filter queries](#filter-queries)
@@ -263,6 +265,18 @@ authenticate({ type: "erd" })
 If you want to use walletconnect, instead of metamask, you can add the `provider` option:
 ```js
 authenticate({ provider: "walletconnect" })
+```
+
+For some wallets you might want to specify the default chainId, to do so you can provide a `chainId` option:
+```js
+authenticate({ provider: "walletconnect", chainId: 56 })
+```
+
+#### Custom signing message
+
+To adjust the signing message, you can provide `signingMessage` as an option:
+```js
+authenticate({ signing: "Moralis Authentication" })
 ```
 
 For some wallets you might want to specify the default chainId, to do so you can provide a `chainId` option:
