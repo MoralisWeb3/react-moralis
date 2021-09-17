@@ -276,7 +276,7 @@ authenticate({ provider: "walletconnect", chainId: 56 })
 
 To adjust the signing message, you can provide `signingMessage` as an option:
 ```js
-authenticate({ signing: "Moralis Authentication" })
+authenticate({ signingMessage : "Moralis Authentication" })
 ```
 
 For some wallets you might want to specify the default chainId, to do so you can provide a `chainId` option:
