@@ -454,7 +454,7 @@ return <pre>{JSON.stringify(data, null, 2)}</pre>;
 
 ### Filter queries
 
-You can filer the query via a second argument. You can mutate the query in any way that Moralis.Quey can.
+You can filer the query via a second argument. You can mutate the query in any way that Moralis.Query can.
 
 *Example:*
 
