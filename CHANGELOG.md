@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.4](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.3...v0.2.4) (2021-09-30)
+
+
+### Features
+
+* add transfer and executefucnction hooks ([db3c5d9](https://github.com/MoralisWeb3/react-moralis/commits/db3c5d9a7545cd46e2607e07d76fc4c4e1770e89))
+
 ### [0.2.3](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.2...v0.2.3) (2021-09-13)
 
 
