@@ -79,7 +79,12 @@ export const useMoralisQuery = <
     isFetching,
     isLoading,
     setData,
-  } = _useResolveCall<Moralis.Object<Entity>[]>(call, [], undefined, options);
+  } = _useResolveCall<Moralis.Object<Entity>[], object>(
+    call,
+    [],
+    undefined,
+    options,
+  );
 
   const handleOnCreate = useCallback(
     (entity) => {

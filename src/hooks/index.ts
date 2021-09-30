@@ -5,3 +5,5 @@ export * from "./useMoralisQuery";
 export * from "./useMoralisSubscription";
 export * from "./useMoralisObject";
 export * from "./useMoralisWeb3Api";
+export * from "./useWeb3ExecuteFunction";
+export * from "./useWeb3Transfer";

@@ -8,7 +8,7 @@ export interface UseResolveCallOptions {
   autoFetch?: boolean;
 }
 
-export type ResolveCallParams = Record<string, unknown>;
+export type ResolveCallParams = object;
 
 export interface ResolveCallOptions<
   Result extends unknown,
@@ -21,22 +21,21 @@ export interface ResolveCallOptions<
   params?: Params;
 }
 
-const defaultUseResolveCallOptions: UseResolveCallOptions = {
-  autoFetch: true,
-};
-
 export const _useResolveCall = <
   Result extends unknown,
-  Params extends ResolveCallParams = Record<string, unknown>
+  Params extends ResolveCallParams
 >(
   call: (params: Params) => Promise<Result>,
   initialData: Result,
   params?: Params,
   options?: UseResolveCallOptions,
+  defaultAutoFetch = true,
 ) => {
   const { isInitialized } = useMoralis();
   const { autoFetch } = {
-    ...defaultUseResolveCallOptions,
+    ...{
+      autoFetch: defaultAutoFetch,
+    },
     ...(options ?? {}),
   };
   const [isFetching, setIsFetching] = useState(false);

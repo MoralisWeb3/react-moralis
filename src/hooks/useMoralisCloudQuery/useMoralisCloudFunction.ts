@@ -30,5 +30,10 @@ export const useMoralisCloudFunction = (
     [name],
   );
 
-  return _useResolveCall<MoralisCloudResult>(call, null, params, options);
+  return _useResolveCall<MoralisCloudResult, MoralisCloudFunctionParameters>(
+    call,
+    null,
+    params,
+    options,
+  );
 };
