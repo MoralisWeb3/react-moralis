@@ -12,6 +12,8 @@ import { FileIpfs } from "./modules/FileIpfs";
 import { CloudFunction } from "./modules/CloudFunction";
 import { Web3 } from "./modules/Web3";
 import { Web3Api } from "./modules/Web3Api";
+import { ExecuteFunction } from "./modules/ExecuteFunction";
+import { Transfer } from "./modules/Transfer";
 
 export const menu = [
   {
@@ -78,6 +80,16 @@ export const menu = [
     path: "/web3Api",
     label: "Web3Api",
     component: Web3Api,
+  },
+  {
+    path: "/executeFunction",
+    label: "Execute Function",
+    component: ExecuteFunction,
+  },
+  {
+    path: "/transfer",
+    label: "Transfer",
+    component: Transfer,
   },
   {
     path: "/assets",

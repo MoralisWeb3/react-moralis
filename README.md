@@ -116,6 +116,8 @@ function App() {
   - [`useMoralisWeb3Api()`](#usemoralisweb3api)
     - [Resolve data with `useMoralisWeb3ApiCall()`](#resolve-data-with-usemoralisweb3apicall)
   - [`useNewMoralisObject()`](#usenewmoralisobject)
+  - [`useWeb3ExecuteFunction()`](#useweb3executefunction)
+  - [`useWeb3Transfer()`](#useweb3transfer)
   - [`Web3`](#web3)
     - [Enable web3 via metamask](#enable-web3-via-metamask)
     - [Enable web3 via Walletconnect](#enable-web3-via-walletconnect)
@@ -747,6 +749,77 @@ const AddScoreButton = ({user, score}) => {
   </div>)
 }
 
+```
+
+
+## `useWeb3ExecuteFunction()`
+
+You can use the `useWeb3ExecuteFunction` hook to execute on-chain functions. You need to provide the correct `abi` of the contract, the corresponding `contractAddress`, the `functionName` that you would like to execute, and any parameters (`params`) thet you need to send with the function.
+
+*Example:*
+
+```jsx
+const ShowUniswapObserveValues = () => {
+  const { data, error, fetch, isFetching, isLoading } = useWeb3ExecuteFunction({
+    abi: usdcEthPoolAbi,
+    contractAddress: usdcEthPoolAddress,
+    functionName: "observe",
+    params: {
+      secondsAgos: [0, 10],
+    },
+  });
+
+  return (<div>
+    {error && <ErrorMessage error={error} />}
+    <button onClick={() => fetch()} disabled={isFetching}>Fetch data</button>
+    {data && <pre>
+      {JSON.stringify(data),
+        null,
+        2,
+      )}
+    </pre>}
+  </div>)
+}
+```
+
+
+## `useWeb3Transfer()`
+
+You can use the `useWeb3Transfer` hook to transfer any native coins (ETH, BNB etc.), or any ERC20, ERC721 or ERC1155 tokens.
+
+*Example:*
+
+```jsx
+const TransferEth = () => {
+  const {fetch, error, isFetching} = useWeb3Transfer({
+    amount: Moralis.Units.ETH(0.5),
+    receiver: "0x0000000000000000000000000000000000000000",
+    type: "native",
+  });
+
+  return (<div>
+    {error && <ErrorMessage error={error} />}
+    <button onClick={() => fetch()} disabled={isFetching}>Transfer</button>
+  </div>)
+}
+```
+
+*Example:*
+
+```jsx
+const TransferWeth = () => {
+  const {fetch, error, isFetching} = useWeb3Transfer({
+    amount: Moralis.Units.Token(20, 18),
+    receiver: "0x0000000000000000000000000000000000000000",
+    type: "erc20",
+    contractAddress: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+  });
+
+  return (<div>
+    {error && <ErrorMessage error={error} />}
+    <button onClick={() => fetch()} disabled={isFetching}>Transfer</button>
+  </div>)
+}
 ```
 
 ## `Web3`
