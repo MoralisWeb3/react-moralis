@@ -9,6 +9,10 @@ import {
 import { SetUserData } from "src/hooks/useMoralis/utils/setUserData";
 import { Web3EnableOptions } from "src/hooks/useMoralis/_useMoralisWeb3";
 
+interface AuthError extends Error {
+  code: string;
+}
+
 export interface MoralisContextValue {
   Moralis: Moralis;
 
@@ -20,7 +24,7 @@ export interface MoralisContextValue {
   login: Login;
 
   auth: Authentication;
-  authError: Error | null;
+  authError: AuthError | null;
   isAuthenticated: boolean;
   isUnauthenticated: boolean;
   isAuthenticating: boolean;
