@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.6](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.5...v0.2.6) (2021-10-12)
+
+
+### Features
+
+* initialize moralis via start function ([2969060](https://github.com/MoralisWeb3/react-moralis/commits/296906032c11f32a25e2ad8ae1fdd222f9358bfe))
+
 ### [0.2.5](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.4...v0.2.5) (2021-10-12)
 
 ### [0.2.4](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.3...v0.2.4) (2021-09-30)
