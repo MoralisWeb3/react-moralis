@@ -169,6 +169,7 @@ You will have access to the following values by using this hook:
 | --------------- | --------------------------------------------------------------- |
 | `Moralis`       | The global Moralis instance (same as the global Moralis object) |
 | `isInitialized` | A boolean, indicating if Moralis has been initialized           |
+| `isInitializing` | A boolean, indicating if Moralis is currently initializing           |
 
 | Option              | Description                                                                                                                                                                                                         |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
