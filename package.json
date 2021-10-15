@@ -50,7 +50,8 @@
     "dotenv": "^8.2.0",
     "eslint": "^7.24.0",
     "eslint-plugin-react": "^7.23.2",
-    "husky": "^6.0.0",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.2.3",
     "moralis": "latest",
     "prettier": "^2.2.1",
     "rollup": "^2.45.1",
@@ -75,11 +76,22 @@
     "lint": "eslint ./src",
     "commit": "npm run git-cz",
     "format": "yarn prettier --write .",
+    "format:check": "yarn prettier --check .",
     "release": "standard-version",
     "release:alpha": "standard-version --prerelease alpha --no-verify",
     "release:minor": "standard-version --release-as minor --no-verify",
     "release:patch": "standard-version --release-as patch --no-verify",
-    "release:major": "standard-version --release-as major --no-verify"
+    "release:major": "standard-version --release-as major --no-verify",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint"
+    ],
+    "*.{js,ts,html,css,md,json}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "fast-deep-equal": "^3.1.3",

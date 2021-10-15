@@ -1,0 +1,24 @@
+name: Lint and format
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+jobs:
+  test:
+    name: Lint and format
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [14]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install packages
+        run: rm -rf node_modules && yarn install --frozen-lockfile
+      - name: ESLint
+        run: yarn lint
+      - name: Prettier
+        run: yarn format:check
