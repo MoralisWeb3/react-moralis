@@ -15,13 +15,8 @@ export const User = () => {
 };
 
 const Inner = () => {
-  const {
-    user,
-    userError,
-    isUserUpdating,
-    setUserData,
-    refetchUserData,
-  } = useMoralis();
+  const { user, userError, isUserUpdating, setUserData, refetchUserData } =
+    useMoralis();
 
   const [email, setEmail] = useState(user?.getEmail() ?? "");
   const [phone, setPhone] = useState(user?.get("phone") ?? "");

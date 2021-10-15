@@ -20,18 +20,13 @@ export const QueryObject = () => {
   const [maxScore, setMaxScore] = useState(100);
   const [limit, setLimit] = useState(3);
 
-  const {
-    fetch,
-    data,
-    error,
-    isFetching,
-    isLoading,
-  } = useMoralisQuery<GameScore>(
-    Moralis.Object.extend("GameScore"),
-    (q) =>
-      q.lessThanOrEqualTo("score", maxScore).descending("score").limit(limit),
-    [maxScore, limit],
-  );
+  const { fetch, data, error, isFetching, isLoading } =
+    useMoralisQuery<GameScore>(
+      Moralis.Object.extend("GameScore"),
+      (q) =>
+        q.lessThanOrEqualTo("score", maxScore).descending("score").limit(limit),
+      [maxScore, limit],
+    );
 
   return (
     <div>
