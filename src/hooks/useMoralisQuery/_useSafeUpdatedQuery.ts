@@ -10,7 +10,7 @@ import { Query } from "../../utils/genericQuery";
  * It will only update when the provided dependencies change
  */
 export const _useSafeUpdatedQuery = <
-  Entity extends Moralis.Attributes = Moralis.Attributes
+  Entity extends Moralis.Attributes = Moralis.Attributes,
 >(
   nameOrObject: string | Moralis.Object,
   queryMap: (q: Query<Entity>) => Query<Entity> = (q) => q,

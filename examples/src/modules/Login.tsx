@@ -8,14 +8,8 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
 
-  const {
-    signup,
-    login,
-    user,
-    authError,
-    isAuthenticated,
-    isAuthenticating,
-  } = useMoralis();
+  const { signup, login, user, authError, isAuthenticated, isAuthenticating } =
+    useMoralis();
 
   const handleSignup = (event: React.FormEvent) => {
     event.preventDefault();

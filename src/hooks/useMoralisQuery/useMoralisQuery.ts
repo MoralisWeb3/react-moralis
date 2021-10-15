@@ -44,7 +44,7 @@ const defaultUseMoralisQueryOptions: UseMoralisQueryOptions = {
 };
 
 export const useMoralisQuery = <
-  Entity extends Moralis.Attributes = Moralis.Attributes
+  Entity extends Moralis.Attributes = Moralis.Attributes,
 >(
   nameOrObject: string | Moralis.Object,
   queryMap: (q: Query<Entity>) => Query<Entity> = (q) => q,
@@ -72,19 +72,13 @@ export const useMoralisQuery = <
 
   const call = useCallback(() => query.find(), [query]);
 
-  const {
-    data,
-    error,
-    fetch,
-    isFetching,
-    isLoading,
-    setData,
-  } = _useResolveCall<Moralis.Object<Entity>[], object>(
-    call,
-    [],
-    undefined,
-    options,
-  );
+  const { data, error, fetch, isFetching, isLoading, setData } =
+    _useResolveCall<Moralis.Object<Entity>[], object>(
+      call,
+      [],
+      undefined,
+      options,
+    );
 
   const handleOnCreate = useCallback(
     (entity) => {
