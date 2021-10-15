@@ -19,7 +19,8 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "composite": true
+    "composite": true,
+    "useUnknownInCatchVariables": false
   },
   "exclude": ["lib", "node_modules"],
   "include": ["src/**/*", "types/**/*"]
