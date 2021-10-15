@@ -12,13 +12,10 @@ import { CodeBlock } from "../components/CodeBlock";
 
 export const CloudFunction = () => {
   const [limit, setLimit] = useState(3);
-  const {
-    data,
-    error,
-    fetch,
-    isFetching,
-    isLoading,
-  } = useMoralisCloudFunction("topScores", { limit });
+  const { data, error, fetch, isFetching, isLoading } = useMoralisCloudFunction(
+    "topScores",
+    { limit },
+  );
 
   return (
     <div>

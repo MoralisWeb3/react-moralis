@@ -22,7 +22,7 @@ const defaultUseSubscriptionQueryOptions: UseSubscriptionQueryOptions = {
 };
 
 export const useMoralisSubscription = <
-  Entity extends Moralis.Attributes = Moralis.Attributes
+  Entity extends Moralis.Attributes = Moralis.Attributes,
 >(
   nameOrObject: string | Moralis.Object,
   queryMap: (q: Query<Entity>) => Query<Entity> = (q) => q,
