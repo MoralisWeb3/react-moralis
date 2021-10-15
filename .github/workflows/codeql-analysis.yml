@@ -60,4 +60,3 @@ jobs:
         uses: github/codeql-action/analyze@v1
         with:
           config-file: ./.github/codeql/codeql-config.yml
-
