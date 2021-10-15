@@ -8,10 +8,7 @@ import {
 
 export interface UseMoralisWeb3ApiCallOptions extends UseResolveCallOptions {}
 
-export const useMoralisWeb3ApiCall = <
-  Params extends ResolveCallParams,
-  Result extends unknown
->(
+export const useMoralisWeb3ApiCall = <Params extends ResolveCallParams, Result>(
   call: (params: Params) => Promise<Result>,
   params?: Params,
   options?: UseMoralisWeb3ApiCallOptions,

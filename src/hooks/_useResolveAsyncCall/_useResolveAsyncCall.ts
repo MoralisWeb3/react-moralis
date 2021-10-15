@@ -10,10 +10,7 @@ export interface UseResolveCallOptions {
 
 export type ResolveCallParams = object;
 
-export interface ResolveCallOptions<
-  Result extends unknown,
-  Params extends ResolveCallParams
-> {
+export interface ResolveCallOptions<Result, Params extends ResolveCallParams> {
   onError?: (error: Error) => void;
   onSuccess?: (results: Result) => void;
   onComplete?: () => void;
@@ -21,10 +18,7 @@ export interface ResolveCallOptions<
   params?: Params;
 }
 
-export const _useResolveCall = <
-  Result extends unknown,
-  Params extends ResolveCallParams
->(
+export const _useResolveCall = <Result, Params extends ResolveCallParams>(
   call: (params: Params) => Promise<Result>,
   initialData: Result,
   params?: Params,
