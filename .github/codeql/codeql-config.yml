@@ -1,6 +1,6 @@
 name: "CodeQL config"
 
 paths:
-  - ./src/**
+  - src/**
 paths-ignore:
-  - ./examples/**
+  - examples/**
