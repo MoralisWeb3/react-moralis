@@ -1,8 +1,9 @@
 import { useState, useCallback, useEffect } from "react";
-import { Moralis } from "moralis";
 import { setMultipleDataToUser, SetUserData } from "./utils/setUserData";
 import { Web3Provider } from "./_useMoralisWeb3";
 import { AuthError } from "src";
+import MoralisType from "moralis";
+import { Environment } from "./_useMoralisInit";
 
 export enum AuthenticationState {
   UNDEFINED = "undefined",
@@ -48,7 +49,7 @@ export type AuthType = "dot" | "polkadot" | "kusama" | "erd" | "elrond";
 
 export interface AuthenticateOptions {
   onError?: (error: Error) => void;
-  onSuccess?: (user: Moralis.User) => void;
+  onSuccess?: (user: MoralisType.User) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
   type?: AuthType;
@@ -59,13 +60,13 @@ export interface AuthenticateOptions {
 
 export interface SignupOptions {
   onError?: (error: Error) => void;
-  onSuccess?: (user: Moralis.User) => void;
+  onSuccess?: (user: MoralisType.User) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
 }
 export interface LoginOptions {
   onError?: (error: Error) => void;
-  onSuccess?: (user: Moralis.User) => void;
+  onSuccess?: (user: MoralisType.User) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
   usePost?: boolean;
@@ -96,23 +97,30 @@ export type OnAccountChanged = (account: string) => void;
 
 export interface UseMoralisAuthOptions {
   onAccountChanged?: OnAccountChanged;
-  setUser?: (user: Moralis.User | null) => void;
+  setUser?: (user: MoralisType.User | null) => void;
+  Moralis: MoralisType;
+  environment: Environment;
 }
 
-const defaultUseMoralisAuthOptions: UseMoralisAuthOptions = {
+const defaultUseMoralisAuthOptions = (
+  moralis: MoralisType,
+): UseMoralisAuthOptions => ({
   // We will override this right away, we just want to
   setUser: () => {},
-};
+  Moralis: moralis,
+  environment: "browser",
+});
 
 /**
  * Hook that handles all authentication logic and returns the correct auth state
  * and its functions
  */
 export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
-  const { onAccountChanged } = {
-    ...defaultUseMoralisAuthOptions,
+  const { onAccountChanged, Moralis, environment } = {
+    ...defaultUseMoralisAuthOptions(options.Moralis),
     ...options,
   };
+
   const setUser = options.setUser!;
   const [auth, setAuth] = useState<Authentication>(initialAuth);
   const [hasOnAccountChangeListener, setHasOnAccountChangeListener] =
@@ -129,10 +137,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       onError,
       onSuccess,
       throwOnError,
-      type,
-      provider,
-      chainId,
-      signingMessage,
+      ...rest
     }: AuthenticateOptions = {}) => {
       setAuth({
         state: AuthenticationState.AUTHENTICATING,
@@ -140,12 +145,8 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       });
 
       try {
-        const user = await Moralis.Web3.authenticate({
-          ...(!!type && { type }),
-          ...(!!provider && { provider }),
-          ...(!!chainId && { chainId }),
-          ...(!!signingMessage && { signingMessage }),
-        });
+        // @ts-ignore
+        const user = await Moralis.authenticate(rest);
 
         setUser(user);
 
@@ -351,26 +352,34 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       return;
     }
 
+    if (environment !== "browser") {
+      // Currently only support browser environment
+      return;
+    }
+
     if (!window) {
       console.warn("No window object found");
       return;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const ethereum = (window as any).ethereum;
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const ethereum = (window as any).ethereum;
 
-    if (!ethereum) {
-      console.warn("No window.ethereum found");
-      return;
-    }
-
-    ethereum.on("accountsChanged", async (accounts: string[]) => {
-      const account = accounts[0];
-
-      if (onAccountChanged) {
-        onAccountChanged(account);
+      if (!ethereum) {
+        console.warn("No window.ethereum found");
+        return;
       }
-    });
+      ethereum.on("accountsChanged", async (accounts: string[]) => {
+        const account = accounts[0];
+
+        if (onAccountChanged) {
+          onAccountChanged(account);
+        }
+      });
+    } catch (error) {
+      console.warn(error.message);
+    }
 
     setHasOnAccountChangeListener(true);
   }, [hasOnAccountChangeListener]);

@@ -1,5 +1,6 @@
-import { Moralis } from "moralis";
+import MoralisType from "moralis";
 import { useCallback } from "react";
+import { useMoralis } from "..";
 import {
   UseResolveCallOptions,
   _useResolveCall,
@@ -24,6 +25,7 @@ export const useMoralisCloudFunction = (
   params?: MoralisCloudFunctionParameters,
   options?: UseMoralisCloudFunctionOptions,
 ) => {
+  const { Moralis } = useMoralis();
   const call = useCallback(
     (callParams?: MoralisCloudFunctionParameters) =>
       Moralis.Cloud.run(name, callParams),

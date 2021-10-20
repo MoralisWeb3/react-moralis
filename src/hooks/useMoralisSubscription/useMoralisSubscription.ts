@@ -1,4 +1,4 @@
-import { Moralis } from "moralis";
+import MoralisType from "moralis";
 import { useContext, useEffect, useRef, useState } from "react";
 import { MoralisContext } from "src/context";
 import { Query } from "src/utils/genericQuery";
@@ -22,9 +22,9 @@ const defaultUseSubscriptionQueryOptions: UseSubscriptionQueryOptions = {
 };
 
 export const useMoralisSubscription = <
-  Entity extends Moralis.Attributes = Moralis.Attributes,
+  Entity extends MoralisType.Attributes = MoralisType.Attributes,
 >(
-  nameOrObject: string | Moralis.Object,
+  nameOrObject: string | MoralisType.Object,
   queryMap: (q: Query<Entity>) => Query<Entity> = (q) => q,
   dependencies: any[] = [],
   options: UseSubscriptionQueryOptions = {},
@@ -35,7 +35,7 @@ export const useMoralisSubscription = <
   };
   const moralisContext = useContext(MoralisContext);
   const isInitialized = moralisContext?.isInitialized ?? false;
-  const subscriptionRef = useRef<Moralis.LiveQuerySubscription>();
+  const subscriptionRef = useRef<MoralisType.LiveQuerySubscription>();
   const [isReady, setIsReady] = useState(false);
 
   const query = _useSafeUpdatedQuery(

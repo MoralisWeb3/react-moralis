@@ -1,7 +1,7 @@
-import { Moralis } from "moralis";
+import MoralisType from "moralis";
 
-export type DefaultQueryAttribute = Moralis.Attributes;
+export type DefaultQueryAttribute = MoralisType.Attributes;
 
 export type Query<
   Entity extends DefaultQueryAttribute = DefaultQueryAttribute,
-> = Moralis.Query<Moralis.Object<Entity>>;
+> = MoralisType.Query<MoralisType.Object<Entity>>;

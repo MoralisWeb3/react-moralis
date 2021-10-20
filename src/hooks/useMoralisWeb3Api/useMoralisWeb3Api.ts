@@ -1,10 +1,11 @@
 import React from "react";
-import { Moralis } from "moralis";
+import Moralis from "moralis";
 import {
   ResolveCallParams,
   UseResolveCallOptions,
   _useResolveCall,
 } from "../_useResolveAsyncCall";
+import { useMoralis } from "..";
 
 export interface UseMoralisWeb3ApiCallOptions extends UseResolveCallOptions {}
 
@@ -24,5 +25,7 @@ export const useMoralisWeb3ApiCall = <Params extends ResolveCallParams, Result>(
 };
 
 export const useMoralisWeb3Api = () => {
+  const { Moralis } = useMoralis();
+
   return { Web3API: Moralis.Web3API, ...Moralis.Web3API };
 };

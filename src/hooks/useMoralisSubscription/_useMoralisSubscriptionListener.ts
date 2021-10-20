@@ -1,9 +1,9 @@
-import { Moralis } from "moralis";
+import MoralisType from "moralis";
 import { useEffect } from "react";
 import { useMoralis } from "../useMoralis";
 
 export type MoralisListenerHandler = (
-  entity: Moralis.Object<Moralis.Attributes>,
+  entity: MoralisType.Object<MoralisType.Attributes>,
 ) => void;
 
 export const _useSubscriptionListener = ({
@@ -15,7 +15,7 @@ export const _useSubscriptionListener = ({
   name: "open" | "create" | "update" | "enter" | "leave" | "delete" | "close";
   handler?: MoralisListenerHandler;
   enable: boolean;
-  subscription?: Moralis.LiveQuerySubscription;
+  subscription?: MoralisType.LiveQuerySubscription;
 }) => {
   const { isInitialized } = useMoralis();
 
