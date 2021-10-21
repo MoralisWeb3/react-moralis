@@ -1,11 +1,14 @@
 import React from "react";
-import { Moralis } from "moralis";
 import { MoralisContext } from "../MoralisContext";
 import {
   OnAccountChanged,
   _useMoralisAuth,
 } from "../../hooks/useMoralis/_useMoralisAuth";
-import { _useMoralisInit } from "../../hooks/useMoralis/_useMoralisIntit";
+import {
+  Environment,
+  PluginSpecs,
+  _useMoralisInit,
+} from "../../hooks/useMoralis/_useMoralisInit";
 import { _useMoralisUser } from "../../hooks/useMoralis/_useMoralisUser";
 import { _useMoralisWeb3 } from "../../hooks/useMoralis/_useMoralisWeb3";
 
@@ -19,7 +22,9 @@ export interface MoralisProviderProps {
   serverUrl: string;
   jsKey?: string;
   dangerouslyUseOfMasterKey?: string;
+  plugins?: PluginSpecs[];
   options?: MoralisProviderOptions;
+  environment?: Environment;
 }
 
 export const MoralisProvider = ({
@@ -28,6 +33,8 @@ export const MoralisProvider = ({
   jsKey,
   dangerouslyUseOfMasterKey,
   serverUrl,
+  plugins,
+  environment,
   options: { onAccountChanged } = {},
 }: MoralisProviderProps) => {
   const moralisInit = _useMoralisInit({
@@ -35,15 +42,21 @@ export const MoralisProvider = ({
     serverUrl,
     jsKey,
     dangerouslyUseOfMasterKey,
+    plugins,
+    environment,
   });
-  const { setUser, ...moralisUser } = _useMoralisUser();
-  const moralisAuth = _useMoralisAuth({ onAccountChanged, setUser });
-  const moralisWeb3 = _useMoralisWeb3(moralisAuth.isAuthenticated);
+  const { setUser, ...moralisUser } = _useMoralisUser(moralisInit.Moralis);
+  const moralisAuth = _useMoralisAuth({
+    onAccountChanged,
+    setUser,
+    Moralis: moralisInit.Moralis,
+    environment: moralisInit.environment,
+  });
+  const moralisWeb3 = _useMoralisWeb3(moralisInit.Moralis);
 
   return (
     <MoralisContext.Provider
       value={{
-        Moralis,
         ...moralisInit,
         ...moralisAuth,
         ...moralisUser,

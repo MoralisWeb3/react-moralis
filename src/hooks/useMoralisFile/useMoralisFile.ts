@@ -1,5 +1,6 @@
-import { Moralis } from "moralis";
+import MoralisType from "moralis";
 import { useCallback, useState } from "react";
+import { useMoralis } from "..";
 
 export type ValidFileInput =
   | number[]
@@ -13,15 +14,16 @@ export interface MoralisFileSaveOptions {
   tags?: Record<string, string>;
   saveIPFS?: boolean;
   onError?: (error: Error) => void;
-  onSuccess?: (result: Moralis.File) => void;
+  onSuccess?: (result: MoralisType.File) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
 }
 
 export const useMoralisFile = () => {
+  const { Moralis } = useMoralis();
   const [error, setError] = useState<Error | null>(null);
   const [isUploading, setIsUploading] = useState(false);
-  const [moralisFile, setMoralisFile] = useState<Moralis.File | null>(null);
+  const [moralisFile, setMoralisFile] = useState<MoralisType.File | null>(null);
   /**
    * Save the provided file
    */

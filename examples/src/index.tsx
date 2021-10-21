@@ -11,13 +11,13 @@ const serverUrl = process.env.REACT_APP_MORALIS_SERVER_URL!;
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ChakraProvider theme={theme}>
-        <MoralisProvider appId={appId} serverUrl={serverUrl}>
+    <MoralisProvider appId={appId} serverUrl={serverUrl} environment="native">
+      <BrowserRouter>
+        <ChakraProvider theme={theme}>
           <App />
-        </MoralisProvider>
-      </ChakraProvider>
-    </BrowserRouter>
+        </ChakraProvider>
+      </BrowserRouter>
+    </MoralisProvider>
   </React.StrictMode>,
   document.getElementById("root"),
 );

@@ -7,9 +7,8 @@ import {
   InputGroup,
   InputLeftAddon,
 } from "@chakra-ui/react";
-import { useMoralisQuery } from "react-moralis";
+import { useMoralis, useMoralisQuery } from "react-moralis";
 import { CodeBlock } from "../components/CodeBlock";
-import { Moralis } from "moralis";
 
 interface GameScore {
   playerName: string;
@@ -19,6 +18,7 @@ interface GameScore {
 export const QueryObject = () => {
   const [maxScore, setMaxScore] = useState(100);
   const [limit, setLimit] = useState(3);
+  const { Moralis } = useMoralis();
 
   const { fetch, data, error, isFetching, isLoading } =
     useMoralisQuery<GameScore>(

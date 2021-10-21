@@ -1,24 +1,24 @@
-import { Moralis } from "moralis";
-import { useCallback, useEffect, useState } from "react";
+import MoralisType from "moralis";
+import { useCallback, useState } from "react";
 import { NotAuthenticatedError, ReactMoralisError } from "../../Errors";
 import { setMultipleDataToUser, SetUserData } from "./utils/setUserData";
 
 export interface MoralisSetUserDataOptions {
   onError?: (error: Error) => void;
-  onSuccess?: (user: Moralis.User) => void;
+  onSuccess?: (user: MoralisType.User) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
 }
 
 export interface RefetchUserOptions {
   onError?: (error: Error) => void;
-  onSuccess?: (user: Moralis.User) => void;
+  onSuccess?: (user: MoralisType.User) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
 }
 
-export const _useMoralisUser = () => {
-  const [user, setUser] = useState<Moralis.User | null>(null);
+export const _useMoralisUser = (Moralis: MoralisType) => {
+  const [user, setUser] = useState<MoralisType.User | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 

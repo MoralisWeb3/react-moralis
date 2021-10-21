@@ -1,5 +1,5 @@
 import { WritableDraft } from "immer/dist/internal";
-import { Moralis } from "moralis";
+import MoralisType from "moralis";
 import { useCallback } from "react";
 import { DefaultQueryAttribute, Query } from "../../utils/genericQuery";
 import { useMoralis } from "../useMoralis";
@@ -12,15 +12,17 @@ import { _useSafeUpdatedQuery } from "./_useSafeUpdatedQuery";
 
 export interface MoralisQueryFetchOptions<Entity = DefaultQueryAttribute> {
   onError?: (error: Error) => void;
-  onSuccess?: (result: Moralis.Object<Entity>[]) => void;
+  onSuccess?: (result: MoralisType.Object<Entity>[]) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
 }
 
 export type OnLiveHandler<Entity = DefaultQueryAttribute> = (
-  entity: Moralis.Object<Entity>,
-  all: Moralis.Object<Entity>[] | WritableDraft<Moralis.Object<Entity>>[],
-) => Moralis.Object<Entity>[];
+  entity: MoralisType.Object<Entity>,
+  all:
+    | MoralisType.Object<Entity>[]
+    | WritableDraft<MoralisType.Object<Entity>>[],
+) => MoralisType.Object<Entity>[];
 
 export interface UseMoralisQueryOptions<Entity = DefaultQueryAttribute>
   extends UseResolveCallOptions {
@@ -44,9 +46,9 @@ const defaultUseMoralisQueryOptions: UseMoralisQueryOptions = {
 };
 
 export const useMoralisQuery = <
-  Entity extends Moralis.Attributes = Moralis.Attributes,
+  Entity extends MoralisType.Attributes = MoralisType.Attributes,
 >(
-  nameOrObject: string | Moralis.Object,
+  nameOrObject: string | MoralisType.Object,
   queryMap: (q: Query<Entity>) => Query<Entity> = (q) => q,
   dependencies: any[] = [],
   options: UseMoralisQueryOptions<Entity> = {},
@@ -73,7 +75,7 @@ export const useMoralisQuery = <
   const call = useCallback(() => query.find(), [query]);
 
   const { data, error, fetch, isFetching, isLoading, setData } =
-    _useResolveCall<Moralis.Object<Entity>[], object>(
+    _useResolveCall<MoralisType.Object<Entity>[], object>(
       call,
       [],
       undefined,

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Moralis } from "moralis";
+import MoralisType from "moralis";
 import {
   AuthenticateOptions,
   Authentication,
@@ -8,13 +8,15 @@ import {
 } from "../../hooks/useMoralis/_useMoralisAuth";
 import { SetUserData } from "src/hooks/useMoralis/utils/setUserData";
 import { Web3EnableOptions } from "src/hooks/useMoralis/_useMoralisWeb3";
+import { Environment } from "src/hooks/useMoralis/_useMoralisInit";
 
 export interface AuthError extends Error {
   code: number;
 }
 
 export interface MoralisContextValue {
-  Moralis: Moralis;
+  Moralis: MoralisType;
+  environment: Environment;
 
   isInitialized: boolean;
   isInitializing: boolean;
@@ -34,14 +36,14 @@ export interface MoralisContextValue {
   isAuthUndefined: boolean;
 
   setUserData: (data: SetUserData) => Promise<void>;
-  user: Moralis.User | null;
-  _setUser: (user: Moralis.User) => void;
+  user: MoralisType.User | null;
+  _setUser: (user: MoralisType.User) => void;
   userError: null | Error;
   isUserUpdating: boolean;
   refetchUserData: () => Promise<void>;
 
   enableWeb3: (options?: Web3EnableOptions) => void;
-  web3: Moralis.Web3 | null;
+  web3: MoralisType.Web3 | null;
   isWeb3Enabled: boolean;
   web3EnableError: Error | null;
   isWeb3EnableLoading: boolean;

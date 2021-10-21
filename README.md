@@ -939,6 +939,15 @@ const fetchAndUseError = async () => {
 
 This library offers first-class Typescript support.
 
+# ⚛️ React native
+
+In order to use this library with react-native, you need to provide the `environment="native"` property to the `MoralisProvider` like:
+
+```js
+<MoralisProvider appId={appId} serverUrl={serverUrl} environment="native">
+  <App/>
+</MoralisProvider>
+```
 # 🧑‍💻 Development
 
 Make sure to have `node` and `yarn` installed.

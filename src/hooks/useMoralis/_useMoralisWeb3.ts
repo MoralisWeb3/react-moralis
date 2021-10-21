@@ -1,10 +1,10 @@
 import { useState, useCallback } from "react";
-import { Moralis } from "moralis";
+import MoralisType from "moralis";
 
 export type Web3Provider = "wc" | "walletconnect";
 export interface Web3EnableOptions {
   onError?: (error: Error) => void;
-  onSuccess?: (web3: Moralis.Web3) => void;
+  onSuccess?: (web3: MoralisType.Web3) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
   provider?: Web3Provider;
@@ -14,8 +14,8 @@ export interface Web3EnableOptions {
 /**
  * Handles enabling of web3 and providing it, as soon as the user is authenticated
  */
-export const _useMoralisWeb3 = (isAuthenticated: boolean) => {
-  const [web3, setWeb3] = useState<Moralis.Web3 | null>(new Moralis.Web3());
+export const _useMoralisWeb3 = (Moralis: MoralisType) => {
+  const [web3, setWeb3] = useState<MoralisType.Web3 | null>(new Moralis.Web3());
   const [isWeb3Enabled, setIsWeb3Enabled] = useState(false);
   const [web3EnableError, setEnableWeb3Error] = useState<null | Error>(null);
   const [isWeb3EnableLoading, setIsWeb3EnableLoading] = useState(false);

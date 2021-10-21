@@ -1,5 +1,5 @@
-import { Moralis } from "moralis";
 import { useCallback } from "react";
+import { useMoralis } from "..";
 import {
   UseResolveCallOptions,
   _useResolveCall,
@@ -36,6 +36,7 @@ export const useWeb3Transfer = (
   params?: Web3TransferParameters,
   options?: UseWeb3TransferOptions,
 ) => {
+  const { Moralis } = useMoralis();
   const call = useCallback(async (callParams: Web3TransferParameters) => {
     //@ts-ignore
     const allParams: Web3TransferParameters = {

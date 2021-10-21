@@ -1,5 +1,5 @@
-import { Moralis } from "moralis";
 import { useCallback } from "react";
+import { useMoralis } from "..";
 import {
   UseResolveCallOptions,
   _useResolveCall,
@@ -28,6 +28,7 @@ export const useWeb3ExecuteFunction = (
   params?: Web3ExecuteFunctionParameters,
   options?: UseWeb3ExecuteFunctionOptions,
 ) => {
+  const { Moralis } = useMoralis();
   const call = useCallback(
     async (callParams: Web3ExecuteFunctionParameters) => {
       //@ts-ignore

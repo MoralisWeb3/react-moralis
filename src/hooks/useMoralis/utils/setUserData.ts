@@ -1,4 +1,4 @@
-import { Moralis } from "moralis";
+import MoralisType from "moralis";
 import { ValidationError } from "src/Errors";
 
 // UserData can accept all these types
@@ -7,7 +7,7 @@ export type UserDataValue =
   | string
   | number
   | boolean
-  | Moralis.File
+  | MoralisType.File
   | undefined
   | null;
 
@@ -15,7 +15,7 @@ export type SetUserData = Record<string, UserDataValue>;
 
 export const setMultipleDataToUser = (
   data: SetUserData,
-  user: Moralis.User,
+  user: MoralisType.User,
 ) => {
   // We use the specified functions to set password, email, and username
   const { password, email, username, ...restData } = data;
