@@ -26,7 +26,7 @@ export const useMoralisSubscription = <
 >(
   nameOrObject: string | MoralisType.Object,
   queryMap: (q: Query<Entity>) => Query<Entity> = (q) => q,
-  dependencies: any[] = [],
+  dependencies: unknown[] = [],
   options: UseSubscriptionQueryOptions = {},
 ) => {
   const { enabled, onCreate, onDelete, onEnter, onLeave, onUpdate } = {

@@ -50,7 +50,7 @@ export const useMoralisQuery = <
 >(
   nameOrObject: string | MoralisType.Object,
   queryMap: (q: Query<Entity>) => Query<Entity> = (q) => q,
-  dependencies: any[] = [],
+  dependencies: unknown[] = [],
   options: UseMoralisQueryOptions<Entity> = {},
 ) => {
   const { isInitialized } = useMoralis();

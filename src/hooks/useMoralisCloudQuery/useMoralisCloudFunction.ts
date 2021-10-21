@@ -1,4 +1,3 @@
-import MoralisType from "moralis";
 import { useCallback } from "react";
 import { useMoralis } from "../useMoralis";
 import {
