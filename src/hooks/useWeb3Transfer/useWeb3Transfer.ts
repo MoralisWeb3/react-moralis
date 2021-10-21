@@ -1,11 +1,11 @@
 import { useCallback } from "react";
-import { useMoralis } from "..";
+import { useMoralis } from "../useMoralis";
 import {
   UseResolveCallOptions,
   _useResolveCall,
 } from "../_useResolveAsyncCall";
 
-export type Web3TransferResult = any;
+export type Web3TransferResult = unknown;
 
 export interface UseWeb3TransferOptions extends UseResolveCallOptions {}
 

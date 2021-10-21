@@ -1,6 +1,5 @@
-import MoralisType from "moralis";
 import { useCallback } from "react";
-import { useMoralis } from "..";
+import { useMoralis } from "../useMoralis";
 import {
   UseResolveCallOptions,
   _useResolveCall,

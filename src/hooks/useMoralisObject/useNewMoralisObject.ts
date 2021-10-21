@@ -1,17 +1,17 @@
 import MoralisType from "moralis";
 import { useCallback, useState } from "react";
-import { useMoralis } from "..";
+import { useMoralis } from "../useMoralis";
 
 export interface MoralisObjectSaveOptions {
   cascadeSave?: boolean;
-  context?: any;
+  context?: unknown;
   onError?: (error: Error) => void;
   onSuccess?: (result: MoralisType.Object) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
 }
 
-export type MoralisObjectSaveData = Record<string, any>;
+export type MoralisObjectSaveData = Record<string, unknown>;
 
 /**
  * A hook for making/saving new Moralis Objects

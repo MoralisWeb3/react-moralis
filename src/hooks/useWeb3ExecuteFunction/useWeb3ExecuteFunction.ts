@@ -1,11 +1,11 @@
 import { useCallback } from "react";
-import { useMoralis } from "..";
+import { useMoralis } from "../useMoralis";
 import {
   UseResolveCallOptions,
   _useResolveCall,
 } from "../_useResolveAsyncCall";
 
-export type Web3ExecuteFunctionResult = any;
+export type Web3ExecuteFunctionResult = unknown;
 
 export interface UseWeb3ExecuteFunctionOptions extends UseResolveCallOptions {}
 
@@ -13,7 +13,7 @@ export type Web3ExecuteFunctionParameters = {
   contractAddress?: string;
   abi?: object;
   functionName?: string;
-  params?: Record<string, any>;
+  params?: Record<string, unknown>;
 };
 
 export interface Web3ExecuteFunctionFetchOptions {
