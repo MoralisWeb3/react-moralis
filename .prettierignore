@@ -3,3 +3,4 @@ package.json
 CHANGELOG.md
 README.md
 *.d.ts
+lib
