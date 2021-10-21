@@ -10,6 +10,3 @@ lib
 yarn-error.log
 .env
 tsconfig.tsbuildinfo
-
-/examples/node_modules
-/examples/build

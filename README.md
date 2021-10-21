@@ -965,28 +965,4 @@ Please follow the code guidelines before submitting a PR.
 
 ## Examples
 
-To preview and work and see the examples;
-
-1. Make an `.env` file in `/examples` with the keys:
-
-   ```sh
-   # Your appId
-   REACT_APP_MORALIS_APP_ID="xxx"
-
-   # Your serverUrl
-   REACT_APP_MORALIS_SERVER_URL="xxx"
-   ```
-
-2. Install and start the example app
-
-   ```sh
-   cd examples
-   yarn install
-   yarn start
-   ```
-
-Note: if you want to compile changes of react-moralis directly, run (in a second terminal)
-
-```sh
-  yarn build:watch
-```
+Examples can be found in https://github.com/MoralisWeb3/demo-apps/tree/main/react-moralis-examples
