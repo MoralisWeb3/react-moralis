@@ -5,7 +5,7 @@ import {
   UseResolveCallOptions,
   _useResolveCall,
 } from "../_useResolveAsyncCall";
-import { useMoralis } from "..";
+import { useMoralis } from "../useMoralis";
 
 export interface UseMoralisWeb3ApiCallOptions extends UseResolveCallOptions {}
 

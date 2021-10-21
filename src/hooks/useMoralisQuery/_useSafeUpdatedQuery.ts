@@ -1,6 +1,6 @@
 import MoralisType from "moralis";
 import { useMemo } from "react";
-import { useMoralis } from "..";
+import { useMoralis } from "../useMoralis";
 import { Query } from "../../utils/genericQuery";
 
 /**

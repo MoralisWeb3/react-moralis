@@ -1,6 +1,6 @@
 import MoralisType from "moralis";
 import { useCallback, useState } from "react";
-import { useMoralis } from "..";
+import { useMoralis } from "../useMoralis";
 
 export interface MoralisObjectSaveOptions {
   cascadeSave?: boolean;
