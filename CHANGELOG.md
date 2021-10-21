@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.7](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.6...v0.2.7) (2021-10-21)
+
+
+### Features
+
+* support for react-native environment ([92a68bb](https://github.com/MoralisWeb3/react-moralis/commits/92a68bbeb476703c3af90cc7cf86220f07cc4229))
+
 ### [0.2.6](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.5...v0.2.6) (2021-10-12)
 
 
