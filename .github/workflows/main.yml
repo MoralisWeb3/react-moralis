@@ -19,6 +19,12 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
+      - name: Use cache dependencies
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}s
       - name: Install packages
         if: steps.cache.outputs.cache-hit != 'true'
         run: rm -rf node_modules && yarn install --frozen-lockfile
