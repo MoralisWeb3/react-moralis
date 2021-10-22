@@ -73,7 +73,7 @@
     "build": "rollup -c",
     "build:watch": "rollup -cw",
     "prepublishOnly": "yarn run build",
-    "install:clean": "rm -rf node_modules && yarn install --frozen-lockfile",
+    "install:clean": "rm -rf node_modules && yarn install",
     "lint": "eslint ./src",
     "test": "echo 'not implemented'",
     "test:ci": "echo 'not implemented'",
