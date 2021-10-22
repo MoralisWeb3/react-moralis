@@ -32,5 +32,6 @@ module.exports = {
     "@typescript-eslint/no-non-null-assertion": "off",
     "react/prop-types": "off",
     "no-empty-pattern": "off",
+    "no-console": "error",
   },
 };

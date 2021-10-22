@@ -358,6 +358,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
     }
 
     if (!window) {
+      // eslint-disable-next-line no-console
       console.warn("No window object found");
       return;
     }
@@ -367,6 +368,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       const ethereum = (window as any).ethereum;
 
       if (!ethereum) {
+        // eslint-disable-next-line no-console
         console.warn("No window.ethereum found");
         return;
       }
@@ -378,6 +380,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         }
       });
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.warn(error.message);
     }
 

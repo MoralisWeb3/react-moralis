@@ -65,7 +65,7 @@
     "typescript": "^4.2.4"
   },
   "peerDependencies": {
-    "moralis": ">=0.0.99",
+    "moralis": ">=0.0.100",
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0"
   },
@@ -73,10 +73,15 @@
     "build": "rollup -c",
     "build:watch": "rollup -cw",
     "prepublishOnly": "yarn run build",
+    "install:clean": "rm -rf node_modules && yarn install",
     "lint": "eslint ./src",
+    "test": "echo 'not implemented'",
+    "test:ci": "echo 'not implemented'",
+    "lint:ci": "eslint --output-file eslint_report.json --format json ./src",
     "commit": "npm run git-cz",
     "format": "yarn prettier --write .",
     "format:check": "yarn prettier --check .",
+    "tsc": "tsc",
     "release": "standard-version",
     "release:alpha": "standard-version --prerelease alpha --no-verify",
     "release:minor": "standard-version --release-as minor --no-verify",
