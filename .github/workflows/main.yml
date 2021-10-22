@@ -27,7 +27,7 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}s
       - name: Install packages
         if: steps.cache.outputs.cache-hit != 'true'
-        run: rm -rf node_modules && yarn install --frozen-lockfile
+        run: yarn install:clean
 
   lint:
     name: Eslint
