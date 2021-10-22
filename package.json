@@ -80,7 +80,7 @@
     "commit": "npm run git-cz",
     "format": "yarn prettier --write .",
     "format:check": "yarn prettier --check .",
-    "tsc": "tsc'",
+    "tsc": "tsc",
     "release": "standard-version",
     "release:alpha": "standard-version --prerelease alpha --no-verify",
     "release:minor": "standard-version --release-as minor --no-verify",
