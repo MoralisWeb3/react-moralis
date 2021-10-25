@@ -2367,10 +2367,10 @@ eslint-visitor-keys@^3.0.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-3.0.0.tgz#e32e99c6cdc2eb063f204eda5db67bfe58bb4186"
   integrity sha512-mJOZa35trBTb3IyRmo8xmKBZlxf+N7OnUl4+ZhJHs/r+0770Wh/LEACE2pqMGMe27G/4y8P2bYGk4J70IC5k1Q==
 
-eslint@8.0.1:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.0.1.tgz#3610e7fe4a05c2154669515ca60835a76a19f700"
-  integrity sha512-LsgcwZgQ72vZ+SMp4K6pAnk2yFDWL7Ti4pJaRvsZ0Hsw2h8ZjUIW38a9AFn2cZXdBMlScMFYYgsSp4ttFI/0bA==
+eslint@8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.1.0.tgz#00f1f7dbf4134f26588e6c9f2efe970760f64664"
+  integrity sha512-JZvNneArGSUsluHWJ8g8MMs3CfIEzwaLx9KyH4tZ2i+R2/rPWzL8c0zg3rHdwYVpN/1sB9gqnjHwz9HoeJpGHw==
   dependencies:
     "@eslint/eslintrc" "^1.0.3"
     "@humanwhocodes/config-array" "^0.6.0"
@@ -4647,10 +4647,10 @@ modify-values@^1.0.0:
   resolved "https://registry.yarnpkg.com/modify-values/-/modify-values-1.0.1.tgz#b3939fa605546474e3e3e3c63d64bd43b4ee6022"
   integrity sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==
 
-moralis@^0.0.100:
-  version "0.0.100"
-  resolved "https://registry.yarnpkg.com/moralis/-/moralis-0.0.100.tgz#94f2518880f7d4c034dbafdd07a004fdb74486af"
-  integrity sha512-BHbEnbFBuFs1Hz6Zah/zRr0s1hpXcsMu5Re3numD25jblHsljprSFVpL0+niRKEjjIm7wwOI0bxKeSmkYdtGqw==
+moralis@latest:
+  version "0.0.104"
+  resolved "https://registry.yarnpkg.com/moralis/-/moralis-0.0.104.tgz#c8bd5e2ed06c46ccc75b6dacf7579d610dfd211c"
+  integrity sha512-ruLzw+1Zga7TOOZ1ZoWR3Hc/0w4cnvbLQR+8gsCSxSo19Fbec5Yod5Qvb1nkmjt+Ah1XyflmOmIukZyatOAMPA==
   dependencies:
     "@babel/runtime" "7.12.5"
     "@babel/runtime-corejs3" "7.12.5"
