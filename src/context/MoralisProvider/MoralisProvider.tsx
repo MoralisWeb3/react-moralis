@@ -6,6 +6,7 @@ import {
 } from "../../hooks/useMoralis/_useMoralisAuth";
 import {
   Environment,
+  GetMoralis,
   PluginSpecs,
   _useMoralisInit,
 } from "../../hooks/useMoralis/_useMoralisInit";
@@ -25,6 +26,7 @@ export interface MoralisProviderProps {
   plugins?: PluginSpecs[];
   options?: MoralisProviderOptions;
   environment?: Environment;
+  getMoralis?: GetMoralis;
 }
 
 export const MoralisProvider = ({
@@ -35,6 +37,7 @@ export const MoralisProvider = ({
   serverUrl,
   plugins,
   environment,
+  getMoralis,
   options: { onAccountChanged } = {},
 }: MoralisProviderProps) => {
   const moralisInit = _useMoralisInit({
@@ -44,6 +47,7 @@ export const MoralisProvider = ({
     dangerouslyUseOfMasterKey,
     plugins,
     environment,
+    getMoralis,
   });
   const { setUser, ...moralisUser } = _useMoralisUser(moralisInit.Moralis);
   const moralisAuth = _useMoralisAuth({
