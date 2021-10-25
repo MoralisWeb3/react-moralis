@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.8](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.7...v0.2.8) (2021-10-25)
+
+
+### Features
+
+* update dependencies ([e6c46d1](https://github.com/MoralisWeb3/react-moralis/commits/e6c46d130acc1509901db485fa952710ec8ffb27))
+
+
+### Bug Fixes
+
+* linting errors ([de5e88a](https://github.com/MoralisWeb3/react-moralis/commits/de5e88ae92576d03dea0f51e5a9f4d22bb9d139c))
+* make moralis import dynamic ([e3651d5](https://github.com/MoralisWeb3/react-moralis/commits/e3651d535dd8d178c926e85a59c2272b8e595c4f))
+* remove circular dependencies ([1876130](https://github.com/MoralisWeb3/react-moralis/commits/1876130e409da55e9d557363932f5e6a1926f6b4))
+
 ### [0.2.7](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.6...v0.2.7) (2021-10-21)
 
 
