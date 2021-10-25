@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import MoralisBrowser from "moralis";
-import MoralisNative from "moralis/react-native";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import MoralisImport from "moralis";
 import { ReactMoralisError } from "../../Errors";
 
 export type Environment = "browser" | "native";
@@ -9,17 +8,10 @@ export interface PluginSpecs {
   name: string;
   functions: string[];
 }
-const getMoralis = (environment: Environment) => {
-  switch (environment) {
-    case "browser":
-      return MoralisBrowser;
-      break;
-    case "native":
-      return MoralisNative;
-    default:
-      return MoralisBrowser;
-  }
-};
+
+// TODO: fix any import (error: Types have separate declarations of a private property '_address)
+export type GetMoralis = () => any;
+
 /**
  * Hook that handles the initialization of Moralis
  */
@@ -30,6 +22,7 @@ export const _useMoralisInit = ({
   dangerouslyUseOfMasterKey,
   plugins,
   environment = "browser",
+  getMoralis = () => MoralisImport,
 }: {
   appId: string;
   serverUrl: string;
@@ -37,10 +30,11 @@ export const _useMoralisInit = ({
   dangerouslyUseOfMasterKey?: string;
   plugins?: PluginSpecs[];
   environment?: "browser" | "native";
+  getMoralis?: GetMoralis;
 }) => {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isInitializing, setIsInitializing] = useState(false);
-  const Moralis = useMemo(() => getMoralis(environment), [environment]);
+  const Moralis = useRef(getMoralis());
 
   const initialize = useCallback(
     async ({
@@ -73,7 +67,7 @@ export const _useMoralisInit = ({
       }
 
       setIsInitializing(true);
-      await Moralis.start({
+      await Moralis.current.start({
         serverUrl,
         appId,
         javascriptKey,
@@ -109,5 +103,10 @@ export const _useMoralisInit = ({
     isInitialized,
   ]);
 
-  return { isInitialized, isInitializing, Moralis, environment };
+  return {
+    isInitialized,
+    isInitializing,
+    Moralis: Moralis.current,
+    environment,
+  };
 };
