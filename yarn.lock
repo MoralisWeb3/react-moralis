@@ -4206,9 +4206,9 @@ lines-and-columns@^1.1.6:
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
 lint-staged@^11.1.2, lint-staged@^11.2.3:
-  version "11.2.3"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-11.2.3.tgz#fc3f4569cc4f46553309dfc1447b8aef69f744fb"
-  integrity sha512-Tfmhk8O2XFMD25EswHPv+OYhUjsijy5D7liTdxeXvhG2rsadmOLFtyj8lmlfoFFXY8oXWAIOKpoI+lJe1DB1mw==
+  version "11.2.6"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-11.2.6.tgz#f477b1af0294db054e5937f171679df63baa4c43"
+  integrity sha512-Vti55pUnpvPE0J9936lKl0ngVeTdSZpEdTNhASbkaWX7J5R9OEifo1INBGQuGW4zmy6OG+TcWPJ3m5yuy5Q8Tg==
   dependencies:
     cli-truncate "2.1.0"
     colorette "^1.4.0"
@@ -4647,10 +4647,10 @@ modify-values@^1.0.0:
   resolved "https://registry.yarnpkg.com/modify-values/-/modify-values-1.0.1.tgz#b3939fa605546474e3e3e3c63d64bd43b4ee6022"
   integrity sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==
 
-moralis@^0.0.100:
-  version "0.0.100"
-  resolved "https://registry.yarnpkg.com/moralis/-/moralis-0.0.100.tgz#94f2518880f7d4c034dbafdd07a004fdb74486af"
-  integrity sha512-BHbEnbFBuFs1Hz6Zah/zRr0s1hpXcsMu5Re3numD25jblHsljprSFVpL0+niRKEjjIm7wwOI0bxKeSmkYdtGqw==
+moralis@latest:
+  version "0.0.109"
+  resolved "https://registry.yarnpkg.com/moralis/-/moralis-0.0.109.tgz#1137a496b80da64a5bbe195dcf81a6d2aee6318b"
+  integrity sha512-n6zK/j6EnihyNlJUlW+m6Sq+gdXKb5SkChqL3v2QoLf5QXSzy/SHwK3Y8M8xMYPjOHuc+kR16L74W7JCRkMsPQ==
   dependencies:
     "@babel/runtime" "7.12.5"
     "@babel/runtime-corejs3" "7.12.5"
