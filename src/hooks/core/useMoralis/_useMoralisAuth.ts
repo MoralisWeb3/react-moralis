@@ -100,6 +100,8 @@ export interface UseMoralisAuthOptions {
   setUser?: (user: MoralisType.User | null) => void;
   Moralis: MoralisType;
   environment: Environment;
+  _setIsWeb3Enabled?: (value: boolean) => void;
+  _setIsWeb3EnableLoading?: (value: boolean) => void;
 }
 
 const defaultUseMoralisAuthOptions = (
@@ -116,7 +118,13 @@ const defaultUseMoralisAuthOptions = (
  * and its functions
  */
 export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
-  const { onAccountChanged, Moralis, environment } = {
+  const {
+    onAccountChanged,
+    Moralis,
+    environment,
+    _setIsWeb3Enabled,
+    _setIsWeb3EnableLoading,
+  } = {
     ...defaultUseMoralisAuthOptions(options.Moralis),
     ...options,
   };
@@ -144,11 +152,18 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         error: null,
       });
 
+      if (_setIsWeb3EnableLoading) {
+        _setIsWeb3EnableLoading(true);
+      }
+
       try {
         // @ts-ignore
         const user = await Moralis.authenticate(rest);
 
         setUser(user);
+        if (_setIsWeb3Enabled) {
+          _setIsWeb3Enabled(true);
+        }
 
         setAuth({
           state: AuthenticationState.AUTHENTICATED,
@@ -160,6 +175,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         }
       } catch (error) {
         setAuth({ state: AuthenticationState.ERROR, error });
+        setUser(null);
         if (onError) {
           onError(error);
         }
@@ -167,12 +183,15 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
           throw error;
         }
       } finally {
+        if (_setIsWeb3EnableLoading) {
+          _setIsWeb3EnableLoading(true);
+        }
         if (onComplete) {
           onComplete();
         }
       }
     },
-    [],
+    [_setIsWeb3Enabled, _setIsWeb3EnableLoading],
   );
 
   /**
