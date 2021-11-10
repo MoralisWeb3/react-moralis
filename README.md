@@ -783,6 +783,31 @@ const ShowUniswapObserveValues = () => {
 }
 ```
 
+*Example with executing by fetch:*
+
+```jsx
+const ShowUniswapObserveValues = () => {
+  const { data, error, fetch, isFetching, isLoading } = useWeb3ExecuteFunction();
+  
+  const options = {
+    abi: usdcEthPoolAbi,
+    contractAddress: usdcEthPoolAddress,
+    functionName: "observe",
+    params: {
+      secondsAgos: [0, 10],
+    },
+  }
+
+  return (<div>
+    {error && <ErrorMessage error={error} />}
+    <button onClick={() => fetch({ params: options })} disabled={isFetching}>Fetch data</button>
+    {data && <pre>
+      {JSON.stringify(data)}
+    </pre>}
+  </div>)
+}
+```
+
 
 ## `useWeb3Transfer()`
 
