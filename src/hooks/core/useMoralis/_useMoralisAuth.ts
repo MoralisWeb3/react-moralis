@@ -157,6 +157,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
       }
 
       try {
+        // TODO: fix typechecking when passing ...rest
         // @ts-ignore
         const user = await Moralis.authenticate(rest);
 
@@ -184,7 +185,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         }
       } finally {
         if (_setIsWeb3EnableLoading) {
-          _setIsWeb3EnableLoading(true);
+          _setIsWeb3EnableLoading(false);
         }
         if (onComplete) {
           onComplete();

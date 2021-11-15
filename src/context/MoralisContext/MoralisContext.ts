@@ -44,6 +44,7 @@ export interface MoralisContextValue {
   refetchUserData: () => Promise<void>;
 
   enableWeb3: (options?: Web3EnableOptions) => void;
+  deactivateWeb3: () => Promise<void>;
   web3: MoralisWeb3 | null;
   isWeb3Enabled: boolean;
   web3EnableError: Error | null;
