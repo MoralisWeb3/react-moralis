@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useCallback, useEffect, useRef, useState } from "react";
 import MoralisImport from "moralis";
 import { ReactMoralisError } from "../../Errors";
 

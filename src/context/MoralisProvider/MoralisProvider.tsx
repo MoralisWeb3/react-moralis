@@ -14,7 +14,6 @@ import { _useMoralisUser } from "../../hooks/useMoralis/_useMoralisUser";
 import { _useMoralisWeb3 } from "../../hooks/useMoralis/_useMoralisWeb3";
 
 import {MoralisDappProvider} from '../../providers/MoralisDappProvider/MoralisDappProvider';
-import MoralisDappContext from "../../providers/MoralisDappProvider/context";
 
 interface MoralisProviderOptions {
   onAccountChanged?: OnAccountChanged;

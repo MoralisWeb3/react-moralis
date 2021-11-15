@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from "react";
 import { useImmer } from "use-immer";
 import { useMoralis } from "../useMoralis";
 import { UseResolveCallOptions } from "../_useResolveAsyncCall";

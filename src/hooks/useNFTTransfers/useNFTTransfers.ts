@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { useMoralisWeb3Api, useMoralisWeb3ApiCall } from "..";
 import { DefaultHookParams } from "../../interfaces/default-hook-params";

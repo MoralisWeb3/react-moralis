@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { DefaultHookParams } from "../../interfaces/default-hook-params";
 import { useMoralisDapp } from "../../providers/MoralisDappProvider/MoralisDappProvider";

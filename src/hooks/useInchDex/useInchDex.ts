@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { useMoralis } from "..";
 import { useMoralisDapp } from "../../providers/MoralisDappProvider/MoralisDappProvider";
