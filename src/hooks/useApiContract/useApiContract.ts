@@ -1,32 +1,32 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useMoralis } from "../useMoralis";
+import { DefaultHookParams } from "../../interfaces/default-hook-params";
 import { useMoralisWeb3Api, useMoralisWeb3ApiCall } from "../useMoralisWeb3Api";
 
-export interface APIContractOptions {
-  chain: string;
+export interface APIContractOptions extends DefaultHookParams {
   functionName: string;
-  address: string;
-  abi: Array<Record<string, any>>;
+  abi: Array<Record<string, unknown>>;
+  params: Record<string, unknown>;
 }
 
 export const useAPIContract = (options: APIContractOptions) => {
   const { native } = useMoralisWeb3Api();
 
-  const { functionName, address, abi, chain } = options;
+  const { functionName, address, abi, chain, params } = options;
 
   const payload = {
-    chain: chain as any,
+    chain,
     function_name: functionName,
     address,
     abi,
+    params,
   };
 
   const {
     fetch: runContractFunction,
-    data: contractResponse,
+    data,
     error,
+    isFetching,
     isLoading,
   } = useMoralisWeb3ApiCall(native.runContractFunction, payload);
 
-  return { runContractFunction, contractResponse, error, isLoading };
+  return { runContractFunction, data, error, isLoading, isFetching };
 };

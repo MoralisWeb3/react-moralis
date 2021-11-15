@@ -74,7 +74,6 @@ export const MoralisProvider = ({
       {children}
       </MoralisDappProvider>
         
-      {/* </MoralisDappContext> */}
     </MoralisContext.Provider>
   );
 };

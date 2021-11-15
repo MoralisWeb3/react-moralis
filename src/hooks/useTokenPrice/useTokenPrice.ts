@@ -1,34 +1,66 @@
-import { useEffect, useState } from "react";
-import { useMoralisWeb3Api, useMoralis } from "..";
-import { c2, tokenValueTxt } from "../../helpers/formatters";
+import { useMoralisWeb3Api } from "..";
+import { tokenValueTxt, toUsd } from "../../helpers/formatters";
+import { DefaultHookParams } from "../../interfaces/default-hook-params";
+import {
+  useCustomResolver,
+  UseCustomResolverOptions,
+} from "../useCustomResolver";
 
-export const useTokenPrice = (options: any) => {
+interface TokenPriceResult {
+  nativePrice?: NativePriceResult | undefined;
+  usdPrice: number;
+  exchangeAddress?: string | undefined;
+  exchangeName?: string | undefined;
+}
+
+interface NativePriceResult {
+  value: string;
+  decimals: number;
+  name: string;
+  symbol: string;
+}
+
+interface ITokenPriceResult {
+  nativePrice: string;
+  usdPrice: string;
+  exchangeAddress: string;
+  exchangeName: string;
+}
+
+interface UseTokenPriceParams extends DefaultHookParams {}
+
+export const useTokenPrice = (
+  params: UseTokenPriceParams,
+  options?: UseCustomResolverOptions,
+) => {
   const { token } = useMoralisWeb3Api();
-  const { isInitialized } = useMoralis();
-  const [tokenPrice, setTokenPrice] = useState();
 
-  useEffect(() => {
-    if (isInitialized)
-      fetchTokenPrice(options)
-        .then((price: any) => {
-          // usdPrice is a number, format() returns a string
-          price.usdPrice = c2.format(price.usdPrice);
-          const { value, decimals, symbol } = price.nativePrice;
-          // nativePrice is an Object
-          // {value: string, decimals: number, name: string, symbol: string},
-          // tokenValueTxt returns a string
-          price.nativePrice = tokenValueTxt(value, decimals, symbol);
-          setTokenPrice(price);
-        })
-        .catch((e) => alert(e.message));
-  }, [isInitialized]);
+  const formatResponse = (result: TokenPriceResult): ITokenPriceResult => {
+    const { value, decimals, symbol } = result.nativePrice as NativePriceResult;
+    const response = {
+      ...result,
+      usdPrice: toUsd(result.usdPrice),
+      nativePrice: tokenValueTxt(Number(value), decimals, symbol),
+      exchangeAddress: result.exchangeAddress as string,
+      exchangeName: result.exchangeName as string,
+    };
 
-  const fetchTokenPrice = async (options: any) => {
-    const { chain, address } = options;
-    return await token
-      .getTokenPrice({ chain, address })
-      .then((result) => result)
-      .catch((e) => alert(e.message));
+    return response;
   };
-  return { fetchTokenPrice, tokenPrice };
+
+  const { data, isFetching, isLoading, error, operation } = useCustomResolver(
+    token.getTokenPrice,
+    null,
+    params,
+    options,
+    formatResponse,
+  );
+
+  return {
+    fetchTokenPrice: operation,
+    data,
+    error,
+    isLoading,
+    isFetching,
+  };
 };

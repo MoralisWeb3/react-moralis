@@ -6,32 +6,31 @@ import {
 } from "../useCustomResolver";
 import { useMoralisWeb3Api } from "../useMoralisWeb3Api";
 
-interface UseERC20TransfersParams extends DefaultHookParams {}
+interface UseERC20BalancesParams extends DefaultHookParams {}
 
 interface UseERC20BalancesResult {
-  transaction_hash: string;
-  address: string;
-  block_timestamp: string;
-  block_number: string;
-  block_hash: string;
-  to_address: string;
-  from_address: string;
-  value: string;
+  token_address: string;
+  name: string;
+  symbol: string;
+  logo?: string | undefined;
+  thumbnail?: string | undefined;
+  decimals: string;
+  balance: string;
 }
 
-export const useERC20Transfers = (
-  params: UseERC20TransfersParams,
-  options: UseCustomResolverOptions,
+export const useERC20Balances = (
+  params: UseERC20BalancesParams,
+  options?: UseCustomResolverOptions,
 ) => {
   const { account } = useMoralisWeb3Api();
   const { walletAddress, chainId } = useMoralisDapp();
 
   const { data, isFetching, isLoading, error, operation } = useCustomResolver<
-    UseERC20TransfersParams,
+    UseERC20BalancesParams,
     UseERC20BalancesResult[],
     null
   >(
-    account.getTokenTransfers,
+    account.getTokenBalances,
     null,
     {
       address: walletAddress,
@@ -41,7 +40,7 @@ export const useERC20Transfers = (
   );
 
   return {
-    fetchERC20Transfers: operation,
+    fetchERC20Balances: operation,
     data,
     error,
     isLoading,

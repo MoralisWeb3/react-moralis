@@ -1,18 +1,28 @@
 import { useEffect, useState } from "react";
 import { useMoralisWeb3Api, useIPFS, useMoralisWeb3ApiCall } from "..";
+import { DefaultHookParams } from "../../interfaces/default-hook-params";
 import { useMoralisDapp } from "../../providers/MoralisDappProvider/MoralisDappProvider";
+import { UseCustomResolverOptions } from "../useCustomResolver";
 
-export const useNFTBalance = (options: any) => {
+export const useNFTBalances = (
+  params: DefaultHookParams,
+  options?: UseCustomResolverOptions,
+) => {
   const { account } = useMoralisWeb3Api();
   const { chainId } = useMoralisDapp();
   const { resolveLink } = useIPFS();
-  const [NFTBalance, setNFTBalance] = useState([]);
+  const [NFTBalances, setNFTBalances] = useState([]);
+
+  if (!params.chain) {
+    params.chain = chainId as any;
+  }
+
   const {
-    fetch: getNFTBalance,
+    fetch: getNFTBalances,
     data,
     error,
     isLoading,
-  } = useMoralisWeb3ApiCall(account.getNFTs, { chain: chainId, ...options });
+  } = useMoralisWeb3ApiCall(account.getNFTs, { ...params }, options);
 
   useEffect(() => {
     let NFTdata: any = {};
@@ -21,15 +31,13 @@ export const useNFTBalance = (options: any) => {
       for (const NFT of NFTs) {
         if (NFT?.metadata) {
           const metadata = JSON.parse(NFT.metadata);
-          // metadata is a string type
           const image = resolveLink(metadata?.image);
-
           NFTdata = { ...NFT, image };
         }
       }
-      setNFTBalance(NFTdata);
+      setNFTBalances(NFTdata);
     }
   }, [data]);
 
-  return { getNFTBalance, NFTBalance, error, isLoading };
+  return { getNFTBalances, NFTBalances, error, isLoading };
 };

@@ -3,30 +3,38 @@
 import { useEffect, useMemo, useState } from "react";
 import { getNativeByChain } from "../../helpers/networks";
 import { useMoralisDapp } from "../../providers/MoralisDappProvider/MoralisDappProvider";
+import { UseCustomResolverOptions } from "../useCustomResolver";
 import { useMoralis } from "../useMoralis";
 import { useMoralisWeb3Api, useMoralisWeb3ApiCall } from "../useMoralisWeb3Api";
 
-export const useNativeBalance = (options: any) => {
+export const useNativeBalances = (
+  params: any,
+  options: UseCustomResolverOptions,
+) => {
   const { account } = useMoralisWeb3Api();
   const { Moralis } = useMoralis();
   const { chainId, walletAddress } = useMoralisDapp();
-  const [balance, setBalance] = useState({ inWei: "", formatted: 0 });
+  const [balance, setBalances] = useState({ inWei: "", formatted: 0 });
 
   const nativeName = useMemo(
-    () => getNativeByChain(options?.chain || chainId),
-    [options, chainId],
+    () => getNativeByChain(params?.chain || chainId),
+    [params, chainId],
   );
 
   const {
-    fetch: getBalance,
+    fetch: getBalances,
     data,
     error,
     isLoading,
-  } = useMoralisWeb3ApiCall(account.getNativeBalance, {
-    chain: chainId,
-    address: walletAddress,
-    ...options,
-  });
+  } = useMoralisWeb3ApiCall(
+    account.getNativeBalance,
+    {
+      chain: chainId,
+      address: walletAddress,
+      ...params,
+    },
+    options,
+  );
 
   useEffect(() => {
     if (data?.balance) {
@@ -35,9 +43,9 @@ export const useNativeBalance = (options: any) => {
         // missing second argument (decimals) in FromWei function,
         formatted: Moralis.Units.FromWei(data.balance, 18),
       };
-      setBalance(balances);
+      setBalances(balances);
     }
   }, [data]);
 
-  return { getBalance, balance, nativeName, error, isLoading };
+  return { getBalances, balance, nativeName, error, isLoading };
 };
