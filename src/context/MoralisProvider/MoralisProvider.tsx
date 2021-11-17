@@ -3,17 +3,15 @@ import { MoralisContext } from "../MoralisContext";
 import {
   OnAccountChanged,
   _useMoralisAuth,
-} from "../../hooks/useMoralis/_useMoralisAuth";
+} from "../../hooks/core/useMoralis/_useMoralisAuth";
 import {
   Environment,
   GetMoralis,
   PluginSpecs,
   _useMoralisInit,
-} from "../../hooks/useMoralis/_useMoralisInit";
-import { _useMoralisUser } from "../../hooks/useMoralis/_useMoralisUser";
-import { _useMoralisWeb3 } from "../../hooks/useMoralis/_useMoralisWeb3";
-
-import {MoralisDappProvider} from '../../providers/MoralisDappProvider/MoralisDappProvider';
+} from "../../hooks/core/useMoralis/_useMoralisInit";
+import { _useMoralisUser } from "../../hooks/core/useMoralis/_useMoralisUser";
+import { _useMoralisWeb3 } from "../../hooks/core/useMoralis/_useMoralisWeb3";
 
 interface MoralisProviderOptions {
   onAccountChanged?: OnAccountChanged;
@@ -69,10 +67,7 @@ export const MoralisProvider = ({
         ...moralisWeb3,
       }}
     >
-      <MoralisDappProvider>
       {children}
-      </MoralisDappProvider>
-        
     </MoralisContext.Provider>
   );
 };
