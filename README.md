@@ -644,7 +644,7 @@ Then you can get the ipfs data via `moralisFile.ipfs` and `moralisFile.hash`
 
 ### Other options
 
-Additionally you can also provide metadata, dags or specify the fileType in the options like:
+Additionally you can also provide metadata, tags or specify the fileType in the options like:
 
 *Example:*
 
