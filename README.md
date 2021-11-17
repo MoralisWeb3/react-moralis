@@ -644,7 +644,7 @@ Then you can get the ipfs data via `moralisFile.ipfs` and `moralisFile.hash`
 
 ### Other options
 
-Additionally you can also provide metadata, dags or specify the fileType in the options like:
+Additionally you can also provide metadata, tags or specify the fileType in the options like:
 
 *Example:*
 
@@ -778,6 +778,31 @@ const ShowUniswapObserveValues = () => {
         null,
         2,
       )}
+    </pre>}
+  </div>)
+}
+```
+
+*Example with executing by fetch:*
+
+```jsx
+const ShowUniswapObserveValues = () => {
+  const { data, error, fetch, isFetching, isLoading } = useWeb3ExecuteFunction();
+  
+  const options = {
+    abi: usdcEthPoolAbi,
+    contractAddress: usdcEthPoolAddress,
+    functionName: "observe",
+    params: {
+      secondsAgos: [0, 10],
+    },
+  }
+
+  return (<div>
+    {error && <ErrorMessage error={error} />}
+    <button onClick={() => fetch({ params: options })} disabled={isFetching}>Fetch data</button>
+    {data && <pre>
+      {JSON.stringify(data)}
     </pre>}
   </div>)
 }
