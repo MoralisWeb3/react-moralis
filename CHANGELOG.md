@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.8...v0.3.0) (2021-11-17)
+
+
+### Features
+
+* add additional hooks ([a3a1e9e](https://github.com/MoralisWeb3/react-moralis/commits/a3a1e9e3cb662984b902d850a73f550cc47d40c9))
+
+
+### Bug Fixes
+
+* error logic in useChain ([fe74e06](https://github.com/MoralisWeb3/react-moralis/commits/fe74e06adc0f05d9f522c24f8f89ef1d8c5b160a))
+* moralis dependency version ([4f1512d](https://github.com/MoralisWeb3/react-moralis/commits/4f1512d03f9b0e681a98d86937e95d9823cfa291))
+
 ### [0.2.8](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.7...v0.2.8) (2021-10-25)
 
 
