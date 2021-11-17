@@ -6,9 +6,9 @@ import {
   Login,
   Signup,
 } from "../../hooks/useMoralis/_useMoralisAuth";
-import { SetUserData } from "src/hooks/useMoralis/utils/setUserData";
-import { Web3EnableOptions } from "src/hooks/useMoralis/_useMoralisWeb3";
-import { Environment } from "src/hooks/useMoralis/_useMoralisInit";
+import { SetUserData } from "../../hooks/useMoralis/utils/setUserData";
+import { Web3EnableOptions } from "../../hooks/useMoralis/_useMoralisWeb3";
+import { Environment } from "../../hooks/useMoralis/_useMoralisInit";
 
 export interface AuthError extends Error {
   code: number;
