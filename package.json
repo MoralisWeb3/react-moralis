@@ -57,7 +57,7 @@
     "eslint-plugin-react": "^7.23.2",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
-    "lint-staged": "^11.2.3",
+    "lint-staged": "^12.0.3",
     "moralis": ">=0.0.134",
     "prettier": "^2.2.1",
     "rollup": "^2.45.1",
