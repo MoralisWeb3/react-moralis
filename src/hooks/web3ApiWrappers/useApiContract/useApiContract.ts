@@ -8,7 +8,7 @@ import {
 export interface ApiContractParams
   extends Omit<
     Parameters<typeof MoralisType.Web3API["native"]["runContractFunction"]>[0],
-    "address"
+    "address" | "function_name" | "params" | "abi"
   > {
   address?: string;
   // TODO: fix types
@@ -16,7 +16,7 @@ export interface ApiContractParams
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   abi: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  params: any;
+  params?: any;
 }
 
 export const useApiContract = (
