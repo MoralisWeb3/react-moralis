@@ -33,6 +33,7 @@ export const _useMoralisWeb3 = (Moralis: MoralisType) => {
   const [chainId, setChainId] = useState<null | string>(null);
   const [account, setAccount] = useState<null | string>(null);
   const [connector, setConnector] = useState<null | any>(null);
+  const [provider, setProvider] = useState<null | any>(null);
 
   useEffect(() => {
     const handleConnect = ({
@@ -51,43 +52,30 @@ export const _useMoralisWeb3 = (Moralis: MoralisType) => {
       setChainId(chainId);
       setAccount(account);
       setConnector(connector);
+      setProvider(provider);
     };
 
     const handleDisconnect = () => {
       setWeb3(null);
+      _setIsWeb3Enabled(false);
       setChainId(null);
       setAccount(null);
       setConnector(null);
+      setProvider(null);
     };
 
-    const unsubscribe1 = Moralis.Web3.onChainChanged(setChainId);
-    const unsubscribe2 = Moralis.Web3.onAccountChanged(setAccount);
-    // TODO: Make consistent (use connect/disconnect?)
-    const unsubscribe3 = Moralis.Web3.on(
-      ConnectorEvent.WEB3_ENABLED,
-      handleConnect,
-    );
-    const unsubscribe4 = Moralis.Web3.on(
-      ConnectorEvent.WEB3_DEACTIVATED,
-      handleDisconnect,
-    );
-    const unsubscribe5 = Moralis.Web3.on(
-      ConnectorEvent.DISCONNECT,
-      handleDisconnect,
-    );
+    const unsubChainChanged = Moralis.Web3.onChainChanged(setChainId);
+    const unsubAccountChanged = Moralis.Web3.onAccountChanged(setAccount);
+    const unsubEnable = Moralis.Web3.onWeb3Enabled(handleConnect);
+    const unsubDeactivate = Moralis.Web3.onWeb3Deactivated(handleDisconnect);
+    const unsubDisconnect = Moralis.Web3.onDisconnect(handleDisconnect);
 
     return () => {
-      unsubscribe1();
-      unsubscribe2();
-      unsubscribe3();
-      unsubscribe4();
-      // Moralis.Web3.removeListener(ConnectorEvent.CHAIN_CHANGED, setChainId);
-      // Moralis.Web3.removeListener(ConnectorEvent.ACCOUNT_CHANGED, setAccount);
-      // Moralis.Web3.removeListener(ConnectorEvent.WEB3_ENABLED, handleConnect);
-      // Moralis.Web3.removeListener(
-      //   ConnectorEvent.WEB3_DEACTIVATED,
-      //   handleDisconnect,
-      // );
+      unsubChainChanged();
+      unsubAccountChanged();
+      unsubEnable();
+      unsubDeactivate();
+      unsubDisconnect();
     };
   }, [Moralis]);
 
@@ -110,7 +98,6 @@ export const _useMoralisWeb3 = (Moralis: MoralisType) => {
         // @ts-ignore
         const currentWeb3 = await Moralis.Web3.enableWeb3(rest);
 
-        // _setWeb3(currentWeb3);
         _setIsWeb3Enabled(true);
 
         if (onSuccess) {
@@ -156,5 +143,6 @@ export const _useMoralisWeb3 = (Moralis: MoralisType) => {
     connector,
     connectorType,
     deactivateWeb3,
+    provider,
   };
 };

@@ -53,9 +53,9 @@ export interface MoralisContextValue {
   chainId: string | null;
   account: string | null;
   network: string | null;
-  // Add/import connector type
-  connector: any | null;
+  connector: unknown | null;
   connectorType: string | null;
+  provider: unknown | null;
 }
 
 export const MoralisContext = createContext<null | MoralisContextValue>(null);
