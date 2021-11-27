@@ -28,7 +28,7 @@ export const useOneInchQuote = (params: UseOneInchQuoteParams, options: UseOneIn
           toTokenAddress: params.toToken.address,
           amount: Moralis.Units.Token(params.fromAmount, params.fromToken.decimals).toString(),
         }
-      : null,
+      : undefined,
     options,
     false
   );
