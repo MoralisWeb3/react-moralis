@@ -1227,6 +1227,7 @@ const TokenPrice = () => {
 }
 
 ```
+### Dex Plugin Hooks
 
 ### `useOneInchQuote()` 
 
