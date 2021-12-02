@@ -64,7 +64,7 @@ export const _useMoralisWeb3 = (Moralis: MoralisType) => {
       setEnableWeb3Error(null);
 
       try {
-        const currentWeb3 = await Moralis.Web3.enable({
+        const currentWeb3 = await Moralis.Web3.enableWeb3({
           ...(!!provider && { provider }),
           ...(!!chainId && { chainId }),
         });
