@@ -26,7 +26,7 @@ export const useChain = () => {
           nativeCurrency.name,
           nativeCurrency.symbol,
           rpc[0],
-          blockExplorerUrl ?? null,
+          blockExplorerUrl ?? "",
         );
       } else {
         throw error;
