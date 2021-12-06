@@ -17,7 +17,7 @@ export const useChain = () => {
             `Chain ${providedChainId} not supported or is not specified`,
           );
         }
-        const { chainId, name, nativeCurrency, rpc, blockExplorerUrl } =
+        const { chainId, name, nativeCurrency, rpc, infoURL : blockExplorerUrl } =
           chainData;
 
         await Moralis.Web3.addNetwork(
@@ -26,7 +26,7 @@ export const useChain = () => {
           nativeCurrency.name,
           nativeCurrency.symbol,
           rpc[0],
-          blockExplorerUrl ?? "",
+          blockExplorerUrl ?? null,
         );
       } else {
         throw error;
