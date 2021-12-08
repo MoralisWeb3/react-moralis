@@ -28,6 +28,10 @@ export const useChain = () => {
           rpc[0],
           blockExplorerUrl ?? "",
         );
+      }else if(!account){
+        throw new Error(
+            'Please link the account first',
+          );
       } else {
         throw error;
       }
