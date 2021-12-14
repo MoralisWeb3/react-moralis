@@ -652,7 +652,7 @@ Then you can read the state from the provided variables `error`,
 saveFile("batman.jpeg", file, { saveIPFS: true });
 ```
 
-Then you can get the ipfs data via `moralisFile.ipfs` and `moralisFile.hash`
+Then you can get the ipfs data via `moralisFile._ipfs` and `moralisFile._hash` or `moralisFile.ipfs()` and `moralisFile.hash()` 
 
 ### Other options
 
