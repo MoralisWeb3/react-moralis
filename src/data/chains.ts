@@ -2184,7 +2184,7 @@ const chains: ChainData[] = [
     name: "Avalanche Fuji Testnet",
     chainId: 43113,
     shortName: "Fuji",
-    networkId: 43113,
+    networkId: 1,
     nativeCurrency: { name: "Avalanche", symbol: "AVAX", decimals: 18 },
     rpc: ["https://api.avax-test.network/ext/bc/C/rpc"],
     faucets: ["https://faucet.avax-test.network/"],
