@@ -82,7 +82,7 @@
     "install:clean": "rm -rf node_modules && yarn install",
     "lint": "eslint ./src",
     "test": "jest",
-    "test:ci": "echo 'not implemented'",
+    "test:ci": "jest",
     "lint:ci": "eslint --output-file eslint_report.json --format json ./src",
     "commit": "npm run git-cz",
     "format": "yarn prettier --write .",
