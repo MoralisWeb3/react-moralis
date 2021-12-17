@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.2](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.1...v0.3.2) (2021-12-17)
+
+
+### Features
+
+* add blockexplorer for 0xa869 ([b22c0b7](https://github.com/MoralisWeb3/react-moralis/commits/b22c0b70d92a64ce7db843c320277a4c3279c102))
+
 ### [0.3.1](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.0...v0.3.1) (2021-12-06)
 
 ## [0.3.0](https://github.com/MoralisWeb3/react-moralis/compare/v0.2.8...v0.3.0) (2021-11-17)
