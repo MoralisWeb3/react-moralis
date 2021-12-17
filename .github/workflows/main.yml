@@ -150,6 +150,7 @@ jobs:
           git config --global user.email "erno@moralis.io"
           git config --global user.name "@$GITHUB_ACTOR"
       - run: yarn release
+      - run: npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
       - run: npm publish
       - run: git push
       - run: git push --tags
