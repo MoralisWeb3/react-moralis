@@ -10,3 +10,4 @@ lib
 yarn-error.log
 .env
 tsconfig.tsbuildinfo
+.npmrc
