@@ -127,7 +127,7 @@ jobs:
 
   publish:
     name: Publish
-    if: $({ github.ref == 'refs/heads/main' })
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
