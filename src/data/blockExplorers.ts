@@ -6,6 +6,7 @@ export const blockExplorers: Record<string, string | null> = {
   "0x5": "https://goerli.etherscan.io/",
   "0x539": null,
   "0xa86a": "https://cchain.explorer.avax.network/",
+  "0xa869": "https://explorer.avax-test.network/",
   "0x38": "https://bscscan.com/",
   "0x61": "https://testnet.bscscan.com",
   "0x89": "https://explorer-mainnet.maticvigil.com",
