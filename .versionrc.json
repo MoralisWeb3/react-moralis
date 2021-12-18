@@ -10,5 +10,6 @@
     { "type": "test", "hidden": true }
   ],
   "commitUrlFormat": "https://github.com/MoralisWeb3/react-moralis/commits/{{hash}}",
-  "compareUrlFormat": "https://github.com/MoralisWeb3/react-moralis/compare/{{previousTag}}...{{currentTag}}"
+  "compareUrlFormat": "https://github.com/MoralisWeb3/react-moralis/compare/{{previousTag}}...{{currentTag}}",
+  "releaseCommitMessageFormat": "chore(release): {{currentTag}} [skip ci]"
 }

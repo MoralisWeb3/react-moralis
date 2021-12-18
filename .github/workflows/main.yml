@@ -151,7 +151,7 @@ jobs:
     name: Publish
     if: |
       github.ref == 'refs/heads/main' 
-        && !contains(github.event.head_commit.author.name, 'GITHUBACTION')
+        && !!contains(github.event.commits[0].message, '[skip ci]')
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
