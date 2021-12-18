@@ -153,7 +153,7 @@ jobs:
     name: Publish
     if: |
       github.ref == 'refs/heads/main' 
-        && !!contains(github.event.commits[0].message, '[skip ci]')
+        && !contains(github.event.commits[0].message, '[skip ci]')
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
