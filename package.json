@@ -1,6 +1,6 @@
 {
   "name": "react-moralis",
-  "version": "0.3.8",
+  "version": "0.0.0-development",
   "description": "Hooks and components to use Moralis in a React app",
   "keywords": [
     "moralis",
@@ -65,7 +65,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-typescript2": "^0.30.0",
     "rollup-watch": "^4.3.1",
-    "standard-version": "^9.3.2",
+    "semantic-release": "^18.0.1",
     "ts-loader": "^9.2.6",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4"
@@ -88,13 +88,9 @@
     "format": "yarn prettier --write .",
     "format:check": "yarn prettier --check .",
     "tsc": "tsc",
-    "release": "standard-version",
-    "release:alpha": "standard-version --prerelease alpha --no-verify",
-    "release:minor": "standard-version --release-as minor --no-verify",
-    "release:patch": "standard-version --release-as patch --no-verify",
-    "release:major": "standard-version --release-as major --no-verify",
     "prepare": "husky install",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "semantic-release": "semantic-release"
   },
   "lint-staged": {
     "*.js": [
