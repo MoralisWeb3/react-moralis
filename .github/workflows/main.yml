@@ -18,12 +18,13 @@ jobs:
         node: [14]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
         with:
-          node-version: "14"
           fetch-depth: 0
           ref: main
           token: ${{ env.GH_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
       - name: Use cache dependencies
         uses: actions/cache@v2
         id: cache
@@ -44,12 +45,13 @@ jobs:
     needs: setup
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
         with:
-          node-version: "14"
           fetch-depth: 0
           ref: main
           token: ${{ env.GH_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
       - name: Use cache dependencies
         uses: actions/cache@v2
         id: cache
@@ -77,12 +79,13 @@ jobs:
     needs: setup
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
         with:
-          node-version: "14"
           fetch-depth: 0
           ref: main
           token: ${{ env.GH_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
       - name: Use cache dependencies
         uses: actions/cache@v2
         id: cache
@@ -102,12 +105,13 @@ jobs:
     needs: setup
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
         with:
-          node-version: "14"
           fetch-depth: 0
           ref: main
           token: ${{ env.GH_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
       - name: Use cache dependencies
         uses: actions/cache@v2
         id: cache
@@ -127,12 +131,13 @@ jobs:
     needs: setup
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
         with:
-          node-version: "14"
           fetch-depth: 0
           ref: main
           token: ${{ env.GH_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
       - name: Use cache dependencies
         uses: actions/cache@v2
         id: cache
@@ -152,15 +157,16 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         node: [14]
-    needs: [setup, lint, typecheck, test]
+    needs: [setup, lint, typecheck, test, format]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
         with:
-          node-version: "14"
           fetch-depth: 0
           ref: main
           token: ${{ env.GH_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
       - name: Use cache dependencies
         uses: actions/cache@v2
         id: cache
