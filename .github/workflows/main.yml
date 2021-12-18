@@ -6,10 +6,6 @@ on:
   push:
     branches:
       - main
-env:
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 jobs:
   setup:
     name: Build dependencies
@@ -154,6 +150,10 @@ jobs:
     if: |
       github.ref == 'refs/heads/main' 
         && !contains(github.event.commits[0].message, '[skip ci]')
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
