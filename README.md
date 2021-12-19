@@ -123,7 +123,7 @@ function App() {
   - [`useERC20Transfers()`](#useerc20transfers)
   - [`useNativeBalance()`](#usenativebalance)
   - [`useNativeTransactions()`](#usenativetransactions)
-  - [`useNFTBalances()`](#usendrbalances)
+  - [`useNFTBalances()`](#usenftbalances)
   - [`useNFTTransfers()`](#usenfttransfers)
   - [`useTokenPrice()`](#usetokenprice)
   - [Dex Plugin Hooks](#dex-plugin-hooks)
