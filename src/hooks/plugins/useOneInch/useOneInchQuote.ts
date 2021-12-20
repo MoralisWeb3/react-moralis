@@ -12,7 +12,10 @@ export interface UseOneInchQuoteParams {
 }
 export interface UseOneInchQuoteOptions extends UseResolveCallOptions {}
 
-export const useOneInchQuote = (params: UseOneInchQuoteParams, options: UseOneInchQuoteOptions = {}) => {
+export const useOneInchQuote = (
+  params: UseOneInchQuoteParams,
+  options: UseOneInchQuoteOptions = {},
+) => {
   const { Moralis } = useMoralis();
 
   const { fetch, data, isFetching, isLoading, error } = _useResolvePluginCall(
@@ -26,13 +29,15 @@ export const useOneInchQuote = (params: UseOneInchQuoteParams, options: UseOneIn
           fromTokenAddress: params.fromToken.address,
           // The token you want to receive
           toTokenAddress: params.toToken.address,
-          amount: Moralis.Units.Token(params.fromAmount, params.fromToken.decimals).toString(),
+          amount: Moralis.Units.Token(
+            params.fromAmount,
+            params.fromToken.decimals,
+          ).toString(),
         }
       : undefined,
     options,
-    false
+    false,
   );
 
   return { getQuote: fetch, data, isFetching, isLoading, error };
 };
-
