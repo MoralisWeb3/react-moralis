@@ -16,6 +16,8 @@ jobs:
         node: [14]
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
@@ -39,6 +41,8 @@ jobs:
     needs: setup
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
@@ -69,6 +73,8 @@ jobs:
     needs: setup
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
@@ -91,6 +97,8 @@ jobs:
     needs: setup
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
@@ -113,6 +121,8 @@ jobs:
     needs: setup
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
@@ -124,3 +134,36 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}s
       - name: Jest
         run: yarn test:ci
+
+  publish:
+    name: Publish
+    if: |
+      github.ref == 'refs/heads/main' 
+        && !contains(github.event.commits[0].message, '[skip ci]')
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [14]
+    needs: [setup, lint, typecheck, test, format]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          ref: main
+          token: ${{ env.GH_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - name: Use cache dependencies
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}s
+      - run: npx semantic-release
