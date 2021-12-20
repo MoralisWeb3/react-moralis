@@ -123,7 +123,7 @@ function App() {
   - [`useERC20Transfers()`](#useerc20transfers)
   - [`useNativeBalance()`](#usenativebalance)
   - [`useNativeTransactions()`](#usenativetransactions)
-  - [`useNFTBalances()`](#usendrbalances)
+  - [`useNFTBalances()`](#usenftbalances)
   - [`useNFTTransfers()`](#usenfttransfers)
   - [`useTokenPrice()`](#usetokenprice)
   - [Dex Plugin Hooks](#dex-plugin-hooks)
@@ -205,6 +205,8 @@ You will have access to the following values by using this hook:
 | `enableWeb3`    | function to enable web3                                                                                                                                                           |
 | `web3`          | The web3 instance of `Moralis.Web3`;                                                                                                                                              |
 | `isWeb3Enabled` | Boolean to indicate if web3 has been enabled via the `enableWeb3` function                                                                                                        |
+| `account` | address of the connected web3 wallet |
+| `chainId` | chain id of the blockchain that the web3 wallet is connected to |
 
 ### Authentication state
 
