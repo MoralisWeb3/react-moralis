@@ -1,3 +1,10 @@
+## [0.3.11](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.10...v0.3.11) (2021-12-20)
+
+
+### Bug Fixes
+
+* check for params in useOneInchQuote ([874176b](https://github.com/MoralisWeb3/react-moralis/commit/874176b89d61b98ed948b257c748dd6b8fd45e67))
+
 ## [0.3.10](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.9...v0.3.10) (2021-12-20)
 
 
