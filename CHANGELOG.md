@@ -1,3 +1,10 @@
+## [0.3.9](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.8...v0.3.9) (2021-12-20)
+
+
+### Bug Fixes
+
+* update dependencies ([#115](https://github.com/MoralisWeb3/react-moralis/issues/115)) ([b4f2e91](https://github.com/MoralisWeb3/react-moralis/commit/b4f2e9175dfdf630c298d324c956a571df98802c))
+
 # Changelog
 
 ### [0.3.8](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.7...v0.3.8) (2021-12-18)
