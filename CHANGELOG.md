@@ -1,3 +1,24 @@
+## [0.3.11](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.10...v0.3.11) (2021-12-20)
+
+
+### Bug Fixes
+
+* check for params in useOneInchQuote ([874176b](https://github.com/MoralisWeb3/react-moralis/commit/874176b89d61b98ed948b257c748dd6b8fd45e67))
+
+## [0.3.10](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.9...v0.3.10) (2021-12-20)
+
+
+### Bug Fixes
+
+* call to deprecated moralis.enable method ([#102](https://github.com/MoralisWeb3/react-moralis/issues/102)) ([e0f02e4](https://github.com/MoralisWeb3/react-moralis/commit/e0f02e4cf27602e4678e6abd81fc8c2c861a5e4f))
+
+## [0.3.9](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.8...v0.3.9) (2021-12-20)
+
+
+### Bug Fixes
+
+* update dependencies ([#115](https://github.com/MoralisWeb3/react-moralis/issues/115)) ([b4f2e91](https://github.com/MoralisWeb3/react-moralis/commit/b4f2e9175dfdf630c298d324c956a571df98802c))
+
 # Changelog
 
 ### [0.3.8](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.7...v0.3.8) (2021-12-18)

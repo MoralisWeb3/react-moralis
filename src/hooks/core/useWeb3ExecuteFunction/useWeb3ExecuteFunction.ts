@@ -14,6 +14,7 @@ export type Web3ExecuteFunctionParameters = {
   abi?: object;
   functionName?: string;
   params?: Record<string, unknown>;
+  msgValue?: string;
 };
 
 export interface Web3ExecuteFunctionFetchOptions {
