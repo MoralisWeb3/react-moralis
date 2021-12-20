@@ -5,3 +5,4 @@ README.md
 *.d.ts
 lib
 eslint_report.json
+coverage
