@@ -1,3 +1,10 @@
+## [0.3.10](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.9...v0.3.10) (2021-12-20)
+
+
+### Bug Fixes
+
+* call to deprecated moralis.enable method ([#102](https://github.com/MoralisWeb3/react-moralis/issues/102)) ([e0f02e4](https://github.com/MoralisWeb3/react-moralis/commit/e0f02e4cf27602e4678e6abd81fc8c2c861a5e4f))
+
 ## [0.3.9](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.8...v0.3.9) (2021-12-20)
 
 
