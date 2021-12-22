@@ -1,3 +1,12 @@
+# [0.4.0-beta.1](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.11...v0.4.0-beta.1) (2021-12-22)
+
+
+### Features
+
+* add hooks for fiat plugin ([c1cfe24](https://github.com/MoralisWeb3/react-moralis/commit/c1cfe245a754c7c81b29d9302146174089a03d95))
+* add hooks for opensea plugin ([998589b](https://github.com/MoralisWeb3/react-moralis/commit/998589b691efbb44a301f28e1b5c608d4701e171))
+* add hooks for rarible plugin ([3d248ce](https://github.com/MoralisWeb3/react-moralis/commit/3d248ce14ae93c59114ba9f619c52e6b7f457811))
+
 ## [0.3.11](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.10...v0.3.11) (2021-12-20)
 
 
