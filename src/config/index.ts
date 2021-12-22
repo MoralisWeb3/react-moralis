@@ -5,6 +5,7 @@ export const DEFAULT_API_CHAIN: ApiChain = "eth";
 
 export enum Plugin {
   ONE_INCH = "oneInch",
+  FIAT = "fiat",
 }
 
 export const supportedChains = [
