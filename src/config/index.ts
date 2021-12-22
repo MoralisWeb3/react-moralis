@@ -7,6 +7,7 @@ export enum Plugin {
   ONE_INCH = "oneInch",
   OPEN_SEA = "opensea",
   FIAT = "fiat",
+  RARIBLE = "rarible",
 }
 
 export const supportedChains = [
