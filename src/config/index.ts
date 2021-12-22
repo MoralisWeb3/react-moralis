@@ -5,6 +5,7 @@ export const DEFAULT_API_CHAIN: ApiChain = "eth";
 
 export enum Plugin {
   ONE_INCH = "oneInch",
+  OPEN_SEA = "opensea",
   FIAT = "fiat",
 }
 
