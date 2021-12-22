@@ -135,6 +135,7 @@ function App() {
     - [Enable web3 via Walletconnect](#enable-web3-via-walletconnect)
   - [Components](#components)
 - [Handling responses](#handling-responses)
+- [Webpack v5 support](#webpack-v5-support)
 - [😖 Error handling](#-error-handling)
 - [⌨️ Typescript](#️-typescript)
 - [🧑‍💻 Development](#-development)
@@ -1397,6 +1398,44 @@ const fetchAndNotify = () => {
   });
 };
 ```
+
+# Webpack v5 support
+
+You may see the following error in your project:
+```jsx
+ERROR in ../../node_modules/dotenv/lib/main.js 26:13-28
+Module not found: Error: Can't resolve 'path' in '../node_modules/dotenv/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+```
+
+There are a lot of breaking changes in Webpack v5. Set up your project to work with `moralis` and `react-moralis`:
+
+### configuring Webpack v5
+
+We highly recommend you to use the stable `4.0.3` version of Webpack. If you want to use Moralis on your project with Webpack v5 you need to add the fallback to your `webpack.config.js` file:
+
+```jsx
+module.exports = {
+    resolve: {
+        fallback: {
+            assert: require.resolve('assert'),
+            crypto: require.resolve('crypto-browserify'),
+            http: require.resolve('stream-http'),
+            https: require.resolve('https-browserify'),
+            os: require.resolve('os-browserify/browser'),
+            stream: require.resolve('stream-browserify'),
+        },
+    },
+};
+```
+
+### create-react-app
+
+To be able to work with `moralis` and `react-moralis` on the create-react-app project you need to use the `< 5` version of `react-scripts`:
+
+`npx create-react-app --scripts-version 4.0.3`
 
 # 😖 Error handling
 

@@ -3,9 +3,11 @@ on:
   pull_request:
     branches:
       - main
+      - beta
   push:
     branches:
       - main
+      - beta
 jobs:
   setup:
     name: Build dependencies
@@ -138,7 +140,7 @@ jobs:
   publish:
     name: Publish
     if: |
-      github.ref == 'refs/heads/main' 
+      (github.ref == 'refs/heads/main'  || github.ref == 'refs/heads/beta')
         && !contains(github.event.commits[0].message, '[skip ci]')
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -155,7 +157,6 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-          ref: main
           token: ${{ env.GH_TOKEN }}
       - uses: actions/setup-node@v2
         with:
