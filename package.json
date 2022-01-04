@@ -17,7 +17,7 @@
   "homepage": "https://github.com/MoralisWeb3/react-moralis",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MoralisWeb3/react-moralis"
+    "url": "git+https://github.com/MoralisWeb3/react-moralis.git"
   },
   "bugs": {
     "url": "https://github.com/MoralisWeb3/react-moralis/issues"
