@@ -1,3 +1,13 @@
+# [1.0.0-beta.1](https://github.com/MoralisWeb3/react-moralis/compare/v0.4.0-beta.1...v1.0.0-beta.1) (2022-01-05)
+
+
+* feat!: support for ethers refactor in moralis sdk ([32df645](https://github.com/MoralisWeb3/react-moralis/commit/32df64580bc93bd8a180fc44d45a3b7a9a0b78d4))
+
+
+### BREAKING CHANGES
+
+* changes to accommodate for the breaking changes in the SDK, where web3 has been replaced for ethers
+
 # [0.4.0-beta.1](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.11...v0.4.0-beta.1) (2021-12-22)
 
 
