@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import MoralisType from "moralis";
 
 export type Web3Provider = "wc" | "walletconnect";
@@ -45,8 +45,41 @@ export const _useMoralisWeb3 = (Moralis: MoralisType) => {
       // unsubscribeOnAccountsChanged()
     };
   }, []);
-  useEffect(() => setChainId(web3?.givenProvider?.chainId));
-  useEffect(() => setAccount(web3?.givenProvider?.selectedAddress), [web3]);
+
+  const library = useMemo(() => {
+    if (!web3?.currentProvider) return null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return web3.currentProvider as any;
+  }, [web3]);
+
+  function fromDecimalToHex(number: number) {
+    if (typeof number !== "number")
+      throw "The input provided should be a number";
+    return `0x${number.toString(16)}`;
+  }
+
+  function verifyChainId(chainId: string | number) {
+    // Check if chainId is a number, in that case convert to hex
+    if (typeof chainId === "number") chainId = fromDecimalToHex(chainId);
+    return chainId;
+  }
+
+  useEffect(() => {
+    if (!library?.chainId) return;
+    setChainId(verifyChainId(library.chainId));
+  }, [library]);
+
+  useEffect(() => {
+    async function getAccount() {
+      const account = await (
+        await library.request({
+          method: "eth_requestAccounts",
+        })
+      )[0];
+      setAccount(account);
+    }
+    if (library) getAccount();
+  }, [library]);
 
   /**
    * Enable web3 with the browsers web3Provider (only available when a user has been authenticated)
