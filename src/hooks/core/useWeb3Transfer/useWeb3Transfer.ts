@@ -22,7 +22,6 @@ export type Web3TransferParameters = {
   /** @deprecated use tokenId field instead */
   token_id?: string;
   system?: TransferSystem;
-  awaitReceipt?: boolean;
 };
 
 export interface Web3TransferFetchOptions {
