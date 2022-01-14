@@ -1,3 +1,15 @@
+# [1.0.0-beta.2](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2022-01-14)
+
+
+### Bug Fixes
+
+* update provider on enableWeb3 ([76f3837](https://github.com/MoralisWeb3/react-moralis/commit/76f38371a9b53815a49e9433c4232135f4155fa4))
+
+
+### Features
+
+* remove obsolete awaitReceipt ([e1f55b5](https://github.com/MoralisWeb3/react-moralis/commit/e1f55b519bd13c2f86a66496622b8242881e279a))
+
 # [1.0.0-beta.1](https://github.com/MoralisWeb3/react-moralis/compare/v0.4.0-beta.1...v1.0.0-beta.1) (2022-01-05)
 
 
