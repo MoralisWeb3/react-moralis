@@ -41,6 +41,7 @@ export const _useMoralisWeb3 = (Moralis: MoralisType) => {
       chainId,
       account,
       connector,
+      provider,
     }: {
       web3: MoralisWeb3;
       chainId: string | null;
