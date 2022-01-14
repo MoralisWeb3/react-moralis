@@ -27,7 +27,6 @@ export interface MoralisProviderProps {
   options?: MoralisProviderOptions;
   environment?: Environment;
   getMoralis?: GetMoralis;
-  web3Library?: unknown;
 }
 
 export const MoralisProvider = ({
@@ -40,7 +39,6 @@ export const MoralisProvider = ({
   environment,
   getMoralis,
   options: { onAccountChanged } = {},
-  web3Library,
 }: MoralisProviderProps) => {
   const moralisInit = _useMoralisInit({
     appId,
@@ -50,7 +48,6 @@ export const MoralisProvider = ({
     plugins,
     environment,
     getMoralis,
-    web3Library,
   });
   const { _setIsWeb3Enabled, _setIsWeb3EnableLoading, ...moralisWeb3 } =
     _useMoralisWeb3(moralisInit.Moralis);

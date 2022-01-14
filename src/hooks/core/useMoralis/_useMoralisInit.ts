@@ -24,7 +24,6 @@ export const _useMoralisInit = ({
   plugins,
   environment = "browser",
   getMoralis = () => MoralisImport,
-  web3Library,
 }: {
   appId: string;
   serverUrl: string;
@@ -33,7 +32,6 @@ export const _useMoralisInit = ({
   plugins?: PluginSpecs[];
   environment?: "browser" | "native";
   getMoralis?: GetMoralis;
-  web3Library?: unknown;
 }) => {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isInitializing, setIsInitializing] = useState(false);
@@ -46,14 +44,12 @@ export const _useMoralisInit = ({
       javascriptKey,
       masterKey,
       plugins,
-      web3Library,
     }: {
       serverUrl: string;
       appId: string;
       javascriptKey?: string;
       masterKey?: string;
       plugins?: PluginSpecs[];
-      web3Library?: unknown;
     }) => {
       if (isInitialized) {
         return;
@@ -78,7 +74,6 @@ export const _useMoralisInit = ({
         javascriptKey,
         masterKey,
         plugins,
-        web3Library,
       });
       setIsInitializing(false);
       setIsInitialized(true);
@@ -97,7 +92,6 @@ export const _useMoralisInit = ({
       masterKey: dangerouslyUseOfMasterKey,
       javascriptKey: jsKey,
       plugins,
-      web3Library,
     });
 
     setIsInitialized(true);
@@ -108,7 +102,6 @@ export const _useMoralisInit = ({
     jsKey,
     plugins,
     isInitialized,
-    web3Library,
   ]);
 
   return {
