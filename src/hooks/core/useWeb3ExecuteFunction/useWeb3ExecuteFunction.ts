@@ -14,7 +14,6 @@ export type Web3ExecuteFunctionParameters = {
   abi?: object;
   functionName?: string;
   params?: Record<string, unknown>;
-  awaitReceipt?: boolean;
   msgValue?: number | string;
 };
 
