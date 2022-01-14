@@ -1,3 +1,10 @@
+# [1.0.0-beta.3](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2022-01-14)
+
+
+### Bug Fixes
+
+* remove unused web3Library ([e83c2fa](https://github.com/MoralisWeb3/react-moralis/commit/e83c2fa60199f60c667fa329257d116546f0dc90))
+
 # [1.0.0-beta.2](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2022-01-14)
 
 
