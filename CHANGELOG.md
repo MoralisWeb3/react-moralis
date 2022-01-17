@@ -1,3 +1,29 @@
+# [1.0.0](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.11...v1.0.0) (2022-01-17)
+
+
+### Bug Fixes
+
+* remove unused web3Library ([e83c2fa](https://github.com/MoralisWeb3/react-moralis/commit/e83c2fa60199f60c667fa329257d116546f0dc90))
+* update provider on enableWeb3 ([76f3837](https://github.com/MoralisWeb3/react-moralis/commit/76f38371a9b53815a49e9433c4232135f4155fa4))
+
+
+* feat!: bump version ([ae8d86b](https://github.com/MoralisWeb3/react-moralis/commit/ae8d86be071a7536b909b1fe5a9bf263f6875467))
+* feat!: support for ethers refactor in moralis sdk ([32df645](https://github.com/MoralisWeb3/react-moralis/commit/32df64580bc93bd8a180fc44d45a3b7a9a0b78d4))
+
+
+### Features
+
+* add hooks for fiat plugin ([c1cfe24](https://github.com/MoralisWeb3/react-moralis/commit/c1cfe245a754c7c81b29d9302146174089a03d95))
+* add hooks for opensea plugin ([998589b](https://github.com/MoralisWeb3/react-moralis/commit/998589b691efbb44a301f28e1b5c608d4701e171))
+* add hooks for rarible plugin ([3d248ce](https://github.com/MoralisWeb3/react-moralis/commit/3d248ce14ae93c59114ba9f619c52e6b7f457811))
+* remove obsolete awaitReceipt ([e1f55b5](https://github.com/MoralisWeb3/react-moralis/commit/e1f55b519bd13c2f86a66496622b8242881e279a))
+
+
+### BREAKING CHANGES
+
+* Support for Moralis.Web3 refactor
+* changes to accommodate for the breaking changes in the SDK, where web3 has been replaced for ethers
+
 # [1.0.0-beta.3](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2022-01-14)
 
 
