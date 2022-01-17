@@ -9,7 +9,6 @@
 ![npm](https://img.shields.io/npm/v/react-moralis)
 ![node-current](https://img.shields.io/node/v/react-moralis)
 ![GitHub last commit](https://img.shields.io/github/last-commit/MoralisWeb3/react-moralis)
-![David](https://img.shields.io/david/MoralisWeb3/react-moralis)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-moralis)
 ![npm type definitions](https://img.shields.io/npm/types/react-moralis)
 

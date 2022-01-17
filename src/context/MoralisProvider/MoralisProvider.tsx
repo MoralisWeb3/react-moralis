@@ -49,14 +49,17 @@ export const MoralisProvider = ({
     environment,
     getMoralis,
   });
+  const { _setIsWeb3Enabled, _setIsWeb3EnableLoading, ...moralisWeb3 } =
+    _useMoralisWeb3(moralisInit.Moralis);
   const { setUser, ...moralisUser } = _useMoralisUser(moralisInit.Moralis);
   const moralisAuth = _useMoralisAuth({
     onAccountChanged,
     setUser,
     Moralis: moralisInit.Moralis,
     environment: moralisInit.environment,
+    _setIsWeb3Enabled,
+    _setIsWeb3EnableLoading,
   });
-  const moralisWeb3 = _useMoralisWeb3(moralisInit.Moralis);
 
   return (
     <MoralisContext.Provider

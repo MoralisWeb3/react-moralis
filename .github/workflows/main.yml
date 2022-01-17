@@ -157,7 +157,6 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-          ref: main
           token: ${{ env.GH_TOKEN }}
       - uses: actions/setup-node@v2
         with:

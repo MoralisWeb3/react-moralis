@@ -1,6 +1,6 @@
 {
   "name": "react-moralis",
-  "version": "0.0.0-development",
+  "version": "1.0.0-beta.3",
   "description": "Hooks and components to use Moralis in a React app",
   "keywords": [
     "moralis",
@@ -37,7 +37,7 @@
     "@babel/core": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
     "@babel/preset-typescript": "^7.16.5",
-    "@commitlint/cli": "^15.0.0",
+    "@commitlint/cli": "^16.0.1",
     "@commitlint/config-conventional": "^15.0.0",
     "@commitlint/prompt": "^15.0.0",
     "@rollup/plugin-commonjs": "^21.0.1",
@@ -64,7 +64,7 @@
     "husky": "^7.0.4",
     "jest": "^27.4.5",
     "lint-staged": "^12.1.2",
-    "moralis": ">=0.0.176",
+    "moralis": "^1.0.0-beta.1",
     "prettier": "^2.5.1",
     "rollup": "^2.61.1",
     "rollup-plugin-cleaner": "^1.0.0",
@@ -77,7 +77,7 @@
     "typescript": "^4.5.4"
   },
   "peerDependencies": {
-    "moralis": ">=0.0.176",
+    "moralis": ">=1.0.0-beta.1",
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0"
   },
