@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.1...v1.0.2) (2022-01-19)
+
+
+### Bug Fixes
+
+* **deps:** bump follow-redirects from 1.14.4 to 1.14.7 ([#150](https://github.com/MoralisWeb3/react-moralis/issues/150)) ([d1e1166](https://github.com/MoralisWeb3/react-moralis/commit/d1e116642fefe2283b12e8ea197c61af781b2d89))
+
 ## [1.0.1](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.0...v1.0.1) (2022-01-19)
 
 
