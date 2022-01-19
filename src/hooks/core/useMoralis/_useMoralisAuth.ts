@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
 import { setMultipleDataToUser, SetUserData } from "./utils/setUserData";
-import { Web3Provider } from "./_useMoralisWeb3";
 import { AuthError } from "src";
 import MoralisType from "moralis";
 import { Environment } from "./_useMoralisInit";
@@ -53,7 +52,7 @@ export interface AuthenticateOptions {
   onComplete?: () => void;
   throwOnError?: boolean;
   type?: AuthType;
-  provider?: Web3Provider;
+  connector?: MoralisType.Connector;
   chainId?: number;
   signingMessage?: string;
 }
@@ -158,8 +157,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
 
       try {
         // TODO: fix typechecking when passing ...rest
-        // @ts-ignore
-        const user = await Moralis.authenticate(rest);
+        const user = await Moralis.Web3.authenticate(rest);
 
         setUser(user);
         if (_setIsWeb3Enabled) {
