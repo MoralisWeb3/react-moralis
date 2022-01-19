@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.0...v1.0.1) (2022-01-19)
+
+
+### Bug Fixes
+
+* typings after ethers support ([989186a](https://github.com/MoralisWeb3/react-moralis/commit/989186a9d311edc9e20db40c53509a44fc7eee6f))
+
 # [1.0.0](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.11...v1.0.0) (2022-01-17)
 
 
