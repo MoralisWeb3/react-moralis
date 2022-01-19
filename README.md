@@ -118,6 +118,7 @@ function App() {
   - [`useWeb3ExecuteFunction()`](#useweb3executefunction)
   - [`useChain()`](#usechain)
   - [`useWeb3Transfer()`](#useweb3transfer)
+  - [`useApiContract()`](#useapicontract)
   - [`useERC20Balances()`](#useerc20balances)
   - [`useERC20Transfers()`](#useerc20transfers)
   - [`useNativeBalance()`](#usenativebalance)
@@ -878,6 +879,54 @@ function Chains() {
       <p>Current chainId: {chainId}</p>
     </>
   );
+}
+```
+
+### `useApiContract()`
+
+Execute a on-chain contract's function. 
+It calls Moralis API and doesn't require web3 to be enabled.
+
+**Options**
+- `address` : The contract address (i.e. 0x1a2b3x...).
+- `functionName` : The name of the contract's function that you want to call.
+- `abi` : The contract's abi. 
+- `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value: current chain.
+- `params` (optional): Any parameter you want to send with the function.
+
+**Example**
+```jsx
+import { useApiContract } from "react-moralis";
+
+const {
+    runContractFunction,
+    data,
+    error,
+    isLoading,
+    isFetching,
+  } = useApiContract({
+    address: ensRegistryAddress,
+    functionName: "resolver",
+    abi: ensRegistryAbi,
+    params: { node: hashedDomain },
+  });
+
+  return (<div>
+    {error && <ErrorMessage error={error} />}
+    <button onClick={() => fetch()} disabled={isFetching}>Run contract function</button>
+    {data && <pre>
+      {JSON.stringify(data),
+        null,
+        2,
+      )}
+    </pre>}
+  </div>)
+```
+
+**Example return** (Object)
+```json
+{
+  "result": "0x4976fb03C32e5B8cfe2b6cCB31c09Ba78EBaBa41"
 }
 ```
 
