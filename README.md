@@ -995,7 +995,7 @@ Gets native balance for a current user or specified address.
 import { useNativeBalance } from "react-moralis";
 
 function NativeBalance() {
-  const { getBalance, data: balance, nativeToken, error, isLoading } = useNativeBalance({ chain : "ropsten" });
+  const { getBalances, data: balance, nativeToken, error, isLoading } = useNativeBalance({ chain : "ropsten" });
 
   return <div>{balance.formatted}</div>;
 }
