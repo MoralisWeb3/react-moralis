@@ -1,24 +1,12 @@
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import MoralisType from "moralis";
-import { MoralisWeb3 } from "src";
 
-// TODO: import from Moralis
-const ConnectorEvent = Object.freeze({
-  ACCOUNT_CHANGED: "accountChanged",
-  CHAIN_CHANGED: "chainChanged",
-  CONNECT: "connect",
-  DISCONNECT: "disconnect",
-  WEB3_ENABLED: "web3Enabled",
-  WEB3_DEACTIVATED: "web3Deactivated",
-});
-
-export type Web3Provider = "wc" | "walletconnect";
 export interface Web3EnableOptions {
   onError?: (error: Error) => void;
   onSuccess?: (web3: unknown) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
-  provider?: Web3Provider;
+  connector?: MoralisType.Connector;
   chainId?: number;
 }
 
@@ -29,11 +17,15 @@ export const _useMoralisWeb3 = (Moralis: MoralisType) => {
   const [isWeb3Enabled, _setIsWeb3Enabled] = useState(false);
   const [web3EnableError, setEnableWeb3Error] = useState<null | Error>(null);
   const [isWeb3EnableLoading, _setIsWeb3EnableLoading] = useState(false);
-  const [web3, setWeb3] = useState<null | MoralisWeb3>(null);
+  const [web3, setWeb3] = useState<null | MoralisType.MoralisWeb3Provider>(
+    null,
+  );
   const [chainId, setChainId] = useState<null | string>(null);
   const [account, setAccount] = useState<null | string>(null);
-  const [connector, setConnector] = useState<null | any>(null);
-  const [provider, setProvider] = useState<null | any>(null);
+  const [connector, setConnector] = useState<null | MoralisType.Connector>(
+    null,
+  );
+  const [provider, setProvider] = useState<null | MoralisType.Provider>(null);
 
   useEffect(() => {
     const handleConnect = ({
@@ -43,11 +35,11 @@ export const _useMoralisWeb3 = (Moralis: MoralisType) => {
       connector,
       provider,
     }: {
-      web3: MoralisWeb3;
+      web3: MoralisType.MoralisWeb3Provider;
       chainId: string | null;
       account: string | null;
-      provider: any;
-      connector: any;
+      provider: MoralisType.Provider;
+      connector: MoralisType.Connector;
     }) => {
       setWeb3(web3);
       setChainId(chainId);
@@ -127,8 +119,8 @@ export const _useMoralisWeb3 = (Moralis: MoralisType) => {
     await Moralis.Web3.deactivateWeb3();
   }, []);
 
-  const network = connector?.network;
-  const connectorType = connector?.type;
+  const network = useMemo(() => connector?.network ?? null, [connector]);
+  const connectorType = useMemo(() => connector?.type ?? null, [connector]);
 
   return {
     enableWeb3,
