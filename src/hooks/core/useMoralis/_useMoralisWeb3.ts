@@ -6,6 +6,7 @@ export interface Web3EnableOptions {
   onSuccess?: (web3: unknown) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
+  provider?: MoralisType.Web3ProviderType;
   connector?: MoralisType.Connector;
   chainId?: number;
 }
@@ -57,11 +58,11 @@ export const _useMoralisWeb3 = (Moralis: MoralisType) => {
       setProvider(null);
     };
 
-    const unsubChainChanged = Moralis.Web3.onChainChanged(setChainId);
-    const unsubAccountChanged = Moralis.Web3.onAccountChanged(setAccount);
-    const unsubEnable = Moralis.Web3.onWeb3Enabled(handleConnect);
-    const unsubDeactivate = Moralis.Web3.onWeb3Deactivated(handleDisconnect);
-    const unsubDisconnect = Moralis.Web3.onDisconnect(handleDisconnect);
+    const unsubChainChanged = Moralis.onChainChanged(setChainId);
+    const unsubAccountChanged = Moralis.onAccountChanged(setAccount);
+    const unsubEnable = Moralis.onWeb3Enabled(handleConnect);
+    const unsubDeactivate = Moralis.onWeb3Deactivated(handleDisconnect);
+    const unsubDisconnect = Moralis.onDisconnect(handleDisconnect);
 
     return () => {
       unsubChainChanged();
@@ -89,7 +90,7 @@ export const _useMoralisWeb3 = (Moralis: MoralisType) => {
       try {
         // TODO: fix typechecking when passing ...rest
         // @ts-ignore
-        const currentWeb3 = await Moralis.Web3.enableWeb3(rest);
+        const currentWeb3 = await Moralis.enableWeb3(rest);
 
         _setIsWeb3Enabled(true);
 
@@ -116,7 +117,7 @@ export const _useMoralisWeb3 = (Moralis: MoralisType) => {
 
   // TODO: resolver errors/loading state
   const deactivateWeb3 = useCallback(async () => {
-    await Moralis.Web3.deactivateWeb3();
+    await Moralis.deactivateWeb3();
   }, []);
 
   const network = useMemo(() => connector?.network ?? null, [connector]);

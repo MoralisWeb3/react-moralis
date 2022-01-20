@@ -52,6 +52,7 @@ export interface AuthenticateOptions {
   onComplete?: () => void;
   throwOnError?: boolean;
   type?: AuthType;
+  provider?: MoralisType.Web3ProviderType;
   connector?: MoralisType.Connector;
   chainId?: number;
   signingMessage?: string;
@@ -134,7 +135,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
     useState(false);
 
   /**
-   * Authenticates the user by calling the Moralis.Web3.authenticate function
+   * Authenticates the user by calling the Moralis.authenticate function
    * The auth state will update upon successful/error
    * For direct feedback, a callback can be provided
    */
@@ -157,7 +158,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
 
       try {
         // TODO: fix typechecking when passing ...rest
-        const user = await Moralis.Web3.authenticate(rest);
+        const user = await Moralis.authenticate(rest);
 
         setUser(user);
         if (_setIsWeb3Enabled) {

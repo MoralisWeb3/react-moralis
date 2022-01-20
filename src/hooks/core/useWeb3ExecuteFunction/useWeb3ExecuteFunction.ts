@@ -39,7 +39,7 @@ export const useWeb3ExecuteFunction = (
       };
 
       //@ts-ignore
-      return await Moralis.Web3.executeFunction(allParams);
+      return await Moralis.executeFunction(allParams);
     },
     [],
   );
