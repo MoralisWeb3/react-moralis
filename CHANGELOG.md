@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.2...v1.0.3) (2022-01-20)
+
+
+### Bug Fixes
+
+* typescript fixes support for Moralis v.1.0.6 ([#174](https://github.com/MoralisWeb3/react-moralis/issues/174)) ([9e3f574](https://github.com/MoralisWeb3/react-moralis/commit/9e3f574f4a15b27547089ba0de96aa7b74399890))
+
 ## [1.0.2](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.1...v1.0.2) (2022-01-19)
 
 
