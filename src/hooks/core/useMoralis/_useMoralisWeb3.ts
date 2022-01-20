@@ -14,7 +14,24 @@ export interface Web3EnableOptions {
 /**
  * Handles enabling of web3 and providing it, as soon as the user is authenticated
  */
-export const _useMoralisWeb3 = (Moralis: MoralisType) => {
+export const _useMoralisWeb3 = (
+  Moralis: MoralisType,
+): {
+  enableWeb3: (options?: Web3EnableOptions) => Promise<void>;
+  web3: null | MoralisType.MoralisWeb3Provider;
+  isWeb3Enabled: boolean;
+  web3EnableError: Error | null;
+  isWeb3EnableLoading: boolean;
+  _setIsWeb3Enabled: (value: boolean) => void;
+  _setIsWeb3EnableLoading: (value: boolean) => void;
+  chainId: null | string;
+  account: null | string;
+  network: null | string;
+  connector: null | MoralisType.Connector;
+  connectorType: null | string;
+  deactivateWeb3: () => Promise<void>;
+  provider: null | MoralisType.Provider;
+} => {
   const [isWeb3Enabled, _setIsWeb3Enabled] = useState(false);
   const [web3EnableError, setEnableWeb3Error] = useState<null | Error>(null);
   const [isWeb3EnableLoading, _setIsWeb3EnableLoading] = useState(false);
