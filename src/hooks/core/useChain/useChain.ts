@@ -15,7 +15,7 @@ export const useChain = () => {
 
   const switchNetwork = async (providedChainId: string) => {
     try {
-      await Moralis.Web3.switchNetwork(providedChainId);
+      await Moralis.switchNetwork(providedChainId);
     } catch (error) {
       if (error.code === 4902) {
         const chainData = getChain(providedChainId);
@@ -28,7 +28,7 @@ export const useChain = () => {
         const { chainId, name, nativeCurrency, rpc, blockExplorerUrl } =
           chainData;
 
-        await Moralis.Web3.addNetwork(
+        await Moralis.addNetwork(
           chainId,
           name,
           nativeCurrency.name,
