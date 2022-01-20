@@ -913,7 +913,7 @@ const {
 
   return (<div>
     {error && <ErrorMessage error={error} />}
-    <button onClick={() => fetch()} disabled={isFetching}>Run contract function</button>
+    <button onClick={() => runContractFunction()} disabled={isFetching}>Run contract function</button>
     {data && <pre>
       {JSON.stringify(data),
         null,
