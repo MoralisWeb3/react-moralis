@@ -24,20 +24,23 @@ export const _useMoralisInit = ({
   plugins,
   environment = "browser",
   getMoralis = () => MoralisImport,
+  initializeOnMount,
 }: {
-  appId: string;
-  serverUrl: string;
+  appId?: string | null;
+  serverUrl?: string | null;
   jsKey?: string;
   dangerouslyUseOfMasterKey?: string;
   plugins?: PluginSpecs[];
   environment?: "browser" | "native";
   getMoralis?: GetMoralis;
+  initializeOnMount: boolean;
 }) => {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isInitializing, setIsInitializing] = useState(false);
+  const [shouldInitialize, setShouldInitialize] = useState(false);
   const Moralis = useRef(getMoralis());
 
-  const initialize = useCallback(
+  const _initialize = useCallback(
     async ({
       serverUrl,
       appId,
@@ -45,8 +48,8 @@ export const _useMoralisInit = ({
       masterKey,
       plugins,
     }: {
-      serverUrl: string;
-      appId: string;
+      serverUrl?: null | string;
+      appId?: null | string;
       javascriptKey?: string;
       masterKey?: string;
       plugins?: PluginSpecs[];
@@ -82,11 +85,16 @@ export const _useMoralisInit = ({
   );
 
   useEffect(() => {
+    //@ts-ignore
     if (isInitialized) {
       return;
     }
 
-    initialize({
+    if (!initializeOnMount && !shouldInitialize) {
+      return;
+    }
+
+    _initialize({
       appId,
       serverUrl,
       masterKey: dangerouslyUseOfMasterKey,
@@ -102,11 +110,18 @@ export const _useMoralisInit = ({
     jsKey,
     plugins,
     isInitialized,
+    initializeOnMount,
+    shouldInitialize,
   ]);
+
+  const initialize = useCallback(() => {
+    setShouldInitialize(true);
+  }, []);
 
   return {
     isInitialized,
     isInitializing,
+    initialize,
     Moralis: Moralis.current,
     environment,
   };

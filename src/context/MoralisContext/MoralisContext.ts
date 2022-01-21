@@ -20,6 +20,7 @@ export interface MoralisContextValue {
 
   isInitialized: boolean;
   isInitializing: boolean;
+  initialize: () => void;
 
   authenticate: (options?: AuthenticateOptions) => Promise<void>;
   logout: () => Promise<void>;

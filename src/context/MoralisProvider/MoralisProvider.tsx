@@ -17,10 +17,8 @@ interface MoralisProviderOptions {
   onAccountChanged?: OnAccountChanged;
 }
 
-export interface MoralisProviderProps {
+export interface MoralisProviderCommonProps {
   children: React.ReactNode;
-  appId: string;
-  serverUrl: string;
   jsKey?: string;
   dangerouslyUseOfMasterKey?: string;
   plugins?: PluginSpecs[];
@@ -28,6 +26,23 @@ export interface MoralisProviderProps {
   environment?: Environment;
   getMoralis?: GetMoralis;
 }
+export interface MoralisProviderInitializedProps
+  extends MoralisProviderCommonProps {
+  appId: string;
+  serverUrl: string;
+  initializeOnMount: true;
+}
+
+export interface MoralisProviderNonInitializedProps
+  extends MoralisProviderCommonProps {
+  appId?: null | string;
+  serverUrl?: null | string;
+  initializeOnMount: false;
+}
+
+type MoralisProviderProps =
+  | MoralisProviderNonInitializedProps
+  | MoralisProviderInitializedProps;
 
 export const MoralisProvider = ({
   children,
@@ -39,6 +54,7 @@ export const MoralisProvider = ({
   environment,
   getMoralis,
   options: { onAccountChanged } = {},
+  initializeOnMount = true,
 }: MoralisProviderProps) => {
   const moralisInit = _useMoralisInit({
     appId,
@@ -48,6 +64,7 @@ export const MoralisProvider = ({
     plugins,
     environment,
     getMoralis,
+    initializeOnMount,
   });
   const { _setIsWeb3Enabled, _setIsWeb3EnableLoading, ...moralisWeb3 } =
     _useMoralisWeb3(moralisInit.Moralis);
