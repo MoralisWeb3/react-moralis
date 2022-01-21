@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.4...v1.1.0) (2022-01-21)
+
+
+### Features
+
+* support for Moralis.SolanaAPI ([efd9d12](https://github.com/MoralisWeb3/react-moralis/commit/efd9d1218460ff81b67a661706c78bd234763a20))
+
 ## [1.0.4](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.3...v1.0.4) (2022-01-20)
 
 
