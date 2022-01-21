@@ -114,6 +114,8 @@ function App() {
     - [Trigger manually](#trigger-manually)
   - [`useMoralisWeb3Api()`](#usemoralisweb3api)
     - [Resolve data with `useMoralisWeb3ApiCall()`](#resolve-data-with-usemoralisweb3apicall)
+  - [`useMoralisSolanaApi()`](#usemoralissolanaapi)
+    - [Resolve data with `useMoralisSolanaApiCall()`](#resolve-data-with-usemoralissolanaapicall)
   - [`useNewMoralisObject()`](#usenewmoralisobject)
   - [`useWeb3ExecuteFunction()`](#useweb3executefunction)
   - [`useChain()`](#usechain)
@@ -739,6 +741,44 @@ For this you can use `useMoralisWeb3ApiCall()`:
 
   const { fetch, data, error, isLoading } = useMoralisWeb3ApiCall(Web3Api.native.getBlock, {
     block_number_or_hash: block,
+  });
+
+  return (
+    <div>
+      <button onClick={() => fetch()}>Refetch</button>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  )
+
+```
+
+## `useMoralisSolanaApi()`
+This hook will expose all the convenience functions of the `Moralis.SolanaAPI` in the sdk (ex. `SolanaApi.account.balance`). You can use this function in any way you want, for example:
+
+```jsx
+const SolanaApi = useMoralisSolanaApi()
+
+const fetchBalance = async() => {
+  const result = await SolanaApi.account.balance({
+    network: "mainnet",
+    address: "3yFwqXBfZY4jBVUafQ1YEXw189y2dN3V5KQq9uzBDy1E",
+  })
+  console.log(result)
+}
+```
+
+### Resolve data with `useMoralisSolanaApiCall()`
+
+You can also use a resolver, to resolve the asynchronous function. This works similar to useMoralisQuery or useMoralisCloudFunction. It will resolve the data/error for you and will re-trigger if dependencies change. 
+
+For this you can use `useMoralisSolanaApiCall()`:
+
+```jsx
+  const SolanaApi = useMoralisSolanaApi()
+
+  const { fetch, data, error, isLoading } = useMoralisSolanaApiCall(SolanaApi.account.balance, {
+    network: "mainnet",
+    address: "3yFwqXBfZY4jBVUafQ1YEXw189y2dN3V5KQq9uzBDy1E",
   });
 
   return (
