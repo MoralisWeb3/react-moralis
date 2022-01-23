@@ -1334,34 +1334,35 @@ You can use the `useWeb3Contract` hook to execute on-chain functions. You need t
 
 ```jsx
 const ShowUniswapObserveValues = () => {
-  const { data, error, runContractFunction, isFetching, isLoading } = useWeb3Contract({
-    abi: usdcEthPoolAbi,
-    contractAddress: usdcEthPoolAddress,
-    functionName: "observe",
-    params: {
-      secondsAgos: [0, 10],
-    },
-  });
+  const { data, error, runContractFunction, isFetching, isLoading } =
+    useWeb3Contract({
+      abi: usdcEthPoolAbi,
+      contractAddress: usdcEthPoolAddress,
+      functionName: "observe",
+      params: {
+        secondsAgos: [0, 10],
+      },
+    });
 
-  return (<div>
-    {error && <ErrorMessage error={error} />}
-    <button onClick={() => runContractFunction()} disabled={isFetching}>Fetch data</button>
-    {data && <pre>
-      {JSON.stringify(data),
-        null,
-        2,
-      )}
-    </pre>}
-  </div>)
-}
+  return (
+    <div>
+      {error && <ErrorMessage error={error} />}
+      <button onClick={() => runContractFunction()} disabled={isFetching}>
+        Fetch data
+      </button>
+      {data && <pre>{JSON.stringify(data)}</pre>}
+    </div>
+  );
+};
 ```
 
 *Example with executing by fetch:*
 
 ```jsx
 const ShowUniswapObserveValues = () => {
-  const { data, error, runContractFunction, isFetching, isLoading } = useWeb3Contract();
-  
+  const { data, error, runContractFunction, isFetching, isLoading } =
+    useWeb3Contract();
+
   const options = {
     abi: usdcEthPoolAbi,
     contractAddress: usdcEthPoolAddress,
@@ -1369,16 +1370,21 @@ const ShowUniswapObserveValues = () => {
     params: {
       secondsAgos: [0, 10],
     },
-  }
+  };
 
-  return (<div>
-    {error && <ErrorMessage error={error} />}
-    <button onClick={() => runContractFunction({ params: options })} disabled={isFetching}>Fetch data</button>
-    {data && <pre>
-      {JSON.stringify(data)}
-    </pre>}
-  </div>)
-}
+  return (
+    <div>
+      {error && <ErrorMessage error={error} />}
+      <button
+        onClick={() => runContractFunction({ params: options })}
+        disabled={isFetching}
+      >
+        Fetch data
+      </button>
+      {data && <pre>{JSON.stringify(data)}</pre>}
+    </div>
+  );
+};
 ```
 
 ### Dex Plugin Hooks
