@@ -1,3 +1,102 @@
+# [1.1.0](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.4...v1.1.0) (2022-01-21)
+
+
+### Features
+
+* support for Moralis.SolanaAPI ([efd9d12](https://github.com/MoralisWeb3/react-moralis/commit/efd9d1218460ff81b67a661706c78bd234763a20))
+
+## [1.0.4](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.3...v1.0.4) (2022-01-20)
+
+
+### Bug Fixes
+
+* support ethers web3 type ([#176](https://github.com/MoralisWeb3/react-moralis/issues/176)) ([5e5d09c](https://github.com/MoralisWeb3/react-moralis/commit/5e5d09c1fec2ec0287f0af6ae4ac918ba9e3cc04))
+
+## [1.0.3](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.2...v1.0.3) (2022-01-20)
+
+
+### Bug Fixes
+
+* typescript fixes support for Moralis v.1.0.6 ([#174](https://github.com/MoralisWeb3/react-moralis/issues/174)) ([9e3f574](https://github.com/MoralisWeb3/react-moralis/commit/9e3f574f4a15b27547089ba0de96aa7b74399890))
+
+## [1.0.2](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.1...v1.0.2) (2022-01-19)
+
+
+### Bug Fixes
+
+* **deps:** bump follow-redirects from 1.14.4 to 1.14.7 ([#150](https://github.com/MoralisWeb3/react-moralis/issues/150)) ([d1e1166](https://github.com/MoralisWeb3/react-moralis/commit/d1e116642fefe2283b12e8ea197c61af781b2d89))
+
+## [1.0.1](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.0...v1.0.1) (2022-01-19)
+
+
+### Bug Fixes
+
+* typings after ethers support ([989186a](https://github.com/MoralisWeb3/react-moralis/commit/989186a9d311edc9e20db40c53509a44fc7eee6f))
+
+# [1.0.0](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.11...v1.0.0) (2022-01-17)
+
+
+### Bug Fixes
+
+* remove unused web3Library ([e83c2fa](https://github.com/MoralisWeb3/react-moralis/commit/e83c2fa60199f60c667fa329257d116546f0dc90))
+* update provider on enableWeb3 ([76f3837](https://github.com/MoralisWeb3/react-moralis/commit/76f38371a9b53815a49e9433c4232135f4155fa4))
+
+
+* feat!: bump version ([ae8d86b](https://github.com/MoralisWeb3/react-moralis/commit/ae8d86be071a7536b909b1fe5a9bf263f6875467))
+* feat!: support for ethers refactor in moralis sdk ([32df645](https://github.com/MoralisWeb3/react-moralis/commit/32df64580bc93bd8a180fc44d45a3b7a9a0b78d4))
+
+
+### Features
+
+* add hooks for fiat plugin ([c1cfe24](https://github.com/MoralisWeb3/react-moralis/commit/c1cfe245a754c7c81b29d9302146174089a03d95))
+* add hooks for opensea plugin ([998589b](https://github.com/MoralisWeb3/react-moralis/commit/998589b691efbb44a301f28e1b5c608d4701e171))
+* add hooks for rarible plugin ([3d248ce](https://github.com/MoralisWeb3/react-moralis/commit/3d248ce14ae93c59114ba9f619c52e6b7f457811))
+* remove obsolete awaitReceipt ([e1f55b5](https://github.com/MoralisWeb3/react-moralis/commit/e1f55b519bd13c2f86a66496622b8242881e279a))
+
+
+### BREAKING CHANGES
+
+* Support for Moralis.Web3 refactor
+* changes to accommodate for the breaking changes in the SDK, where web3 has been replaced for ethers
+
+# [1.0.0-beta.3](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2022-01-14)
+
+
+### Bug Fixes
+
+* remove unused web3Library ([e83c2fa](https://github.com/MoralisWeb3/react-moralis/commit/e83c2fa60199f60c667fa329257d116546f0dc90))
+
+# [1.0.0-beta.2](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2022-01-14)
+
+
+### Bug Fixes
+
+* update provider on enableWeb3 ([76f3837](https://github.com/MoralisWeb3/react-moralis/commit/76f38371a9b53815a49e9433c4232135f4155fa4))
+
+
+### Features
+
+* remove obsolete awaitReceipt ([e1f55b5](https://github.com/MoralisWeb3/react-moralis/commit/e1f55b519bd13c2f86a66496622b8242881e279a))
+
+# [1.0.0-beta.1](https://github.com/MoralisWeb3/react-moralis/compare/v0.4.0-beta.1...v1.0.0-beta.1) (2022-01-05)
+
+
+* feat!: support for ethers refactor in moralis sdk ([32df645](https://github.com/MoralisWeb3/react-moralis/commit/32df64580bc93bd8a180fc44d45a3b7a9a0b78d4))
+
+
+### BREAKING CHANGES
+
+* changes to accommodate for the breaking changes in the SDK, where web3 has been replaced for ethers
+
+# [0.4.0-beta.1](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.11...v0.4.0-beta.1) (2021-12-22)
+
+
+### Features
+
+* add hooks for fiat plugin ([c1cfe24](https://github.com/MoralisWeb3/react-moralis/commit/c1cfe245a754c7c81b29d9302146174089a03d95))
+* add hooks for opensea plugin ([998589b](https://github.com/MoralisWeb3/react-moralis/commit/998589b691efbb44a301f28e1b5c608d4701e171))
+* add hooks for rarible plugin ([3d248ce](https://github.com/MoralisWeb3/react-moralis/commit/3d248ce14ae93c59114ba9f619c52e6b7f457811))
+
 ## [0.3.11](https://github.com/MoralisWeb3/react-moralis/compare/v0.3.10...v0.3.11) (2021-12-20)
 
 

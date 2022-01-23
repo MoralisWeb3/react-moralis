@@ -45,7 +45,7 @@ export const useWeb3Transfer = (
     };
 
     //@ts-ignore
-    return await Moralis.Web3.transfer(allParams);
+    return await Moralis.transfer(allParams);
   }, []);
 
   return _useResolveCall<Web3TransferResult, Web3TransferParameters>(

@@ -14,7 +14,7 @@ export type Web3ExecuteFunctionParameters = {
   abi?: object;
   functionName?: string;
   params?: Record<string, unknown>;
-  msgValue?: string;
+  msgValue?: number | string;
 };
 
 export interface Web3ExecuteFunctionFetchOptions {
@@ -39,7 +39,7 @@ export const useWeb3ExecuteFunction = (
       };
 
       //@ts-ignore
-      return await Moralis.Web3.executeFunction(allParams);
+      return await Moralis.executeFunction(allParams);
     },
     [],
   );

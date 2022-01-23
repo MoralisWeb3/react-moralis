@@ -42,14 +42,19 @@ export interface MoralisContextValue {
   isUserUpdating: boolean;
   refetchUserData: () => Promise<void>;
 
-  account: null | string;
-  chainId: null | string;
-
   enableWeb3: (options?: Web3EnableOptions) => void;
-  web3: MoralisType.Web3 | null;
+  deactivateWeb3: () => Promise<void>;
+  web3: MoralisType.MoralisWeb3Provider | null;
   isWeb3Enabled: boolean;
   web3EnableError: Error | null;
   isWeb3EnableLoading: boolean;
+
+  chainId: string | null;
+  account: string | null;
+  network: string | null;
+  connector: unknown | null;
+  connectorType: string | null;
+  provider: unknown | null;
 }
 
 export const MoralisContext = createContext<null | MoralisContextValue>(null);

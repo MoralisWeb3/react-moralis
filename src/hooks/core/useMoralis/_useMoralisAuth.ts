@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
 import { setMultipleDataToUser, SetUserData } from "./utils/setUserData";
-import { Web3Provider } from "./_useMoralisWeb3";
 import { AuthError } from "src";
 import MoralisType from "moralis";
 import { Environment } from "./_useMoralisInit";
@@ -53,7 +52,8 @@ export interface AuthenticateOptions {
   onComplete?: () => void;
   throwOnError?: boolean;
   type?: AuthType;
-  provider?: Web3Provider;
+  provider?: MoralisType.Web3ProviderType;
+  connector?: MoralisType.Connector;
   chainId?: number;
   signingMessage?: string;
 }
@@ -100,6 +100,8 @@ export interface UseMoralisAuthOptions {
   setUser?: (user: MoralisType.User | null) => void;
   Moralis: MoralisType;
   environment: Environment;
+  _setIsWeb3Enabled?: (value: boolean) => void;
+  _setIsWeb3EnableLoading?: (value: boolean) => void;
 }
 
 const defaultUseMoralisAuthOptions = (
@@ -116,7 +118,13 @@ const defaultUseMoralisAuthOptions = (
  * and its functions
  */
 export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
-  const { onAccountChanged, Moralis, environment } = {
+  const {
+    onAccountChanged,
+    Moralis,
+    environment,
+    _setIsWeb3Enabled,
+    _setIsWeb3EnableLoading,
+  } = {
     ...defaultUseMoralisAuthOptions(options.Moralis),
     ...options,
   };
@@ -127,7 +135,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
     useState(false);
 
   /**
-   * Authenticates the user by calling the Moralis.Web3.authenticate function
+   * Authenticates the user by calling the Moralis.authenticate function
    * The auth state will update upon successful/error
    * For direct feedback, a callback can be provided
    */
@@ -144,11 +152,18 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         error: null,
       });
 
+      if (_setIsWeb3EnableLoading) {
+        _setIsWeb3EnableLoading(true);
+      }
+
       try {
-        // @ts-ignore
+        // TODO: fix typechecking when passing ...rest
         const user = await Moralis.authenticate(rest);
 
         setUser(user);
+        if (_setIsWeb3Enabled) {
+          _setIsWeb3Enabled(true);
+        }
 
         setAuth({
           state: AuthenticationState.AUTHENTICATED,
@@ -160,6 +175,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         }
       } catch (error) {
         setAuth({ state: AuthenticationState.ERROR, error });
+        setUser(null);
         if (onError) {
           onError(error);
         }
@@ -167,12 +183,15 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
           throw error;
         }
       } finally {
+        if (_setIsWeb3EnableLoading) {
+          _setIsWeb3EnableLoading(false);
+        }
         if (onComplete) {
           onComplete();
         }
       }
     },
-    [],
+    [_setIsWeb3Enabled, _setIsWeb3EnableLoading],
   );
 
   /**

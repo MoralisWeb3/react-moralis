@@ -3,11 +3,19 @@ import { getChain } from "../../../functions/chains";
 import { useMoralis } from "../useMoralis";
 
 export const useChain = () => {
-  const { Moralis, chainId, account } = useMoralis();
+  const {
+    Moralis,
+    chainId,
+    account,
+    network,
+    provider,
+    connector,
+    connectorType,
+  } = useMoralis();
 
   const switchNetwork = async (providedChainId: string) => {
     try {
-      await Moralis.Web3.switchNetwork(providedChainId);
+      await Moralis.switchNetwork(providedChainId);
     } catch (error) {
       if (error.code === 4902) {
         const chainData = getChain(providedChainId);
@@ -20,13 +28,13 @@ export const useChain = () => {
         const { chainId, name, nativeCurrency, rpc, blockExplorerUrl } =
           chainData;
 
-        await Moralis.Web3.addNetwork(
+        await Moralis.addNetwork(
           chainId,
           name,
           nativeCurrency.name,
           nativeCurrency.symbol,
           rpc[0],
-          blockExplorerUrl ?? "",
+          blockExplorerUrl ?? null,
         );
       } else {
         throw error;
@@ -41,7 +49,16 @@ export const useChain = () => {
     return getChain(chainId);
   }, [chainId]);
 
-  return { switchNetwork, chainId, chain, account };
+  return {
+    switchNetwork,
+    chainId,
+    chain,
+    account,
+    network,
+    provider,
+    connector,
+    connectorType,
+  };
 };
 
 export default useChain;

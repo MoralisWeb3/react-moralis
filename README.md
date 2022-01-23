@@ -9,7 +9,6 @@
 ![npm](https://img.shields.io/npm/v/react-moralis)
 ![node-current](https://img.shields.io/node/v/react-moralis)
 ![GitHub last commit](https://img.shields.io/github/last-commit/MoralisWeb3/react-moralis)
-![David](https://img.shields.io/david/MoralisWeb3/react-moralis)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-moralis)
 ![npm type definitions](https://img.shields.io/npm/types/react-moralis)
 
@@ -115,10 +114,13 @@ function App() {
     - [Trigger manually](#trigger-manually)
   - [`useMoralisWeb3Api()`](#usemoralisweb3api)
     - [Resolve data with `useMoralisWeb3ApiCall()`](#resolve-data-with-usemoralisweb3apicall)
+  - [`useMoralisSolanaApi()`](#usemoralissolanaapi)
+    - [Resolve data with `useMoralisSolanaApiCall()`](#resolve-data-with-usemoralissolanaapicall)
   - [`useNewMoralisObject()`](#usenewmoralisobject)
   - [`useWeb3ExecuteFunction()`](#useweb3executefunction)
   - [`useChain()`](#usechain)
   - [`useWeb3Transfer()`](#useweb3transfer)
+  - [`useApiContract()`](#useapicontract)
   - [`useERC20Balances()`](#useerc20balances)
   - [`useERC20Transfers()`](#useerc20transfers)
   - [`useNativeBalance()`](#usenativebalance)
@@ -750,6 +752,44 @@ For this you can use `useMoralisWeb3ApiCall()`:
 
 ```
 
+## `useMoralisSolanaApi()`
+This hook will expose all the convenience functions of the `Moralis.SolanaAPI` in the sdk (ex. `SolanaApi.account.balance`). You can use this function in any way you want, for example:
+
+```jsx
+const SolanaApi = useMoralisSolanaApi()
+
+const fetchBalance = async() => {
+  const result = await SolanaApi.account.balance({
+    network: "mainnet",
+    address: "3yFwqXBfZY4jBVUafQ1YEXw189y2dN3V5KQq9uzBDy1E",
+  })
+  console.log(result)
+}
+```
+
+### Resolve data with `useMoralisSolanaApiCall()`
+
+You can also use a resolver, to resolve the asynchronous function. This works similar to useMoralisQuery or useMoralisCloudFunction. It will resolve the data/error for you and will re-trigger if dependencies change. 
+
+For this you can use `useMoralisSolanaApiCall()`:
+
+```jsx
+  const SolanaApi = useMoralisSolanaApi()
+
+  const { fetch, data, error, isLoading } = useMoralisSolanaApiCall(SolanaApi.account.balance, {
+    network: "mainnet",
+    address: "3yFwqXBfZY4jBVUafQ1YEXw189y2dN3V5KQq9uzBDy1E",
+  });
+
+  return (
+    <div>
+      <button onClick={() => fetch()}>Refetch</button>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  )
+
+```
+
 ## `useNewMoralisObject()`
 This is a wrapper around the save method for a `Moralis.Object`. It creates a new object, and resolves the data, error and loading state, similar to the other hooks.
 
@@ -882,6 +922,54 @@ function Chains() {
 }
 ```
 
+### `useApiContract()`
+
+Execute a on-chain contract's function. 
+It calls Moralis API and doesn't require web3 to be enabled.
+
+**Options**
+- `address` : The contract address (i.e. 0x1a2b3x...).
+- `functionName` : The name of the contract's function that you want to call.
+- `abi` : The contract's abi. 
+- `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value: current chain.
+- `params` (optional): Any parameter you want to send with the function.
+
+**Example**
+```jsx
+import { useApiContract } from "react-moralis";
+
+const {
+    runContractFunction,
+    data,
+    error,
+    isLoading,
+    isFetching,
+  } = useApiContract({
+    address: ensRegistryAddress,
+    functionName: "resolver",
+    abi: ensRegistryAbi,
+    params: { node: hashedDomain },
+  });
+
+  return (<div>
+    {error && <ErrorMessage error={error} />}
+    <button onClick={() => runContractFunction()} disabled={isFetching}>Run contract function</button>
+    {data && <pre>
+      {JSON.stringify(data),
+        null,
+        2,
+      )}
+    </pre>}
+  </div>)
+```
+
+**Example return** (Object)
+```json
+{
+  "result": "0x4976fb03C32e5B8cfe2b6cCB31c09Ba78EBaBa41"
+}
+```
+
 ### `useERC20Balances()` 
 
 Gets all token balances of a current user or specified address. 
@@ -996,7 +1084,7 @@ Gets native balance for a current user or specified address.
 import { useNativeBalance } from "react-moralis";
 
 function NativeBalance() {
-  const { getBalance, data: balance, nativeToken, error, isLoading } = useNativeBalance({ chain : "ropsten" });
+  const { getBalances, data: balance, nativeToken, error, isLoading } = useNativeBalance({ chain : "ropsten" });
 
   return <div>{balance.formatted}</div>;
 }
