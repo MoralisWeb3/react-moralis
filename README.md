@@ -128,6 +128,7 @@ function App() {
   - [`useNFTBalances()`](#usenftbalances)
   - [`useNFTTransfers()`](#usenfttransfers)
   - [`useTokenPrice()`](#usetokenprice)
+  - [`useWeb3Contract()`](#useweb3contract)
   - [Dex Plugin Hooks](#dex-plugin-hooks)
     - [`useOneInchQuote()`](#useoneinchquote)
     - [`useOneInchSwap()`](#useoneinchswap)
@@ -1318,6 +1319,68 @@ const TokenPrice = () => {
 }
 
 ```
+
+### `useWeb3Contract()` 
+
+You can use the `useWeb3Contract` hook to execute on-chain functions. You need to provide the correct `abi` of the contract, the corresponding `contractAddress`, the `functionName` that you would like to execute, and any parameters (`params`) thet you need to send with the function.
+
+**Options**:
+- `address` : The contract address (i.e. 0x1a2b3x...).
+- `functionName` : The name of the contract's function that you want to call.
+- `abi` : The contract's abi. 
+- `params` (optional): Any parameter you want to send with the function.
+
+*Example:*
+
+```jsx
+const ShowUniswapObserveValues = () => {
+  const { data, error, runContractFunction, isFetching, isLoading } = useWeb3Contract({
+    abi: usdcEthPoolAbi,
+    contractAddress: usdcEthPoolAddress,
+    functionName: "observe",
+    params: {
+      secondsAgos: [0, 10],
+    },
+  });
+
+  return (<div>
+    {error && <ErrorMessage error={error} />}
+    <button onClick={() => runContractFunction()} disabled={isFetching}>Fetch data</button>
+    {data && <pre>
+      {JSON.stringify(data),
+        null,
+        2,
+      )}
+    </pre>}
+  </div>)
+}
+```
+
+*Example with executing by fetch:*
+
+```jsx
+const ShowUniswapObserveValues = () => {
+  const { data, error, runContractFunction, isFetching, isLoading } = useWeb3Contract();
+  
+  const options = {
+    abi: usdcEthPoolAbi,
+    contractAddress: usdcEthPoolAddress,
+    functionName: "observe",
+    params: {
+      secondsAgos: [0, 10],
+    },
+  }
+
+  return (<div>
+    {error && <ErrorMessage error={error} />}
+    <button onClick={() => runContractFunction({ params: options })} disabled={isFetching}>Fetch data</button>
+    {data && <pre>
+      {JSON.stringify(data)}
+    </pre>}
+  </div>)
+}
+```
+
 ### Dex Plugin Hooks
 
 ### `useOneInchQuote()` 
