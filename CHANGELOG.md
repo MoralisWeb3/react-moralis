@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/MoralisWeb3/react-moralis/compare/v1.1.0...v1.1.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* update web3 on chain change ([#181](https://github.com/MoralisWeb3/react-moralis/issues/181)) ([f354c05](https://github.com/MoralisWeb3/react-moralis/commit/f354c05aebb72c72b92a1c067aaa01bcd7969477))
+
 # [1.1.0](https://github.com/MoralisWeb3/react-moralis/compare/v1.0.4...v1.1.0) (2022-01-21)
 
 
