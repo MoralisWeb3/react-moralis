@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MoralisContext } from "../MoralisContext";
 import {
   OnAccountChanged,
@@ -46,16 +46,19 @@ type MoralisProviderProps =
 
 export const MoralisProvider = ({
   children,
-  appId,
+  appId: _appId,
+  serverUrl: _serverUrl,
   jsKey,
   dangerouslyUseOfMasterKey,
-  serverUrl,
   plugins,
   environment,
   getMoralis,
   options: { onAccountChanged } = {},
   initializeOnMount = true,
 }: MoralisProviderProps) => {
+  const [appId, setAppId] = useState(_appId ?? null);
+  const [serverUrl, setServerUrl] = useState(_serverUrl ?? null);
+
   const moralisInit = _useMoralisInit({
     appId,
     serverUrl,
@@ -65,6 +68,8 @@ export const MoralisProvider = ({
     environment,
     getMoralis,
     initializeOnMount,
+    setAppId,
+    setServerUrl,
   });
   const { _setIsWeb3Enabled, _setIsWeb3EnableLoading, ...moralisWeb3 } =
     _useMoralisWeb3(moralisInit.Moralis);
@@ -85,6 +90,8 @@ export const MoralisProvider = ({
         ...moralisAuth,
         ...moralisUser,
         ...moralisWeb3,
+        appId,
+        serverUrl,
       }}
     >
       {children}

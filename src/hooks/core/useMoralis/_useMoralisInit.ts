@@ -25,6 +25,8 @@ export const _useMoralisInit = ({
   environment = "browser",
   getMoralis = () => MoralisImport,
   initializeOnMount,
+  setAppId,
+  setServerUrl,
 }: {
   appId?: string | null;
   serverUrl?: string | null;
@@ -34,6 +36,8 @@ export const _useMoralisInit = ({
   environment?: "browser" | "native";
   getMoralis?: GetMoralis;
   initializeOnMount: boolean;
+  setAppId: (appId: string) => void;
+  setServerUrl: (serverUrl: string) => void;
 }) => {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isInitializing, setIsInitializing] = useState(false);
@@ -85,7 +89,6 @@ export const _useMoralisInit = ({
   );
 
   useEffect(() => {
-    //@ts-ignore
     if (isInitialized) {
       return;
     }
@@ -114,9 +117,35 @@ export const _useMoralisInit = ({
     shouldInitialize,
   ]);
 
-  const initialize = useCallback(() => {
-    setShouldInitialize(true);
-  }, []);
+  const initialize = useCallback(
+    ({
+      appId: newAppId,
+      serverUrl: newServerUrl,
+    }: {
+      appId?: string;
+      serverUrl?: string;
+    } = {}) => {
+      if (newAppId) {
+        setAppId(newAppId);
+      }
+      if (newServerUrl) {
+        setServerUrl(newServerUrl);
+      }
+
+      if (!newAppId && !appId) {
+        throw new Error(
+          "No appId is provided. Please provide an appId to the Moralis.Provider or as argument in initialize()",
+        );
+      }
+      if (!newServerUrl && !serverUrl) {
+        throw new Error(
+          "No serverUrl is provided. Please provide an serverUrl to the Moralis.Provider or as argument in initialize()",
+        );
+      }
+      setShouldInitialize(true);
+    },
+    [appId, serverUrl],
+  );
 
   return {
     isInitialized,

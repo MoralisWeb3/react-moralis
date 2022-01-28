@@ -18,9 +18,12 @@ export interface MoralisContextValue {
   Moralis: MoralisType;
   environment: Environment;
 
+  appId: string | null;
+  serverUrl: string | null;
+
   isInitialized: boolean;
   isInitializing: boolean;
-  initialize: () => void;
+  initialize: (options?: { serverUrl?: string; appId?: string }) => void;
 
   authenticate: (options?: AuthenticateOptions) => Promise<void>;
   logout: () => Promise<void>;
