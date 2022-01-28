@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/MoralisWeb3/react-moralis/compare/v1.1.1...v1.2.0) (2022-01-28)
+
+
+### Features
+
+* optionally initialize Moralis on mount ([94d32c0](https://github.com/MoralisWeb3/react-moralis/commit/94d32c0530c2f4f5c3d27156aa1d538e63a184f2))
+
 ## [1.1.1](https://github.com/MoralisWeb3/react-moralis/compare/v1.1.0...v1.1.1) (2022-01-28)
 
 
