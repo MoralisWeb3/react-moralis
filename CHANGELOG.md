@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/MoralisWeb3/react-moralis/compare/v1.2.0...v1.2.1) (2022-01-29)
+
+
+### Bug Fixes
+
+* **deps:** bump node-fetch from 2.6.6 to 2.6.7 ([#182](https://github.com/MoralisWeb3/react-moralis/issues/182)) ([b0280a6](https://github.com/MoralisWeb3/react-moralis/commit/b0280a66251f53845946782407a6ba87a6d98cb2))
+
 # [1.2.0](https://github.com/MoralisWeb3/react-moralis/compare/v1.1.1...v1.2.0) (2022-01-28)
 
 
