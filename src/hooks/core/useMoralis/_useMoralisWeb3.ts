@@ -75,7 +75,12 @@ export const _useMoralisWeb3 = (
       setProvider(null);
     };
 
-    const unsubChainChanged = Moralis.onChainChanged(setChainId);
+    const handleChainChanged = () => {
+      setChainId(chainId);
+      setWeb3(Moralis.web3);
+    };
+
+    const unsubChainChanged = Moralis.onChainChanged(handleChainChanged);
     const unsubAccountChanged = Moralis.onAccountChanged(setAccount);
     const unsubEnable = Moralis.onWeb3Enabled(handleConnect);
     const unsubDeactivate = Moralis.onWeb3Deactivated(handleDisconnect);

@@ -88,6 +88,7 @@ function App() {
 - [🚀 Usage](#-usage)
   - [Wrap your app in a `MoralisProvider`](#wrap-your-app-in-a-moralisprovider)
   - [`useMoralis()`](#usemoralis)
+    - [Initialize](#initialize)
     - [Authenticate](#authenticate)
     - [Authentication state](#authentication-state)
     - [`authenticate()` (web3)](#authenticate-web3)
@@ -118,17 +119,18 @@ function App() {
     - [Resolve data with `useMoralisSolanaApiCall()`](#resolve-data-with-usemoralissolanaapicall)
   - [`useNewMoralisObject()`](#usenewmoralisobject)
   - [`useWeb3ExecuteFunction()`](#useweb3executefunction)
-  - [`useChain()`](#usechain)
   - [`useWeb3Transfer()`](#useweb3transfer)
-  - [`useApiContract()`](#useapicontract)
-  - [`useERC20Balances()`](#useerc20balances)
-  - [`useERC20Transfers()`](#useerc20transfers)
-  - [`useNativeBalance()`](#usenativebalance)
-  - [`useNativeTransactions()`](#usenativetransactions)
-  - [`useNFTBalances()`](#usenftbalances)
-  - [`useNFTTransfers()`](#usenfttransfers)
-  - [`useTokenPrice()`](#usetokenprice)
-  - [`useWeb3Contract()`](#useweb3contract)
+  - [`useChain()`](#usechain)
+  - [Web3-api wrappers](#web3-api-wrappers)
+    - [`useApiContract()`](#useapicontract)
+    - [`useERC20Balances()`](#useerc20balances)
+    - [`useERC20Transfers()`](#useerc20transfers)
+    - [`useNativeBalance()`](#usenativebalance)
+    - [`useNativeTransactions()`](#usenativetransactions)
+    - [`useNFTBalances()`](#usenftbalances)
+    - [`useNFTTransfers()`](#usenfttransfers)
+    - [`useTokenPrice()`](#usetokenprice)
+    - [`useWeb3Contract()`](#useweb3contract)
   - [Dex Plugin Hooks](#dex-plugin-hooks)
     - [`useOneInchQuote()`](#useoneinchquote)
     - [`useOneInchSwap()`](#useoneinchswap)
@@ -139,9 +141,13 @@ function App() {
   - [Components](#components)
 - [Handling responses](#handling-responses)
 - [Webpack v5 support](#webpack-v5-support)
+    - [configuring Webpack v5](#configuring-webpack-v5)
+    - [create-react-app](#create-react-app)
 - [😖 Error handling](#-error-handling)
 - [⌨️ Typescript](#️-typescript)
+- [⚛️ React native](#️-react-native)
 - [🧑‍💻 Development](#-development)
+  - [Examples](#examples)
 
 # 🚀 Usage
 
@@ -168,6 +174,83 @@ Now you can use the hooks below in all App.tsx and all of its children:
 - `useMoralisFile` for easy file uploads
 
 ## `useMoralis()`
+
+### Initialize
+By wrapping your app in a `<MoralisProvider>`, it will automatically initialize with your provided appId and serverUrl:
+```js
+  <MoralisProvider 
+    appId="xxxxxxxx"
+    serverUrl="xxxxxxxx"
+  >
+    <App />
+  </MoralisProvider>
+```
+
+If you want do not want to initialize automatically, but rather do it manually, you can provide the `initializeOnMount=false` prop:
+
+```js
+<MoralisProvider
+  initializeOnMount={false}
+>
+  <App />
+</MoralisProvider>
+```
+
+and then when you're ready to initialize, call `initialize`:
+```js
+const { initialize, isInitialized } = useMoralis()
+
+<Button
+  disabled={isInitialized}
+  onClick={()=>{
+    initialize({
+      appId: 'xxx',
+      serverUrl: 'xxx'
+    })
+  }}
+>
+  Initialize
+</Button>
+```
+
+Or alternatively, you can set the `appId` and `serverUrl` on the `MoralisProvider` and call `initialize` without any params:
+
+
+```js
+<MoralisProvider
+  initializeOnMount={false}
+  appId="xxx"
+  serverUrl="xxx"
+>
+  <App />
+</MoralisProvider>
+```
+```js
+const { initialize, isInitialized } = useMoralis()
+
+<Button
+  disabled={isInitialized}
+  onClick={()=>{initialize()}}
+>
+  Initialize
+</Button>
+```
+
+and then when you're ready to initialize, call `initialize`:
+```js
+const { initialize, isInitialized } = useMoralis()
+
+<Button onClick={()=>{
+  initialize({
+    appId: 'xxx',
+    serverUrl: 'xxx'
+  })
+}}>
+  Initialize
+</Button>
+```
+
+If you do not specify `initializeOnMount={false}`, or set `initializeOnMount={true}`, then you **must** specify the appId and serverUrl directly on `<MoralisProvider>` when the app renders.
 
 ### Authenticate
 
@@ -904,7 +987,7 @@ const TransferWeth = () => {
 }
 ```
 
-### `useChain()` 
+## `useChain()` 
 
 Hook for fast network switching or getting info about current network. To change the current network, set the target chainId to `switchNetwork` function. If the user does not have the target network in the wallet, it will automatically ask permission to add it to the wallet. 
 
@@ -922,6 +1005,8 @@ function Chains() {
   );
 }
 ```
+
+## Web3-api wrappers
 
 ### `useApiContract()`
 
@@ -1387,7 +1472,7 @@ const ShowUniswapObserveValues = () => {
 };
 ```
 
-### Dex Plugin Hooks
+## Dex Plugin Hooks
 
 ### `useOneInchQuote()` 
 
