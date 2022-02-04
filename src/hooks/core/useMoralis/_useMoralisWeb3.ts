@@ -75,7 +75,7 @@ export const _useMoralisWeb3 = (
       setProvider(null);
     };
 
-    const handleChainChanged = () => {
+    const handleChainChanged = (chainId: string | null) => {
       setChainId(chainId);
       setWeb3(Moralis.web3);
     };
