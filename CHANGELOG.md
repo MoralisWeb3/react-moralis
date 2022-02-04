@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/MoralisWeb3/react-moralis/compare/v1.2.1...v1.2.2) (2022-02-04)
+
+
+### Bug Fixes
+
+* setting chainId onChanChanged ([#189](https://github.com/MoralisWeb3/react-moralis/issues/189)) ([825f7ae](https://github.com/MoralisWeb3/react-moralis/commit/825f7ae0a4dc6c0953dcdb1763c841975ed02ba9))
+
 ## [1.2.1](https://github.com/MoralisWeb3/react-moralis/compare/v1.2.0...v1.2.1) (2022-01-29)
 
 
