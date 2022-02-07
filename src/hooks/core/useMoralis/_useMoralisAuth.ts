@@ -56,6 +56,7 @@ export interface AuthenticateOptions {
   connector?: MoralisType.Connector;
   chainId?: number;
   signingMessage?: string;
+  anyNetwork?: boolean;
 }
 
 export interface SignupOptions {

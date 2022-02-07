@@ -9,6 +9,7 @@ export interface Web3EnableOptions {
   provider?: MoralisType.Web3ProviderType;
   connector?: MoralisType.Connector;
   chainId?: number;
+  anyNetwork?: boolean;
 }
 
 /**
