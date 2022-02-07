@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/MoralisWeb3/react-moralis/compare/v1.2.2...v1.2.3) (2022-02-07)
+
+
+### Bug Fixes
+
+* optional initializeOnMount type ([6c5e4f0](https://github.com/MoralisWeb3/react-moralis/commit/6c5e4f0572973a9637f6ea69ba26ca4c4e92776b))
+
 ## [1.2.2](https://github.com/MoralisWeb3/react-moralis/compare/v1.2.1...v1.2.2) (2022-02-04)
 
 
