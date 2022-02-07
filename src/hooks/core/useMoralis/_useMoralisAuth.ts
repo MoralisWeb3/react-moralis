@@ -44,7 +44,7 @@ const initialAuth: Authentication = {
   error: null,
 };
 
-export type AuthType = "dot" | "polkadot" | "kusama" | "erd" | "elrond";
+export type AuthType = "dot" | "polkadot" | "kusama" | "erd" | "elrond" | "sol";
 
 export interface AuthenticateOptions {
   onError?: (error: Error) => void;
