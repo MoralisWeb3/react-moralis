@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/MoralisWeb3/react-moralis/compare/v1.2.3...v1.2.4) (2022-02-07)
+
+
+### Bug Fixes
+
+* types for anyNetwork in enableWeb3 ([#192](https://github.com/MoralisWeb3/react-moralis/issues/192)) ([b053018](https://github.com/MoralisWeb3/react-moralis/commit/b053018b38d5fa1177ceaa2555e4c179838e0f37))
+
 ## [1.2.3](https://github.com/MoralisWeb3/react-moralis/compare/v1.2.2...v1.2.3) (2022-02-07)
 
 
