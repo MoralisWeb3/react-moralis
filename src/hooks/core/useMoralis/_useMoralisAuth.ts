@@ -44,14 +44,12 @@ const initialAuth: Authentication = {
   error: null,
 };
 
-export type AuthType = "dot" | "polkadot" | "kusama" | "erd" | "elrond";
-
 export interface AuthenticateOptions {
   onError?: (error: Error) => void;
   onSuccess?: (user: MoralisType.User) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
-  type?: AuthType;
+  type?: MoralisType.AuthenticationType;
   provider?: MoralisType.Web3ProviderType;
   connector?: MoralisType.Connector;
   chainId?: number;
