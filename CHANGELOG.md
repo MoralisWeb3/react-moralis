@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/MoralisWeb3/react-moralis/compare/v1.2.4...v1.2.5) (2022-02-07)
+
+
+### Bug Fixes
+
+* add "sol" to AuthType (Typescript) ([#194](https://github.com/MoralisWeb3/react-moralis/issues/194)) ([21670cb](https://github.com/MoralisWeb3/react-moralis/commit/21670cb97c8b0ab208106339be8eda9c1a531b26))
+
 ## [1.2.4](https://github.com/MoralisWeb3/react-moralis/compare/v1.2.3...v1.2.4) (2022-02-07)
 
 
