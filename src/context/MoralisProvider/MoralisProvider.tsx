@@ -30,7 +30,7 @@ export interface MoralisProviderInitializedProps
   extends MoralisProviderCommonProps {
   appId: string;
   serverUrl: string;
-  initializeOnMount: true;
+  initializeOnMount?: true;
 }
 
 export interface MoralisProviderNonInitializedProps
