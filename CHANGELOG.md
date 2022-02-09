@@ -1,3 +1,16 @@
+# [1.3.0](https://github.com/MoralisWeb3/react-moralis/compare/v1.2.5...v1.3.0) (2022-02-09)
+
+
+### Bug Fixes
+
+* import of AuthError from src ([#199](https://github.com/MoralisWeb3/react-moralis/issues/199)) ([f82057a](https://github.com/MoralisWeb3/react-moralis/commit/f82057ae682e0b0144e01b49201b107bb59a506d))
+
+
+### Features
+
+* resolve ens ([#197](https://github.com/MoralisWeb3/react-moralis/issues/197)) ([0c0ebd4](https://github.com/MoralisWeb3/react-moralis/commit/0c0ebd48c8ed05fe8fc7e8d6d5bb06a88c122a9d))
+* return results on async requests ([#198](https://github.com/MoralisWeb3/react-moralis/issues/198)) ([ef53c48](https://github.com/MoralisWeb3/react-moralis/commit/ef53c48d8b8af2c4f6ea7317c3006b0701ef4527))
+
 ## [1.2.5](https://github.com/MoralisWeb3/react-moralis/compare/v1.2.4...v1.2.5) (2022-02-07)
 
 
