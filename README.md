@@ -138,6 +138,10 @@ function App() {
   - [`Web3`](#web3)
     - [Enable web3 via metamask](#enable-web3-via-metamask)
     - [Enable web3 via Walletconnect](#enable-web3-via-walletconnect)
+  - [Utils](#utils)
+    - [Resolve/Lookup ens names](#resolvelookup-ens-names)
+      - [`useEnsName`](#useensname)
+      - [`useEnsAddress`](#useensaddress)
   - [Components](#components)
 - [Handling responses](#handling-responses)
 - [Webpack v5 support](#webpack-v5-support)
@@ -1594,6 +1598,35 @@ const EnableWeb3 = ({user, score}) => {
   </div>
 }
 ```
+
+## Utils
+
+### Resolve/Lookup ens names
+If you want to resolve/lookup ENS names, then you can use `useEnsName` or `useEnsAddress`.
+
+#### `useEnsName`
+Resolve the ENS name and lookup the address, avatar, email and url details (if they are set)
+
+*example:*
+```javascript
+  const {
+    address,
+    avatar,
+    email,
+    url,
+    isLoading,
+    error
+  } = useEnsName("ricmoo.eth");
+
+```
+
+#### `useEnsAddress`
+Lookup if an ENS name is registered for the address
+*example:*
+```javascript
+  const { name, isLoading, error } = useEnsAddress("0x5555763613a12D8F3e73be831DFf8598089d3dCa");
+```
+
 
 ## Components
 If you want to support Moralis, you can use the `ByMoralis` component, to render our logo 🙏:
