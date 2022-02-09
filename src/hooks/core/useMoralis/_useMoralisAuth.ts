@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { setMultipleDataToUser, SetUserData } from "./utils/setUserData";
-import { AuthError } from "src";
+import { AuthError } from "../../../context/MoralisContext/MoralisContext";
 import MoralisType from "moralis";
 import { Environment } from "./_useMoralisInit";
 
