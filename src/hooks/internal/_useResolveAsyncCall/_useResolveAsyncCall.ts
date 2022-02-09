@@ -1,5 +1,5 @@
 import isDeepEqual from "fast-deep-equal/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useMoralis } from "../../../hooks/core/useMoralis";
 import { useImmer } from "use-immer";
 
@@ -93,11 +93,19 @@ export const _useResolveCall = <Result, Params extends ResolveCallParams>(
     },
     [call, paramsRef.current, validate],
   );
+  const isEmpty = useMemo(() => {
+    if (data == null) {
+      return true;
+    }
+    if (Array.isArray(data) && data.length === 0) {
+      return true;
+    }
+    return false;
+  }, [data]);
 
-  const isLoading =
-    isFetching &&
-    data == null &&
-    (Array.isArray(data) ? data.length === 0 : true);
+  const isLoading = useMemo(() => {
+    return isFetching && isEmpty;
+  }, [isEmpty, isFetching]);
 
   /**
    * Automatically fetch the call function
