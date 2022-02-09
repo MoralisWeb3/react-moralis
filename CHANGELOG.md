@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/MoralisWeb3/react-moralis/compare/v1.3.0...v1.3.1) (2022-02-09)
+
+
+### Bug Fixes
+
+* isLoading check for array responses ([#200](https://github.com/MoralisWeb3/react-moralis/issues/200)) ([b0d8e7c](https://github.com/MoralisWeb3/react-moralis/commit/b0d8e7c73f3c19ebf47bf287c5c8851c8b7ae9ff))
+
 # [1.3.0](https://github.com/MoralisWeb3/react-moralis/compare/v1.2.5...v1.3.0) (2022-02-09)
 
 
