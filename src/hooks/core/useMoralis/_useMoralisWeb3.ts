@@ -12,13 +12,17 @@ export interface Web3EnableOptions {
   anyNetwork?: boolean;
 }
 
+type EnableWeb3 = (
+  options?: Web3EnableOptions | undefined,
+) => Promise<MoralisType.Web3Provider | undefined>;
+
 /**
  * Handles enabling of web3 and providing it, as soon as the user is authenticated
  */
 export const _useMoralisWeb3 = (
   Moralis: MoralisType,
 ): {
-  enableWeb3: (options?: Web3EnableOptions) => Promise<void>;
+  enableWeb3: EnableWeb3;
   web3: null | MoralisType.MoralisWeb3Provider;
   isWeb3Enabled: boolean;
   web3EnableError: Error | null;
@@ -99,7 +103,7 @@ export const _useMoralisWeb3 = (
   /**
    * Enable web3 with the browsers web3Provider (only available when a user has been authenticated)
    */
-  const enableWeb3 = useCallback(
+  const enableWeb3 = useCallback<EnableWeb3>(
     async ({
       throwOnError,
       onComplete,
@@ -113,13 +117,16 @@ export const _useMoralisWeb3 = (
       try {
         // TODO: fix typechecking when passing ...rest
         // @ts-ignore
-        const currentWeb3 = await Moralis.enableWeb3(rest);
+        const currentWeb3: MoralisType.Web3Provider = await Moralis.enableWeb3(
+          rest,
+        );
 
         _setIsWeb3Enabled(true);
 
         if (onSuccess) {
           onSuccess(currentWeb3);
         }
+        return currentWeb3;
       } catch (error) {
         setEnableWeb3Error(error);
         if (throwOnError) {

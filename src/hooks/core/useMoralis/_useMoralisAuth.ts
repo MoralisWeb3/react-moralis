@@ -82,7 +82,7 @@ export type Login = (
   username: string,
   password: string,
   options?: LoginOptions,
-) => Promise<void>;
+) => Promise<MoralisType.User<MoralisType.Attributes> | undefined>;
 
 export type Signup = (
   username: string,
@@ -90,7 +90,7 @@ export type Signup = (
   email?: string,
   otherFields?: SetUserData,
   options?: SignupOptions,
-) => Promise<void>;
+) => Promise<MoralisType.User<MoralisType.Attributes> | undefined>;
 
 export type OnAccountChanged = (account: string) => void;
 
@@ -172,6 +172,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         if (onSuccess) {
           onSuccess(user);
         }
+        return user;
       } catch (error) {
         setAuth({ state: AuthenticationState.ERROR, error });
         setUser(null);
@@ -231,6 +232,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         if (onSuccess) {
           onSuccess(user);
         }
+        return user;
       } catch (error) {
         setAuth({ state: AuthenticationState.ERROR, error });
         if (throwOnError) {
@@ -274,6 +276,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         if (onSuccess) {
           onSuccess(user);
         }
+        return user;
       } catch (error) {
         setAuth({ state: AuthenticationState.ERROR, error });
         if (throwOnError) {

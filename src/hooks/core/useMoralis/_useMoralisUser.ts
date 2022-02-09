@@ -63,6 +63,7 @@ export const _useMoralisUser = (Moralis: MoralisType) => {
         if (onSuccess) {
           onSuccess(user);
         }
+        return user;
       } catch (error) {
         if (userHasLocallyUpdated) {
           user.revert();
@@ -116,6 +117,7 @@ export const _useMoralisUser = (Moralis: MoralisType) => {
         if (onSuccess) {
           onSuccess(newUserData);
         }
+        return newUserData;
       } catch (error) {
         setError(error);
         if (throwOnError) {
