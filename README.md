@@ -1768,4 +1768,6 @@ Please follow the code guidelines before submitting a PR.
 
 ## Examples
 
-Examples can be found in https://github.com/MoralisWeb3/demo-apps/tree/main/react-moralis-examples
+React Boilerplate https://github.com/ethereum-boilerplate/ethereum-boilerplate
+
+React Native Boilerplate https://github.com/ethereum-boilerplate/ethereum-react-native-boilerplate
