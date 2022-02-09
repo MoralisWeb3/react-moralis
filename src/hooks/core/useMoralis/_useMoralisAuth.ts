@@ -82,7 +82,7 @@ export type Login = (
   username: string,
   password: string,
   options?: LoginOptions,
-) => Promise<void>;
+) => Promise<MoralisType.User<MoralisType.Attributes> | undefined>;
 
 export type Signup = (
   username: string,
@@ -90,7 +90,7 @@ export type Signup = (
   email?: string,
   otherFields?: SetUserData,
   options?: SignupOptions,
-) => Promise<void>;
+) => Promise<MoralisType.User<MoralisType.Attributes> | undefined>;
 
 export type OnAccountChanged = (account: string) => void;
 

@@ -25,7 +25,9 @@ export interface MoralisContextValue {
   isInitializing: boolean;
   initialize: (options?: { serverUrl?: string; appId?: string }) => void;
 
-  authenticate: (options?: AuthenticateOptions) => Promise<void>;
+  authenticate: (
+    options?: AuthenticateOptions,
+  ) => Promise<MoralisType.User | undefined>;
   logout: () => Promise<void>;
   signup: Signup;
   login: Login;
@@ -39,14 +41,16 @@ export interface MoralisContextValue {
   isLoggingOut: boolean;
   isAuthUndefined: boolean;
 
-  setUserData: (data: SetUserData) => Promise<void>;
+  setUserData: (data: SetUserData) => Promise<MoralisType.User | undefined>;
   user: MoralisType.User | null;
   _setUser: (user: MoralisType.User) => void;
   userError: null | Error;
   isUserUpdating: boolean;
-  refetchUserData: () => Promise<void>;
+  refetchUserData: () => Promise<MoralisType.User | undefined>;
 
-  enableWeb3: (options?: Web3EnableOptions) => void;
+  enableWeb3: (
+    options?: Web3EnableOptions,
+  ) => Promise<MoralisType.Web3Provider | undefined>;
   deactivateWeb3: () => Promise<void>;
   web3: MoralisType.MoralisWeb3Provider | null;
   isWeb3Enabled: boolean;
