@@ -172,6 +172,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         if (onSuccess) {
           onSuccess(user);
         }
+        return user;
       } catch (error) {
         setAuth({ state: AuthenticationState.ERROR, error });
         setUser(null);
@@ -231,6 +232,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         if (onSuccess) {
           onSuccess(user);
         }
+        return user;
       } catch (error) {
         setAuth({ state: AuthenticationState.ERROR, error });
         if (throwOnError) {
@@ -274,6 +276,7 @@ export const _useMoralisAuth = (options: UseMoralisAuthOptions) => {
         if (onSuccess) {
           onSuccess(user);
         }
+        return user;
       } catch (error) {
         setAuth({ state: AuthenticationState.ERROR, error });
         if (throwOnError) {

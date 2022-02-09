@@ -75,6 +75,7 @@ export const _useResolveCall = <Result, Params extends ResolveCallParams>(
         if (onSuccess) {
           onSuccess(results);
         }
+        return results;
       } catch (error) {
         setData(initialData);
         setError(error);

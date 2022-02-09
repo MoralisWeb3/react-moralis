@@ -120,6 +120,7 @@ export const _useMoralisWeb3 = (
         if (onSuccess) {
           onSuccess(currentWeb3);
         }
+        return currentWeb3;
       } catch (error) {
         setEnableWeb3Error(error);
         if (throwOnError) {
