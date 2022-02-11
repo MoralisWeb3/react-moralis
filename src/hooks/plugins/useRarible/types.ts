@@ -1,4 +1,4 @@
-export type RaribleNetwork = "rinkiby" | "eth";
+export type RaribleNetwork = "rinkeby" | "eth";
 export type RaribleTokenType = "ERC721" | "ERC1155";
 export type RaribleTokenTypeAssetClass =
   | "ETH"
