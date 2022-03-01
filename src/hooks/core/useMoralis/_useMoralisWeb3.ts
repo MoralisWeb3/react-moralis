@@ -1,16 +1,12 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import MoralisType from "moralis";
 
-export interface Web3EnableOptions {
+export type Web3EnableOptions = MoralisType.EnableOptions & {
   onError?: (error: Error) => void;
   onSuccess?: (web3: unknown) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
-  provider?: MoralisType.Web3ProviderType;
-  connector?: MoralisType.Connector;
-  chainId?: number;
-  anyNetwork?: boolean;
-}
+};
 
 type EnableWeb3 = (
   options?: Web3EnableOptions | undefined,
