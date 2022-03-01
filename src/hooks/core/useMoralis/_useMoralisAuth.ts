@@ -44,19 +44,12 @@ const initialAuth: Authentication = {
   error: null,
 };
 
-export interface AuthenticateOptions {
+export type AuthenticateOptions = MoralisType.AuthenticationOptions & {
   onError?: (error: Error) => void;
   onSuccess?: (user: MoralisType.User) => void;
   onComplete?: () => void;
   throwOnError?: boolean;
-  type?: MoralisType.AuthenticationType;
-  provider?: MoralisType.Web3ProviderType;
-  connector?: MoralisType.Connector;
-  chainId?: number;
-  signingMessage?: string;
-  anyNetwork?: boolean;
-}
-
+};
 export interface SignupOptions {
   onError?: (error: Error) => void;
   onSuccess?: (user: MoralisType.User) => void;
