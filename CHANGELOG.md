@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/MoralisWeb3/react-moralis/compare/v1.3.1...v1.3.2) (2022-03-01)
+
+
+### Bug Fixes
+
+* types for connector options on authenticate ([#212](https://github.com/MoralisWeb3/react-moralis/issues/212)) ([8b6badb](https://github.com/MoralisWeb3/react-moralis/commit/8b6badb66764942887ede4deeefcf7055a1e1c69))
+
 ## [1.3.1](https://github.com/MoralisWeb3/react-moralis/compare/v1.3.0...v1.3.1) (2022-02-09)
 
 
