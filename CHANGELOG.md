@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/MoralisWeb3/react-moralis/compare/v1.3.3...v1.3.4) (2022-03-21)
+
+
+### Bug Fixes
+
+* typo in RaribleNetwork type ([#201](https://github.com/MoralisWeb3/react-moralis/issues/201)) ([0d7c608](https://github.com/MoralisWeb3/react-moralis/commit/0d7c6086f4c7675137ccb5f90b74c623694f7770))
+
 ## [1.3.3](https://github.com/MoralisWeb3/react-moralis/compare/v1.3.2...v1.3.3) (2022-03-21)
 
 
