@@ -1,4 +1,5 @@
 module.exports = {
+  repositoryUrl: "https://github.com/MoralisWeb3/react-moralis",
   branches: [
     "main",
     {
