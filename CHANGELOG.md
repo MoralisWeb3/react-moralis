@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/MoralisWeb3/react-moralis/compare/v1.3.4...v1.3.5) (2022-03-29)
+
+
+### Bug Fixes
+
+* add repository url for semantic release ([#226](https://github.com/MoralisWeb3/react-moralis/issues/226)) ([3c73676](https://github.com/MoralisWeb3/react-moralis/commit/3c736769dc55ba0e1f8ea7f79d68c43ea9afa50f))
+
 ## [1.3.4](https://github.com/MoralisWeb3/react-moralis/compare/v1.3.3...v1.3.4) (2022-03-21)
 
 
