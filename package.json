@@ -59,7 +59,7 @@
     "babel-loader": "8.2.3",
     "commitizen": "^4.2.4",
     "dotenv": "^10.0.0",
-    "eslint": "8.5.0",
+    "eslint": "8.16.0",
     "eslint-plugin-react": "^7.27.1",
     "husky": "^7.0.4",
     "jest": "^27.4.5",
