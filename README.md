@@ -1021,7 +1021,7 @@ It calls Moralis API and doesn't require web3 to be enabled.
 - `address` : The contract address (i.e. 0x1a2b3x...).
 - `functionName` : The name of the contract's function that you want to call.
 - `abi` : The contract's abi. 
-- `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value: current chain.
+- `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value: 'eth'.
 - `params` (optional): Any parameter you want to send with the function.
 
 **Example**
