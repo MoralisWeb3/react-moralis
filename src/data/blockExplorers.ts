@@ -12,4 +12,5 @@ export const blockExplorers: Record<string, string | null> = {
   "0x89": "https://explorer-mainnet.maticvigil.com",
   "0x13881": "https://mumbai.polygonscan.com",
   "0xfa": "https://ftmscan.com/",
+  "0x19": "https://cronoscan.com/",
 };

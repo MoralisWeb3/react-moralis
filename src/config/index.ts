@@ -24,4 +24,5 @@ export const supportedChains = [
   "0xa86a",
   "0xa869",
   "0x539",
+  "0x19",
 ];
