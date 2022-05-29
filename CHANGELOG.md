@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/MoralisWeb3/react-moralis/compare/v1.3.5...v1.4.0) (2022-05-29)
+
+
+### Features
+
+* add Cronos support ([#251](https://github.com/MoralisWeb3/react-moralis/issues/251)) ([4cd48f7](https://github.com/MoralisWeb3/react-moralis/commit/4cd48f775a785f7f238693ba93363b0c89e2edf4))
+
 ## [1.3.5](https://github.com/MoralisWeb3/react-moralis/compare/v1.3.4...v1.3.5) (2022-03-29)
 
 
