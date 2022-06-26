@@ -898,7 +898,7 @@ const AddScoreButton = ({user, score}) => {
 
 ## `useWeb3ExecuteFunction()`
 
-You can use the `useWeb3ExecuteFunction` hook to execute on-chain functions. You need to provide the correct `abi` of the contract, the corresponding `contractAddress`, the `functionName` that you would like to execute, and any parameters (`params`) thet you need to send with the function.
+You can use the `useWeb3ExecuteFunction` hook to execute on-chain functions. You need to provide the correct `abi` of the contract, the corresponding `contractAddress`, the `functionName` that you would like to execute, and any parameters (`params`) that you need to send with the function.
 
 *Example:*
 
