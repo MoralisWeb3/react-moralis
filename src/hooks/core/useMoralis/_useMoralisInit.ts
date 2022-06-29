@@ -104,8 +104,6 @@ export const _useMoralisInit = ({
       javascriptKey: jsKey,
       plugins,
     });
-
-    setIsInitialized(true);
   }, [
     appId,
     serverUrl,
