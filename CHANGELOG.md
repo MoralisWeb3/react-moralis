@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/MoralisWeb3/react-moralis/compare/v1.4.0...v1.4.1) (2022-08-10)
+
+
+### Bug Fixes
+
+* updated moralis-v1 peerDependency ([#268](https://github.com/MoralisWeb3/react-moralis/issues/268)) ([37d26d9](https://github.com/MoralisWeb3/react-moralis/commit/37d26d9f8b0fa218261ac82bdec8a63747ed59a2))
+
 # [1.4.0](https://github.com/MoralisWeb3/react-moralis/compare/v1.3.5...v1.4.0) (2022-05-29)
 
 
