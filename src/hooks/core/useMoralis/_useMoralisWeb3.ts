@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
-import MoralisType from "moralis";
+import MoralisType from "moralis-v1";
 
 export type Web3EnableOptions = MoralisType.EnableOptions & {
   onError?: (error: Error) => void;

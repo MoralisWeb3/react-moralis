@@ -1,4 +1,4 @@
-import MoralisType from "moralis";
+import MoralisType from "moralis-v1";
 
 export type DefaultQueryAttribute = MoralisType.Attributes;
 

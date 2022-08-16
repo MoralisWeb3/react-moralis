@@ -5,7 +5,7 @@ import {
   UseMoralisWeb3ApiCallOptions,
 } from "../../core/useMoralisWeb3Api";
 import { DEFAULT_API_CHAIN } from "../../../config";
-import MoralisType from "moralis";
+import MoralisType from "moralis-v1";
 import { isValidApiChain } from "../../../utils/isValidApiChain";
 
 export interface UseERC20BalancesParams

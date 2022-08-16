@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import MoralisImport from "moralis";
+import MoralisImport from "moralis-v1";
 import { ReactMoralisError } from "../../../Errors";
 
 export type Environment = "browser" | "native";

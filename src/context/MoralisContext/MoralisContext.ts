@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import MoralisType from "moralis";
+import MoralisType from "moralis-v1";
 import {
   AuthenticateOptions,
   Authentication,

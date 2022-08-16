@@ -1,4 +1,4 @@
-import MoralisType from "moralis";
+import MoralisType from "moralis-v1";
 import { useCallback, useState } from "react";
 import { NotAuthenticatedError, ReactMoralisError } from "../../../Errors";
 import { setMultipleDataToUser, SetUserData } from "./utils/setUserData";
