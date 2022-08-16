@@ -10,7 +10,7 @@ import { isValidApiChain } from "../../../utils/isValidApiChain";
 
 export interface UseNFTTransfersParams
   extends Omit<
-    Parameters<typeof MoralisType.Web3API["account"]["getTokenTransfers"]>[0],
+    Parameters<typeof MoralisType.Web3API["account"]["getNFTTransfers"]>[0],
     "address"
   > {
   address?: string;
