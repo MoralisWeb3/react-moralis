@@ -1,3 +1,12 @@
+## [1.4.2](https://github.com/MoralisWeb3/react-moralis/compare/v1.4.1...v1.4.2) (2022-09-04)
+
+
+### Bug Fixes
+
+* moralis dependency ([1aeb4fe](https://github.com/MoralisWeb3/react-moralis/commit/1aeb4fe9d01d7d649f88d21749388f7d9bf78a1f))
+* moralis references ([ccfb51a](https://github.com/MoralisWeb3/react-moralis/commit/ccfb51af669fe12a1e451db66890070fe1cf0089))
+* useNFTTransfers param type ([e551a3f](https://github.com/MoralisWeb3/react-moralis/commit/e551a3f672d95bd1abfce188efb20cd009a90813))
+
 ## [1.4.1](https://github.com/MoralisWeb3/react-moralis/compare/v1.4.0...v1.4.1) (2022-08-10)
 
 
