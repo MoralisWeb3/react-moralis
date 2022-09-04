@@ -1,4 +1,4 @@
-import { components } from "moralis/types/generated/web3Api";
+import { components } from "moralis-v1/types/generated/web3Api";
 export type ApiChain = components["schemas"]["chainList"];
 
 export const DEFAULT_API_CHAIN: ApiChain = "eth";

@@ -1,5 +1,5 @@
 import { WritableDraft } from "immer/dist/internal";
-import MoralisType from "moralis";
+import MoralisType from "moralis-v1";
 import { useCallback } from "react";
 import { DefaultQueryAttribute, Query } from "../../../utils/genericQuery";
 import { useMoralis } from "../useMoralis";

@@ -1,4 +1,4 @@
-import MoralisType from "moralis/types";
+import MoralisType from "moralis-v1/types";
 import { useMemo } from "react";
 import { DEFAULT_API_CHAIN } from "../../../config";
 import { isValidApiChain } from "../../../utils/isValidApiChain";

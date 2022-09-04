@@ -1,4 +1,4 @@
-import MoralisType from "moralis/types";
+import MoralisType from "moralis-v1/types";
 import {
   useMoralisWeb3Api,
   useMoralisWeb3ApiCall,

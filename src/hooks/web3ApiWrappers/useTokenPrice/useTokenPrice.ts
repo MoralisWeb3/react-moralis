@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import MoralisType from "moralis";
+import MoralisType from "moralis-v1";
 import { tokenValueTxt, toUsd } from "../../../utils/formatters";
 import {
   useMoralisWeb3Api,

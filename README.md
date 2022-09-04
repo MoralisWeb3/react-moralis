@@ -1739,7 +1739,7 @@ This library offers first-class Typescript support.
 In order to use this library with react-native, you need to provide the `environment="native"` property to the `MoralisProvider`. Also you need to provide the Moralis library from `moralis/react-native.js` like:
 
 ```js
-import Moralis from "moralis/react-native.js"
+import Moralis from "moralis-v1/react-native.js"
 
 const getMoralis = () => Moralis
 <MoralisProvider

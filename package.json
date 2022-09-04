@@ -3,7 +3,7 @@
   "version": "1.4.1",
   "description": "Hooks and components to use Moralis in a React app",
   "keywords": [
-    "moralis",
+    "moralis-v1",
     "react",
     "react-hooks",
     "web3",
