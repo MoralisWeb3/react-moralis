@@ -128,6 +128,7 @@ function App() {
     - [`useNativeBalance()`](#usenativebalance)
     - [`useNativeTransactions()`](#usenativetransactions)
     - [`useNFTBalances()`](#usenftbalances)
+    - [`useNFTTokenIds()`](#usenfttokenids)
     - [`useNFTTransfers()`](#usenfttransfers)
     - [`useTokenPrice()`](#usetokenprice)
     - [`useWeb3Contract()`](#useweb3contract)
@@ -1306,6 +1307,87 @@ const NFTBalances = () => {
       "symbol": "RARI"
     }
   ]
+}
+```
+
+### `useNFTTokenIds()`
+
+Gets NFTs from the contract address. Supports both ERC721 and ERC1155. Returns an object with the total number of tokens and the array of NFT objects.
+
+**Options**:
+- `address`: A contract address (i.e. 0x1a2b3x...).
+- `chain` (optional): The blockchain to get data from. Valid values are listed on the [Web3 API Intro page](https://docs.moralis.io/moralis-server/web3-sdk/intro#supported-chains). Default value: current chain (if the chain is not supported it will use the Eth chain).
+- `limit` (optional): Number of NFTs to fetch. Default value: 5
+
+**Example**
+```jsx
+import { useNFTTokenIds } from "react-moralis";
+
+const { getNFTTokenIds, data, error, isLoading, isFetching } = useNFTTokenIds();
+
+const NFTTokenIds = () => {
+  return (
+    <div>
+      {error && <>{JSON.stringify(error)}</>}
+      <button onClick={() => getNFTTokenIds({
+        address: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d",
+        chain: "0x1",
+        limit: 1 })}>Refetch NFTBalances</button>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  );
+};
+```
+
+**Example return** (Object)
+```json
+{
+    "total": "10000",
+    "page": 0,
+    "page_size": 1,
+    "cursor": "...",
+    "result": [
+        {
+            "token_address": "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d",
+            "token_id": "9989",
+            "amount": "1",
+            "contract_type": "ERC721",
+            "name": "BoredApeYachtClub",
+            "symbol": "BAYC",
+            "token_uri": "https://gateway.moralisipfs.com/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/9989",
+            "metadata": {
+                "image": "ipfs://QmRixhzz7vuF7Lq1h9XrH8rCyL7kGBZRf3i79ArqDmk7eN",
+                "attributes": [
+                    {
+                        "trait_type": "Clothes",
+                        "value": "Vietnam Jacket"
+                    },
+                    {
+                        "trait_type": "Hat",
+                        "value": "Faux Hawk"
+                    },
+                    {
+                        "trait_type": "Mouth",
+                        "value": "Bored Pizza"
+                    },
+                    {
+                        "trait_type": "Fur",
+                        "value": "Red"
+                    },
+                    {
+                        "trait_type": "Eyes",
+                        "value": "Bored"
+                    },
+                    {
+                        "trait_type": "Background",
+                        "value": "New Punk Blue"
+                    }
+                ]
+            },
+            "synced_at": "2022-03-10T17:18:56.558Z",
+            "image": "ipfs://QmRixhzz7vuF7Lq1h9XrH8rCyL7kGBZRf3i79ArqDmk7eN"
+        }
+    ]
 }
 ```
 
