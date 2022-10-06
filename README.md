@@ -38,7 +38,7 @@ or
 yarn add react react-dom moralis-v1 react-moralis
 ```
 
-> Make sure to also  `moralis-v1` to the latest version, when you update `react-moralis`.
+> Make sure to also have  `moralis-v1` installed to the latest version, when you update `react-moralis`.
 
 Then wrap your app in a `<MoralisProvider>`, and provide your appId and serverUrl:
 
