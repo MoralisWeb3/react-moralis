@@ -1,30 +1,27 @@
-export class ReactMoralisError extends Error {
+class ReactMoralisError extends Error {
   static isReactMoraliserrpr = true;
 
   constructor(message: string) {
     super(`[react-moralis]: ${message}`);
-    this.name = "ReactMoralisError";
+    this.name = this.constructor.name;
     this.message = message;
   }
 }
 
-export class NoMoralisContextProviderError extends ReactMoralisError {
-  constructor(message: string) {
-    super(message);
-    this.name = "NoMoralisContextProviderError";
+class NoMoralisContextProviderError extends ReactMoralisError {
+  constructor() {
+    super('No Moralis context provider found. Please make sure that you have wrapped your app with the `MoralisProvider` component.');
   }
 }
 
-export class NotAuthenticatedError extends ReactMoralisError {
-  constructor(message: string) {
-    super(message);
-    this.name = "NotAuthenticatedError";
+class NotAuthenticatedError extends ReactMoralisError {
+  constructor() {
+    super('You are not authenticated. Please make sure that you have called the `authenticate` method and that it succeeded.');
   }
 }
 
-export class ValidationError extends ReactMoralisError {
+class ValidationError extends ReactMoralisError {
   constructor(message: string) {
     super(message);
-    this.name = "ValidationError";
   }
 }
